@@ -6,7 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+/// The root widget of the application.
+///
+/// Configures [MaterialApp.router] with the active theme, locale, and router
+/// from Riverpod providers. All app-wide configuration (theme mode, locale)
+/// is driven by [AppConfigController].
+///
+/// **Adding a new locale:** add a `Locale` entry to `supportedLocales` and
+/// create the corresponding ARB file in `lib/l10n/` before shipping.
 class App extends ConsumerWidget {
+  /// Creates the root [App] widget.
   const App({super.key});
 
   @override
@@ -27,9 +36,14 @@ class App extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      // Supported locales — add a new [Locale] entry here each time a
+      // new language is fully translated and its ARB file is added to
+      // lib/l10n/. English is the only required default. Do not add a
+      // locale here unless the corresponding ARB file exists and is
+      // complete — Flutter will throw at runtime if a locale is listed
+      // but has no delegate data.
       supportedLocales: const [
-        Locale('en'), // English
-        Locale('es'), // Spanish
+        Locale('en'), // English — default, always required
       ],
     );
   }
