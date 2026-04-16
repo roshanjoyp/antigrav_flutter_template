@@ -1,4 +1,5 @@
 import 'package:antigrav_flutter_template/app/theme/app_theme_components.dart';
+import 'package:antigrav_flutter_template/app/theme/app_theme_extensions.dart';
 import 'package:antigrav_flutter_template/core/core.dart';
 import 'package:flutter/material.dart';
 
@@ -66,6 +67,9 @@ abstract final class AppTheme {
       snackBarTheme: AppThemeComponents.darkSnackBar,
       dialogTheme: AppThemeComponents.darkDialog,
       listTileTheme: AppThemeComponents.darkListTile,
+      extensions: const [
+        AppStatusColors(),
+      ],
     );
   }
 
