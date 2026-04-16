@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:antigrav_flutter_template/app/app.dart';
-import 'package:antigrav_flutter_template/core/config/app_env.dart';
-import 'package:antigrav_flutter_template/core/config/app_flavor.dart';
+import 'package:antigrav_flutter_template/core/core.dart';
 import 'package:antigrav_flutter_template/core/services/crash_service/crash_service_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
