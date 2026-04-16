@@ -88,6 +88,10 @@ abstract final class AppConstants {
   /// 1200ms — deliberate animation. Lottie intros and loading screen sequences.
   static const Duration durationXxSlow = Duration(milliseconds: 1200);
 
+  /// 1500ms — minimum splash screen visibility. Ensures the splash is seen
+  /// even when startup logic completes quickly.
+  static const Duration durationSplash = Duration(milliseconds: 1500);
+
   // ---------------------------------------------------------------------------
   // 4. Font Sizes
   // ---------------------------------------------------------------------------

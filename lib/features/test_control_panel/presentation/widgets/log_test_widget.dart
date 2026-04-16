@@ -1,3 +1,5 @@
+import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
+import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
 import 'package:antigrav_flutter_template/core/services/log_service/log_service_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,7 +17,7 @@ class LogTestWidget extends ConsumerWidget {
     final logger = ref.read(logServiceProvider);
 
     return Wrap(
-      spacing: 8,
+      spacing: AppConstants.spaceXs,
       children: [
         FilledButton(
           onPressed: () => logger.info('Test Info Log'),
@@ -26,7 +28,7 @@ class LogTestWidget extends ConsumerWidget {
           child: const Text('Warning'),
         ),
         FilledButton(
-          style: FilledButton.styleFrom(backgroundColor: Colors.red),
+          style: FilledButton.styleFrom(backgroundColor: AppColors.error),
           onPressed: () => logger.error(
             'Test Error Log',
             Exception('Test Exception'),

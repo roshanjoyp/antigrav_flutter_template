@@ -6,6 +6,10 @@ import 'package:antigrav_flutter_template/core/services/crash_service/crash_serv
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+/// Application entry point.
+///
+/// Initialises [AppFlavor], sets up global error handlers, and launches
+/// the app inside a [ProviderScope] via [UncontrolledProviderScope].
 void main() async {
   // ---------------------------------------------------------------------------
   // Flavor initialization — must happen before everything else.

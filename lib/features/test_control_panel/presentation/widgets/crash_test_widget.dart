@@ -1,3 +1,4 @@
+import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
 import 'package:antigrav_flutter_template/core/services/crash_service/crash_service_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,7 +18,7 @@ class CrashTestWidget extends ConsumerWidget {
       title: const Text('Simulate Crash'),
       subtitle: const Text('Records a fatal error to CrashService'),
       trailing: IconButton(
-        icon: const Icon(Icons.bug_report, color: Colors.red),
+        icon: const Icon(Icons.bug_report, color: AppColors.error),
         onPressed: () {
           ref
               .read(crashServiceProvider)

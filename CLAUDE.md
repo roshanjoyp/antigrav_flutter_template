@@ -7,6 +7,7 @@ These rules apply to every task in this project without exception.
 ## 1. Code Organisation
 
 - No file should exceed 200 lines. If it grows beyond that, split it logically.
+  **Exception:** Pure constant definition files (`app_constants.dart`, `app_colors.dart`) and pure typography definition files (`app_text.dart`) may exceed 200 lines when splitting would require renaming all public identifiers or using `part` files. Document the reason inline if a constant file exceeds 200 lines.
 - Colors must always come from `app_colors.dart`. Never hardcode a color anywhere.
 - Spacing, dimensions, and durations must always come from `app_constants.dart`. Never hardcode numbers.
 - Every reusable widget goes in `lib/core/widgets/`. If a widget is used more than once, extract it immediately.

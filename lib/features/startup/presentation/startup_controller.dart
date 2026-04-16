@@ -1,3 +1,4 @@
+import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
 import 'package:antigrav_flutter_template/core/services/log_service/log_service_impl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -25,8 +26,8 @@ class StartupController extends _$StartupController {
 
       // Artificial delay for splash screen visibility (optional)
       final elapsed = DateTime.now().difference(start);
-      if (elapsed.inMilliseconds < 1500) {
-        await Future.delayed(const Duration(milliseconds: 1500) - elapsed);
+      if (elapsed < AppConstants.durationSplash) {
+        await Future.delayed(AppConstants.durationSplash - elapsed);
       }
 
       // Determine destination

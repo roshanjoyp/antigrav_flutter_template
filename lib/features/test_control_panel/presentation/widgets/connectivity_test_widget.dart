@@ -1,3 +1,4 @@
+import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
 import 'package:antigrav_flutter_template/core/services/connectivity/connectivity_service_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,7 +25,7 @@ class ConnectivityTestWidget extends ConsumerWidget {
         return ListTile(
           leading: Icon(
             isConnected ? Icons.wifi : Icons.wifi_off,
-            color: isConnected ? Colors.green : Colors.grey,
+            color: isConnected ? AppColors.success : AppColors.textTertiary,
           ),
           title: Text(isConnected ? 'Connected' : 'Disconnected'),
         );
