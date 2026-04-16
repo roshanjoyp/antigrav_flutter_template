@@ -26,11 +26,6 @@ void main() async {
   // Those entry-point files do not exist yet — this single main.dart defaults
   // to AppEnv.development until flavor-specific entry points are introduced.
   // ---------------------------------------------------------------------------
-  // Ensure Flutter binding is initialized first — some initialization paths
-  // (e.g. platform channels, plugin setup) require the binding to be ready
-  // before any other startup code runs.
-  WidgetsFlutterBinding.ensureInitialized();
-
   AppFlavor.initialize(AppEnv.development);
 
   // Create a container to read providers before the app starts
@@ -39,6 +34,10 @@ void main() async {
 
   runZonedGuarded(
     () async {
+      // Ensure Flutter binding is initialized inside the guarded zone so that
+      // runApp() and ensureInitialized() share the same zone, avoiding the
+      // "Zone mismatch" warning Flutter emits when they are in different zones.
+      WidgetsFlutterBinding.ensureInitialized();
 
       // Initialize DotEnv if needed
       // await dotenv.load(fileName: ".env");
