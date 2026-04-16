@@ -54,4 +54,4 @@ final class PermissionServiceProvider
   }
 }
 
-String _$permissionServiceHash() => r'ec1d271fd8993467c7e4d51c725b86b0a5a8fc34';
+String _$permissionServiceHash() => r'1fe8b72ce9fdebbb0fbc1436cbdcd9e3de282bdf';

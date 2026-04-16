@@ -55,4 +55,4 @@ final class ConnectivityServiceProvider
 }
 
 String _$connectivityServiceHash() =>
-    r'467e2ea4f6554a357ab33e76b64391d3245740ab';
+    r'aa63dbf77d91570e190778d88f71f4dceb014034';

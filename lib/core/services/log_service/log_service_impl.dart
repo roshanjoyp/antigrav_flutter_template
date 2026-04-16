@@ -84,32 +84,58 @@ class LoggerLogService implements LogService {
   // LogService interface
   // ---------------------------------------------------------------------------
 
+  /// Logs a debug message.
+  ///
+  /// No-op in production. **Never throws** — [LogService] is the last line
+  /// of defence; a failure here must not interrupt the caller.
   @override
   void debug(String message, [dynamic error, StackTrace? stackTrace]) {
     if (_isProductionSilent) return;
-    _logger.d(message, error: error, stackTrace: stackTrace);
+    try {
+      _logger.d(message, error: error, stackTrace: stackTrace);
+    } catch (_) {}
   }
 
+  /// Logs an informational message.
+  ///
+  /// No-op in production. **Never throws.**
   @override
   void info(String message, [dynamic error, StackTrace? stackTrace]) {
     if (_isProductionSilent) return;
-    _logger.i(message, error: error, stackTrace: stackTrace);
+    try {
+      _logger.i(message, error: error, stackTrace: stackTrace);
+    } catch (_) {}
   }
 
+  /// Logs a warning message.
+  ///
+  /// No-op in production. **Never throws.**
   @override
   void warning(String message, [dynamic error, StackTrace? stackTrace]) {
     if (_isProductionSilent) return;
-    _logger.w(message, error: error, stackTrace: stackTrace);
+    try {
+      _logger.w(message, error: error, stackTrace: stackTrace);
+    } catch (_) {}
   }
 
+  /// Logs an error message.
+  ///
+  /// Active in all environments. **Never throws.**
   @override
   void error(String message, [dynamic error, StackTrace? stackTrace]) {
-    _logger.e(message, error: error, stackTrace: stackTrace);
+    try {
+      _logger.e(message, error: error, stackTrace: stackTrace);
+    } catch (_) {}
   }
 
+  /// Logs a fatal/wtf message.
+  ///
+  /// Active in all environments. **Never throws.**
   @override
   void wtf(String message, [dynamic error, StackTrace? stackTrace]) {
-    _logger.f(message, error: error, stackTrace: stackTrace);
+    try {
+      _logger.f(message, error: error, stackTrace: stackTrace);
+    } catch (_) {}
   }
 }
 
