@@ -1,4 +1,3 @@
-import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
 import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
 import 'package:antigrav_flutter_template/core/widgets/app_text.dart';
 import 'package:flutter/material.dart';
@@ -38,14 +37,11 @@ class AppLoading extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(AppColors.accent),
-          ),
+          const CircularProgressIndicator(),
           if (message != null) ...[
             const SizedBox(height: AppConstants.spaceMd),
             AppText.bodySmall(
               message!,
-              color: AppColors.textSecondary,
               textAlign: TextAlign.center,
             ),
           ],

@@ -2,6 +2,19 @@ import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
 import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
+/// Semantic color role used to resolve a theme-appropriate fallback when no
+/// explicit [AppText.color] is provided.
+enum _ColorRole {
+  /// Maps to [ColorScheme.onSurface] — headings and body copy.
+  primary,
+
+  /// Maps to [ColorScheme.onSurfaceVariant] — secondary and label copy.
+  secondary,
+
+  /// Maps to [ColorScheme.onSurfaceVariant] with reduced opacity — captions.
+  tertiary,
+}
+
 /// A typography widget that enforces app-wide font sizes and text colors
 /// via [AppConstants] and [AppColors].
 ///
@@ -9,6 +22,10 @@ import 'package:flutter/material.dart';
 /// Avoid using [Text] with hardcoded styles anywhere in the app — all
 /// text should go through [AppText] or a custom style built from
 /// [AppConstants] and [AppColors].
+///
+/// When [color] is omitted the widget resolves a sensible default from the
+/// ambient [ThemeData.colorScheme], so it renders correctly in both dark and
+/// light themes without needing an explicit override.
 ///
 /// Example:
 /// ```dart
@@ -21,12 +38,13 @@ class AppText extends StatelessWidget {
     this.text, {
     super.key,
     required this.fontSize,
-    required this.color,
     required this.fontWeight,
+    this.color,
     this.textAlign,
     this.maxLines,
     this.overflow,
-  });
+    _ColorRole colorRole = _ColorRole.primary,
+  }) : _colorRole = colorRole;
 
   // ---------------------------------------------------------------------------
   // Named constructors — one per typography variant
@@ -36,7 +54,7 @@ class AppText extends StatelessWidget {
   factory AppText.headingLarge(
     String text, {
     Key? key,
-    Color color = AppColors.textPrimary,
+    Color? color,
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
@@ -56,7 +74,7 @@ class AppText extends StatelessWidget {
   factory AppText.headingMedium(
     String text, {
     Key? key,
-    Color color = AppColors.textPrimary,
+    Color? color,
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
@@ -76,7 +94,7 @@ class AppText extends StatelessWidget {
   factory AppText.headingSmall(
     String text, {
     Key? key,
-    Color color = AppColors.textPrimary,
+    Color? color,
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
@@ -96,7 +114,7 @@ class AppText extends StatelessWidget {
   factory AppText.bodyLarge(
     String text, {
     Key? key,
-    Color color = AppColors.textPrimary,
+    Color? color,
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
@@ -116,7 +134,7 @@ class AppText extends StatelessWidget {
   factory AppText.bodyMedium(
     String text, {
     Key? key,
-    Color color = AppColors.textPrimary,
+    Color? color,
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
@@ -136,7 +154,7 @@ class AppText extends StatelessWidget {
   factory AppText.bodySmall(
     String text, {
     Key? key,
-    Color color = AppColors.textSecondary,
+    Color? color,
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
@@ -147,6 +165,7 @@ class AppText extends StatelessWidget {
         fontSize: AppConstants.fontSm,
         color: color,
         fontWeight: FontWeight.w400,
+        colorRole: _ColorRole.secondary,
         textAlign: textAlign,
         maxLines: maxLines,
         overflow: overflow,
@@ -156,7 +175,7 @@ class AppText extends StatelessWidget {
   factory AppText.caption(
     String text, {
     Key? key,
-    Color color = AppColors.textTertiary,
+    Color? color,
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
@@ -167,6 +186,7 @@ class AppText extends StatelessWidget {
         fontSize: AppConstants.fontXs,
         color: color,
         fontWeight: FontWeight.w400,
+        colorRole: _ColorRole.tertiary,
         textAlign: textAlign,
         maxLines: maxLines,
         overflow: overflow,
@@ -176,7 +196,7 @@ class AppText extends StatelessWidget {
   factory AppText.label(
     String text, {
     Key? key,
-    Color color = AppColors.textSecondary,
+    Color? color,
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
@@ -187,6 +207,7 @@ class AppText extends StatelessWidget {
         fontSize: AppConstants.fontXs,
         color: color,
         fontWeight: FontWeight.w500,
+        colorRole: _ColorRole.secondary,
         textAlign: textAlign,
         maxLines: maxLines,
         overflow: overflow,
@@ -203,7 +224,11 @@ class AppText extends StatelessWidget {
   final double fontSize;
 
   /// The text color.
-  final Color color;
+  ///
+  /// When `null` the color is resolved from [ThemeData.colorScheme] based on
+  /// the variant's semantic role, so the widget adapts to dark and light themes
+  /// automatically. Pass an explicit [AppColors] value to override this.
+  final Color? color;
 
   /// The font weight.
   final FontWeight fontWeight;
@@ -217,6 +242,25 @@ class AppText extends StatelessWidget {
   /// How overflowing text should be handled when [maxLines] is set.
   final TextOverflow? overflow;
 
+  /// The semantic color role used when [color] is null.
+  final _ColorRole _colorRole;
+
+  // ---------------------------------------------------------------------------
+  // Helpers
+  // ---------------------------------------------------------------------------
+
+  /// Resolves the effective text color from the ambient [ColorScheme] when no
+  /// explicit [color] is provided.
+  Color _resolveColor(BuildContext context) {
+    final ColorScheme cs = Theme.of(context).colorScheme;
+    return switch (_colorRole) {
+      _ColorRole.primary => cs.onSurface,
+      _ColorRole.secondary => cs.onSurfaceVariant,
+      _ColorRole.tertiary =>
+        cs.onSurfaceVariant.withValues(alpha: AppConstants.opacityDim),
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -226,7 +270,7 @@ class AppText extends StatelessWidget {
       overflow: overflow,
       style: TextStyle(
         fontSize: fontSize,
-        color: color,
+        color: color ?? _resolveColor(context),
         fontWeight: fontWeight,
       ),
     );

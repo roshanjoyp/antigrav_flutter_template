@@ -1,4 +1,3 @@
-import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
 import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
@@ -34,8 +33,8 @@ class AppDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-      child: const Divider(
-        color: AppColors.border,
+      child: Divider(
+        color: Theme.of(context).colorScheme.outlineVariant,
         thickness: 1,
         height: AppConstants.spaceXs,
       ),

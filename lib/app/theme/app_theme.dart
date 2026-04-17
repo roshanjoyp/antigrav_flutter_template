@@ -77,12 +77,13 @@ abstract final class AppTheme {
   // Light Theme
   // ---------------------------------------------------------------------------
 
-  /// Light theme stub — not yet implemented.
+  /// Light theme — uses a seed [ColorScheme] derived from [AppColors.accent].
   ///
-  /// Returns a minimal [ThemeData] to satisfy [MaterialApp.theme].
-  /// A full light theme will be built when light mode support is required.
+  /// Component shape, padding, and typography scale match the dark theme so
+  /// widgets look structurally identical across modes. Colors are intentionally
+  /// delegated to the generated [ColorScheme]; explicit color tokens will be
+  /// added when full light-mode branding is defined.
   static ThemeData get lightTheme {
-    // TODO: Implement light theme using AppColors light-mode tokens.
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
@@ -90,6 +91,66 @@ abstract final class AppTheme {
         seedColor: AppColors.accent,
         brightness: Brightness.light,
       ),
+      appBarTheme: const AppBarTheme(
+        centerTitle: true,
+        elevation: AppConstants.elevationNone,
+      ),
+      cardTheme: CardThemeData(
+        elevation: AppConstants.elevationSm,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spaceLg,
+            vertical: AppConstants.spaceMd,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          ),
+          textStyle: const TextStyle(
+            inherit: false,
+            fontSize: AppConstants.fontMd,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spaceMd,
+            vertical: AppConstants.spaceXs,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          ),
+          textStyle: const TextStyle(
+            inherit: false,
+            fontSize: AppConstants.fontMd,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spaceLg,
+            vertical: AppConstants.spaceMd,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          ),
+        ),
+      ),
+      dividerTheme: const DividerThemeData(
+        thickness: 1,
+        space: AppConstants.spaceXs,
+      ),
+      extensions: const [
+        AppStatusColors(),
+      ],
     );
   }
 }

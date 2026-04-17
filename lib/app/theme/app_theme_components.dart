@@ -15,6 +15,7 @@ abstract final class AppThemeComponents {
     elevation: AppConstants.elevationNone,
     centerTitle: true,
     titleTextStyle: TextStyle(
+      inherit: false,
       color: AppColors.textPrimary,
       fontSize: AppConstants.fontLg,
       fontWeight: FontWeight.w600,
@@ -45,6 +46,7 @@ abstract final class AppThemeComponents {
         borderRadius: BorderRadius.circular(AppConstants.radiusMd),
       ),
       textStyle: const TextStyle(
+        inherit: false,
         fontSize: AppConstants.fontMd,
         fontWeight: FontWeight.w600,
       ),
@@ -60,6 +62,7 @@ abstract final class AppThemeComponents {
         vertical: AppConstants.spaceXs,
       ),
       textStyle: const TextStyle(
+        inherit: false,
         fontSize: AppConstants.fontMd,
         fontWeight: FontWeight.w500,
       ),
@@ -85,8 +88,8 @@ abstract final class AppThemeComponents {
   static InputDecorationTheme darkInputDecoration = InputDecorationTheme(
     filled: true,
     fillColor: AppColors.backgroundSecondary,
-    hintStyle: const TextStyle(color: AppColors.textTertiary),
-    labelStyle: const TextStyle(color: AppColors.textSecondary),
+    hintStyle: const TextStyle(inherit: false, color: AppColors.textTertiary),
+    labelStyle: const TextStyle(inherit: false, color: AppColors.textSecondary),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppConstants.radiusSm),
       borderSide: const BorderSide(color: AppColors.border),
@@ -129,7 +132,7 @@ abstract final class AppThemeComponents {
   /// Snack bar theme for the dark theme.
   static SnackBarThemeData darkSnackBar = SnackBarThemeData(
     backgroundColor: AppColors.surfaceElevated,
-    contentTextStyle: const TextStyle(color: AppColors.textPrimary),
+    contentTextStyle: const TextStyle(inherit: false, color: AppColors.textPrimary),
     actionTextColor: AppColors.accent,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppConstants.radiusSm),
@@ -146,11 +149,13 @@ abstract final class AppThemeComponents {
       borderRadius: BorderRadius.circular(AppConstants.radiusLg),
     ),
     titleTextStyle: const TextStyle(
+      inherit: false,
       color: AppColors.textPrimary,
       fontSize: AppConstants.fontXl,
       fontWeight: FontWeight.w600,
     ),
     contentTextStyle: const TextStyle(
+      inherit: false,
       color: AppColors.textSecondary,
       fontSize: AppConstants.fontMd,
     ),
@@ -162,6 +167,7 @@ abstract final class AppThemeComponents {
     iconColor: AppColors.textSecondary,
     textColor: AppColors.textPrimary,
     subtitleTextStyle: TextStyle(
+      inherit: false,
       color: AppColors.textSecondary,
       fontSize: AppConstants.fontSm,
     ),

@@ -1,4 +1,3 @@
-import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 /// A standardized scaffold wrapper that enforces the app background color
@@ -61,7 +60,7 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       floatingActionButton: floatingActionButton,

@@ -28,6 +28,7 @@ class App extends ConsumerWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: appConfig.themeMode,
+      themeAnimationStyle: AnimationStyle.noAnimation,
       locale: appConfig.locale,
       routerConfig: router,
       localizationsDelegates: const [

@@ -56,7 +56,6 @@ class AppError extends StatelessWidget {
             const SizedBox(height: AppConstants.spaceMd),
             AppText.bodyMedium(
               message,
-              color: AppColors.textSecondary,
               textAlign: TextAlign.center,
             ),
             if (onRetry != null) ...[

@@ -57,7 +57,7 @@ class _StartupViewState extends ConsumerState<StartupView> {
             ),
             const SizedBox(height: AppConstants.spaceMd),
             OutlinedButton.icon(
-              onPressed: () => context.go('/test'),
+              onPressed: () => context.push('/test'),
               icon: const Icon(Icons.build),
               label: const Text('Test Services'),
             ),
