@@ -1,82 +1,102 @@
-# AntiGrav Flutter Template
+# antigrav_flutter_template
 
-A production-grade, backend-agnostic Flutter application template designed for scalability and robustness.
+A production-grade, backend-agnostic Flutter application template built for teams that care about structure from day one. It ships with clean architecture (presentation, domain, data layers), Riverpod state management with code generation, a full Material 3 dark theme, design tokens via `AppColors` and `AppConstants`, six core services with interface/implementation separation, a `Result` type for safe error handling, environment and flavor support, barrel exports, and a `CLAUDE.md` optimised for AI-assisted development. Clone it, run the setup script, and start building — no boilerplate wiring required.
 
-## 🚀 Features
+## Prerequisites
 
-*   **Clean Architecture**: Separation of concerns into Presentation, Domain, and Data layers.
-*   **Feature-First Structure**: Modular code organization by feature.
-*   **State Management**: `flutter_riverpod` (v2+) with `riverpod_annotation`.
-*   **Navigation**: `go_router` for deep linking and navigation.
-*   **Core Services** (Abstracted & Testable):
-    *   **LogService**: Unified logging.
-    *   **CrashService**: Error reporting (Crashlytics/Sentry ready).
-    *   **AnalyticsService**: Event tracking abstraction.
-    *   **ConnectivityService**: Offline status monitoring.
-    *   **PermissionService**: Simplified permission requests.
-    *   **UpdateService**: Custom update checking interface.
-*   **Localization**: Built-in `l10n` support (English & Spanish).
-*   **Dynamic Configuration**: Runtime toggle for Theme (Light/Dark) and Locale.
-*   **Test Control Panel**: A built-in screen to manually verify all services.
+- Flutter SDK installed
+- Dart SDK installed (comes with Flutter)
+- Git installed
 
-## 📚 Documentation
+## Getting Started
 
-Detailed documentation is available in the project root:
+### Step 1 — Clone the repository
 
-*   **[CONTEXT.md](CONTEXT.md)**: High-level overview for AI Agents & Developers.
-*   **[ARCHITECTURE_FLOW.md](ARCHITECTURE_FLOW.md)**: Detailed data flow and architecture explanation.
-*   **[SERVICES.md](SERVICES.md)**: Guide to using core services.
-*   **[RIVERPOD_GUIDE.md](RIVERPOD_GUIDE.md)**: Migration guide for Provider users.
-*   **[PACKAGE_COMPATIBILITY.md](PACKAGE_COMPATIBILITY.md)**: Platform compatibility table.
-
-## 🛠️ Getting Started
-
-### 1. Prerequisites
-*   Flutter SDK (v3.x+)
-*   Dart (v3.x+)
-
-### 2. Setup
-Clone the repository and install dependencies:
 ```bash
-flutter pub get
+git clone <repo-url> your-app-name
+cd your-app-name
 ```
 
-### 3. Code Generation
-This project uses `freezed`, `json_serializable`, and `riverpod_generator`. Run the build runner:
-```bash
-dart run build_runner build -d
-```
-*Tip: creating a `build.sh` or `Makefile` for this is recommended.*
+### Step 2 — Rename the root folder
 
-### 4. Running the App
+The cloned folder should already be named your app name from Step 1. If not, rename it manually now.
+
+### Step 3 — Run the setup script
+
+```bash
+dart setup/setup.dart
+```
+
+Follow the prompts to enter:
+
+- App display name (e.g. Just Tap)
+- Package name (e.g. com.antigrav.justtap)
+
+Package name rules:
+
+- All lowercase
+- At least 3 segments separated by dots
+- Only letters, numbers, underscores
+- Example: `com.yourcompany.appname`
+
+### Step 4 — Install dependencies
+
+```bash
+flutter clean && flutter pub get
+```
+
+### Step 5 — Run the app
+
 ```bash
 flutter run
 ```
 
-## 🧪 Testing Services (Manual)
+## Optional — Push to your own repository
 
-The app launches into a **Startup View** where you can choose:
-1.  **Go to Home**: The main app entry point.
-2.  **Test Services**: A control panel to verify:
-    *   Switching Locales (en/es)
-    *   Switching Themes (Light/Dark)
-    *   Triggering Logs (Info/Warning/Error)
-    *   Simulating Crashes (Fatal errors)
-    *   Camera Permission requests
-    *   Connectivity status
+### Create a new repo on GitHub/GitLab/Bitbucket
 
-## 🏗️ Architecture Overview
+Do not initialize it with a README or `.gitignore` — keep it empty.
 
-**Directory Structure**:
-```text
-lib/
-├── app/          # Global config (Router, Theme, Main App Widget)
-├── core/         # Shared utilities & Services (Interfaces & Impl)
-└── features/     # Feature modules (Auth, Startup, Home...)
-    ├── [feature]/
-    │   ├── domain/       # Entities & Repository Interfaces (Pure Dart)
-    │   ├── data/         # Repository Implementations (API calls)
-    │   └── presentation/ # Widgets & Riverpod Controllers
+### Point your local repo to the new remote
+
+```bash
+git remote remove origin
+git remote add origin <your-new-repo-url>
+git branch -M main
+git push -u origin main
 ```
 
-See **[ARCHITECTURE_FLOW.md](ARCHITECTURE_FLOW.md)** for more details.
+### Verify
+
+```bash
+git remote -v
+```
+
+Should show your new repo URL for both fetch and push.
+
+## What the setup script changes
+
+The script updates every location where the app name and package name appear:
+
+- **Android files** — `AndroidManifest.xml`, `build.gradle`, `MainActivity.kt`, package directory structure
+- **iOS files** — `Info.plist`, `AppDelegate.swift`, `project.pbxproj`, bundle identifier references
+- **Dart/Flutter files** — `pubspec.yaml`, `app.dart`, import paths that include the package name
+- **Documentation files** — `README.md`, `CLAUDE.md`, `CONTEXT.md`, and any other docs that reference the template name
+
+## Template features
+
+- Clean architecture + Riverpod (with code generation)
+- `AppColors` and `AppConstants` design tokens
+- Dark theme with full Material 3 support
+- 6 core reusable widgets
+- 6 core services with interfaces (`LogService`, `CrashService`, `AnalyticsService`, `ConnectivityService`, `PermissionService`, `UpdateService`)
+- `Result` type for error handling
+- Environment and flavor support
+- Barrel exports
+- `CLAUDE.md` for AI-assisted development
+
+## After Setup
+
+- Replace stub service implementations with real ones as needed — stubs exist to show structure, not to be shipped as-is
+- Read `CLAUDE.md` before starting development — it contains standing rules for code organisation, architecture, and tooling
+- Read `ARCHITECTURE_FLOW.md` for a full overview of data flow and layer responsibilities

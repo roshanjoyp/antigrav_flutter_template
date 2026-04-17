@@ -1,15 +1,13 @@
-// Run from project root:
-//   dart setup/setup.dart
-//
-// This script renames the Flutter template application.
-// It updates all necessary files across Android, iOS, Flutter/Dart,
-// and documentation to reflect the new app display name and package name.
-//
-// Prerequisites:
-//   - Run from the project root directory (where pubspec.yaml lives)
-//   - Dart SDK available on PATH
-//
-// No external packages required — uses dart:io only.
+/// antigrav_flutter_template setup script
+///
+/// Renames the app name and package name
+/// throughout the entire project.
+///
+/// Usage:
+///   dart setup/setup.dart
+///
+/// See README.md for full setup instructions
+/// before running this script.
 
 // ignore_for_file: avoid_print
 
