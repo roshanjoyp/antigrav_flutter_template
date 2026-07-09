@@ -24,6 +24,11 @@ class ProfileScreen extends ConsumerWidget {
     return AppScaffold(
       appBar: AppBar(title: const Text('Profile')),
       body: profile.when(
+        // Riverpod 3 auto-retries failed providers and reports the retry
+        // as a reload (AsyncLoading). Without this flag the screen would
+        // show an infinite spinner on persistent errors instead of the
+        // error state.
+        skipLoadingOnReload: true,
         loading: () => const AppLoading(message: 'Loading profile...'),
         error: (Object error, StackTrace stackTrace) => AppError(
           message: error is AppException
