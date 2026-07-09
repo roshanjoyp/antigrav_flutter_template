@@ -16,6 +16,8 @@ All project documentation, organised by purpose. `README.md` and
 | Document | Purpose |
 | :--- | :--- |
 | [FIREBASE_SETUP.md](setup/FIREBASE_SETUP.md) | Enabling the Firebase layer: per-environment options, auth providers, Crashlytics, Analytics |
+| [PUSH_NOTIFICATIONS_SETUP.md](setup/PUSH_NOTIFICATIONS_SETUP.md) | FCM push: APNs key, Android permission, deep linking, testing |
+| [REVENUECAT_SETUP.md](setup/REVENUECAT_SETUP.md) | Enabling the paywall: RevenueCat project, SDK keys, sandbox testing |
 | [PACKAGE_COMPATIBILITY.md](setup/PACKAGE_COMPATIBILITY.md) | Platform support matrix for every dependency |
 
 ## [`planning/`](planning/) — project direction and history

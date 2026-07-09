@@ -106,7 +106,9 @@ Flipping `FirebaseConfig.enabled` to `true` does two things at startup:
 Firebase initializes for the active flavor, **and** every stub is swapped
 for its Firebase implementation via the provider override list in
 `lib/app/config/firebase_overrides.dart` — auth, profile (Firestore),
-Crashlytics, and Analytics. No call-site changes anywhere.
+Crashlytics, Analytics, and push (FCM; see
+docs/setup/PUSH_NOTIFICATIONS_SETUP.md for its platform steps). No
+call-site changes anywhere.
 
 When you add your own Firebase-backed service or repository, add its
 override to that same list.

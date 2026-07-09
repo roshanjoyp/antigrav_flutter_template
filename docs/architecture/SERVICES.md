@@ -67,17 +67,42 @@ if (info != null) {
 }
 ```
 
-## Auth & Data Layer
-**Location**: `lib/features/auth` and `lib/features/profile`
+## 7. PushService
+**Location**: `lib/core/services/push_service`
+**Usage**: Push notifications — permission, token, message streams, topics.
+**Implementations**: `DebugPushService` (default; can simulate messages) · `FirebasePushServiceImpl` (FCM; bound when Firebase is enabled).
+
+```dart
+final granted = await ref.read(pushServiceProvider).requestPermission();
+final token = await ref.read(pushServiceProvider).getToken(); // Result<String?>
+ref.read(pushServiceProvider).onForegroundMessage.listen((msg) { /* in-app UI */ });
+```
+
+Notification taps deep-link automatically: messages with a `route` data key navigate there via `pushDeepLinkListenerProvider` (`lib/app/config/push_deep_link_listener.dart`). See `docs/setup/PUSH_NOTIFICATIONS_SETUP.md`.
+
+## 8. StorageService
+**Location**: `lib/core/services/storage_service`
+**Usage**: Persistent key/value storage for small flags and tokens (keys live in `AppConstants.storageKey*`).
+**Implementations**: `SecureStorageServiceImpl` (default — real, keychain/keystore-backed) · `InMemoryStorageService` (tests/overrides).
+
+```dart
+final value = await ref.read(storageServiceProvider).read(AppConstants.storageKeyTheme); // Result<String?>
+await ref.read(storageServiceProvider).write(AppConstants.storageKeyTheme, 'dark');
+```
+
+## Feature Repositories (Data Layer)
+**Location**: `lib/features/*`
 
 We follow the **Repository Pattern**. All repository methods return the `Result` type from `lib/core/utils/result.dart`; implementations map backend errors into `AppException` and never throw.
 
-| Feature | Interface (domain) | Stub (default) | Firebase impl |
+| Feature | Interface (domain) | Stub/default | Real impl (switch) |
 | :--- | :--- | :--- | :--- |
 | Auth | `AuthRepository` | `StubAuthRepository` | `FirebaseAuthRepositoryImpl` (Firebase Auth) |
 | Profile | `ProfileRepository` | `StubProfileRepository` | `FirestoreProfileRepositoryImpl` (Firestore) |
+| Paywall | `SubscriptionRepository` | `StubSubscriptionRepository` | `RevenueCatSubscriptionRepositoryImpl` (RevenueCat, `RevenueCatConfig.enabled`) |
+| Onboarding | `OnboardingRepository` | `OnboardingRepositoryImpl` (real, storage-backed — never overridden) | — |
 
-The Firebase implementations are bound automatically when `FirebaseConfig.enabled` is `true` (see `lib/app/config/firebase_overrides.dart`).
+The Firebase implementations are bound automatically when `FirebaseConfig.enabled` is `true` (see `lib/app/config/firebase_overrides.dart`); the RevenueCat implementation when `RevenueCatConfig.enabled` is `true` (see `lib/app/config/revenuecat_overrides.dart` and `docs/setup/REVENUECAT_SETUP.md`).
 
 To add another backend (e.g. REST):
 1. Create `RestAuthRepository` implementing `AuthRepository` (map errors into `Result`/`AppException`).

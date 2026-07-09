@@ -18,6 +18,8 @@ This table outlines the platform support for the keys packages used in this temp
 | **firebase_crashlytics** | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | Crashlytics impl of `CrashService`. Not bound by default; degrades to logged no-ops on unsupported platforms. |
 | **firebase_analytics** | ✅ | ✅ | ✅ | ✅ | ❌ | ⚠️ | Firebase Analytics impl of `AnalyticsService`. Not bound by default. |
 | **google_sign_in** | ✅ | ✅ | ✅ | ⚠️ | ❌ | ❌ | Native Google flow. On web the Firebase popup flow is used instead (handled automatically by `FirebaseFederatedSignIn`). |
+| **firebase_messaging** | ✅ | ✅ | ✅ | ⚠️ | ❌ | ❌ | FCM impl of `PushService`. Bound when Firebase is enabled. Web needs a service worker + VAPID key (not preconfigured). |
+| **purchases_flutter** | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | RevenueCat impl of `SubscriptionRepository`. Disabled by default (`RevenueCatConfig.enabled`); unsupported platforms keep the stub automatically. |
 | **freezed** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Code generation (Dev dependency). |
 | **json_serializable** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Code generation (Dev dependency). |
 

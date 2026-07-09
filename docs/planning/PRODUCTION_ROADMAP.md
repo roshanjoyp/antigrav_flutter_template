@@ -79,9 +79,9 @@ the same abstractions.
 
 ## Phase 2 — Monetization + push (what buyers pay for)
 
-- [ ] **Paywall module**: RevenueCat (`purchases_flutter`) integration — subscription entitlement provider, paywall screen using existing core widgets, restore purchases, sandbox testing docs
-- [ ] **Push notifications**: FCM integration — token handling, foreground/background handlers, permission flow through the existing `PermissionService`, notification tap → deep link via go_router
-- [ ] **Onboarding flow**: 2–3 screen onboarding with "seen" state persisted (secure storage or shared prefs), wired into the startup/router redirect logic
+- [x] **Paywall module**: RevenueCat (`purchases_flutter`) integration — subscription entitlement provider, paywall screen using existing core widgets, restore purchases, sandbox testing docs (2026-07-09: stub-first `SubscriptionRepository`, `RevenueCatConfig.enabled` switch mirroring the Firebase pattern, `/paywall` screen, docs/setup/REVENUECAT_SETUP.md)
+- [x] **Push notifications**: FCM integration — token handling, foreground/background handlers, permission flow through the existing `PermissionService`, notification tap → deep link via go_router (2026-07-09: `PushService` in core/services, `route` data-key deep-link convention via `pushDeepLinkListenerProvider`, docs/setup/PUSH_NOTIFICATIONS_SETUP.md; bound with the Firebase override set)
+- [x] **Onboarding flow**: 2–3 screen onboarding with "seen" state persisted (secure storage or shared prefs), wired into the startup/router redirect logic (2026-07-09: new `StorageService` (secure-storage default, in-memory for tests), `OnboardingRepository`, 3-page flow, startup redirects first runs to `/onboarding`)
 
 ## Phase 3 — Tests (currently zero — no `test/` directory)
 
