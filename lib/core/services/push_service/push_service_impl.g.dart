@@ -64,4 +64,4 @@ final class PushServiceProvider
   }
 }
 
-String _$pushServiceHash() => r'cdb8341d52406233ae2b811007a72affe621e753';
+String _$pushServiceHash() => r'cccf9e7483acff1b84abf68a38036d998feddae3';

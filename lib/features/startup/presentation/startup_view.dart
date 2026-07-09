@@ -33,47 +33,62 @@ class _StartupViewState extends ConsumerState<StartupView> {
     // initState, causing a crash.
     ref.watch(startupControllerProvider);
 
-    // Note: Auto-navigation removed for Test Control Panel purpose.
+    // Note: Auto-navigation to home removed for Test Control Panel
+    // purpose — this screen stays up as the template's demo hub. The
+    // one exception is the first-run onboarding redirect.
+    ref.listen(startupControllerProvider, (previous, next) {
+      if (next.value == '/onboarding') context.go('/onboarding');
+    });
 
     return AppScaffold(
       useSafeArea: true,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const FlutterLogo(size: AppConstants.space5xl),
-            const SizedBox(height: AppConstants.spaceXl),
-            AppText.headingMedium(
-              'AntiGrav Template',
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: AppConstants.space4xl),
-            const AppLoading(message: 'Starting up...'),
-            const SizedBox(height: AppConstants.space4xl),
-            AppButton(
-              label: 'Go to Home',
-              onPressed: () => context.go('/'),
-              isFullWidth: false,
-            ),
-            const SizedBox(height: AppConstants.spaceMd),
-            OutlinedButton.icon(
-              onPressed: () => context.push('/test'),
-              icon: const Icon(Icons.build),
-              label: const Text('Test Services'),
-            ),
-            const SizedBox(height: AppConstants.spaceMd),
-            OutlinedButton.icon(
-              onPressed: () => context.push('/profile'),
-              icon: const Icon(Icons.person),
-              label: const Text('Profile Example'),
-            ),
-            const SizedBox(height: AppConstants.spaceMd),
-            OutlinedButton.icon(
-              onPressed: () => context.push('/paywall'),
-              icon: const Icon(Icons.workspace_premium),
-              label: const Text('Paywall Example'),
-            ),
-          ],
+        // Scrollable so the growing list of example links never
+        // overflows on small screens.
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const FlutterLogo(size: AppConstants.space5xl),
+              const SizedBox(height: AppConstants.spaceXl),
+              AppText.headingMedium(
+                'AntiGrav Template',
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: AppConstants.space4xl),
+              const AppLoading(message: 'Starting up...'),
+              const SizedBox(height: AppConstants.space4xl),
+              AppButton(
+                label: 'Go to Home',
+                onPressed: () => context.go('/'),
+                isFullWidth: false,
+              ),
+              const SizedBox(height: AppConstants.spaceMd),
+              OutlinedButton.icon(
+                onPressed: () => context.push('/test'),
+                icon: const Icon(Icons.build),
+                label: const Text('Test Services'),
+              ),
+              const SizedBox(height: AppConstants.spaceMd),
+              OutlinedButton.icon(
+                onPressed: () => context.push('/profile'),
+                icon: const Icon(Icons.person),
+                label: const Text('Profile Example'),
+              ),
+              const SizedBox(height: AppConstants.spaceMd),
+              OutlinedButton.icon(
+                onPressed: () => context.push('/paywall'),
+                icon: const Icon(Icons.workspace_premium),
+                label: const Text('Paywall Example'),
+              ),
+              const SizedBox(height: AppConstants.spaceMd),
+              OutlinedButton.icon(
+                onPressed: () => context.push('/onboarding'),
+                icon: const Icon(Icons.explore),
+                label: const Text('Onboarding Example'),
+              ),
+            ],
+          ),
         ),
       ),
     );

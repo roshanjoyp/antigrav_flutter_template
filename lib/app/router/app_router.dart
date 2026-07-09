@@ -1,3 +1,4 @@
+import 'package:antigrav_flutter_template/features/onboarding/onboarding.dart';
 import 'package:antigrav_flutter_template/features/paywall/paywall.dart';
 import 'package:antigrav_flutter_template/features/profile/profile.dart';
 import 'package:antigrav_flutter_template/features/startup/startup.dart';
@@ -26,6 +27,10 @@ GoRouter goRouter(Ref ref) {
       GoRoute(
         path: '/paywall',
         builder: (context, state) => const PaywallScreen(),
+      ),
+      GoRoute(
+        path: '/onboarding',
+        builder: (context, state) => const OnboardingScreen(),
       ),
       GoRoute(
         path: '/',

@@ -33,7 +33,7 @@ final class StartupControllerProvider
   StartupController create() => StartupController();
 }
 
-String _$startupControllerHash() => r'230ce94a292b81ba2020c7eec2770cb6b01a4302';
+String _$startupControllerHash() => r'0121e039f006cf0c580ae4ebd42415bf33833dcf';
 
 abstract class _$StartupController extends $AsyncNotifier<String?> {
   FutureOr<String?> build();

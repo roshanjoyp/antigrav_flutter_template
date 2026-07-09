@@ -1,5 +1,7 @@
 import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
 import 'package:antigrav_flutter_template/core/services/log_service/log_service_impl.dart';
+import 'package:antigrav_flutter_template/core/utils/result.dart';
+import 'package:antigrav_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'startup_controller.g.dart';
@@ -30,12 +32,22 @@ class StartupController extends _$StartupController {
         await Future.delayed(AppConstants.durationSplash - elapsed);
       }
 
-      // Determine destination
-      // Ideally check if user is logged in.
-      // For now, let's assume we go to Home if logged in, or Auth if not.
-      // Since we don't have a persisted session implementation yet in the stub,
-      // we'll default to Home '/' for now to show the app works.
+      // Determine destination.
+      //
+      // First run goes to onboarding. A failed storage read counts as
+      // "seen" — a broken storage layer must not trap users in
+      // onboarding, and home works without it.
+      final Result<bool> seenOnboarding = await ref
+          .read(onboardingRepositoryProvider)
+          .hasSeenOnboarding();
+      if (!seenOnboarding.getOrElse(true)) {
+        logger.info('Startup Logic Complete. First run -> onboarding.');
+        return '/onboarding';
+      }
 
+      // Ideally also check if the user is logged in and route to auth
+      // when not. The stub template has no persisted session, so home
+      // is the default destination.
       logger.info('Startup Logic Complete. Navigating to Home.');
       return '/';
     });

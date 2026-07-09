@@ -265,6 +265,9 @@ abstract final class AppConstants {
   /// Key used to persist the refresh token in secure storage.
   static const String storageKeyRefreshToken = 'refresh_token';
 
+  /// Key used to persist whether the user has completed onboarding.
+  static const String storageKeyOnboardingSeen = 'onboarding_seen';
+
   // ---------------------------------------------------------------------------
   // 10. Breakpoints (responsive layout)
   // ---------------------------------------------------------------------------
