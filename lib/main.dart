@@ -42,6 +42,11 @@ void main() async {
       // Initialize DotEnv if needed
       // await dotenv.load(fileName: ".env");
 
+      // Initializes Firebase for the active flavor. No-op while
+      // FirebaseConfig.enabled is false (the template's stub-only default);
+      // see FIREBASE_SETUP.md to enable it.
+      await FirebaseConfig.initialize();
+
       // Flutter Error Handling
       FlutterError.onError = (details) {
         FlutterError.presentError(details);

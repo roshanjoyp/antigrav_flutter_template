@@ -12,6 +12,7 @@ This table outlines the platform support for the keys packages used in this temp
 | **permission_handler** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Unified permission API. |
 | **flutter_secure_storage** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Keychain/Keystore wrapper. |
 | **flutter_dotenv** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Environment config. |
+| **firebase_core** | ✅ | ✅ | ✅ | ✅ | ❌ | ⚠️ | Firebase init. Windows support covers only a subset of Firebase plugins; no Linux support. Disabled by default (`FirebaseConfig.enabled`). |
 | **freezed** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Code generation (Dev dependency). |
 | **json_serializable** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Code generation (Dev dependency). |
 

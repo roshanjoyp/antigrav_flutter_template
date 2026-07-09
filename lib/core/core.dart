@@ -20,6 +20,7 @@ export 'package:antigrav_flutter_template/core/utils/result.dart';
 // Configuration
 export 'package:antigrav_flutter_template/core/config/app_env.dart';
 export 'package:antigrav_flutter_template/core/config/app_flavor.dart';
+export 'package:antigrav_flutter_template/core/config/firebase/firebase_config.dart';
 
 // Widgets
 export 'package:antigrav_flutter_template/core/widgets/widgets.dart';
