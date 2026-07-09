@@ -1,0 +1,753 @@
+<title>Craft Configurator — UI mockup</title>
+
+<style>
+  /* ============ Tokens — committed monochrome, dark-first ============ */
+  :root {
+    --bg: #17181c;        /* charcoal stage */
+    --panel: #1d1f25;     /* floating card */
+    --panel-deep: #14151a;
+    --fg: #f2f2ef;        /* type on dark */
+    --muted: #8d8f96;
+    --line: #2b2d34;
+    --band-bg: #f4f4f1;   /* the single light band */
+    --band-fg: #17181c;
+    --band-muted: #6d6f6a;
+    --band-line: #dddcd5;
+  }
+
+  /* ============ Base ============ */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .disp { font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif; }
+  .mono { font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace; }
+  a { color: inherit; }
+  :focus-visible { outline: 1px solid var(--fg); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 28px; }
+
+  /* Micro-label — tiny spaced caps, the refs' quietest voice */
+  .micro {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-size: 0.625rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Section shell — centered head with .0n number, TURA-style */
+  section { padding: clamp(90px, 12vw, 150px) 0 0; }
+  .sec-head { text-align: center; margin-bottom: clamp(48px, 7vw, 80px); }
+  .sec-head .num {
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.6875rem; color: var(--muted); letter-spacing: 0.2em;
+    display: block; margin-bottom: 18px;
+  }
+  .sec-head h2 {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: 0.3em; text-transform: uppercase;
+    margin: 0; padding-left: 0.3em; /* re-center tracked caps */
+    text-wrap: balance;
+  }
+  .sec-head .lede {
+    color: var(--muted); max-width: 52ch; margin: 18px auto 0;
+    font-size: 0.9375rem;
+  }
+
+  /* Buttons — small rectangle, spaced caps, sharp */
+  .btn {
+    display: inline-block;
+    background: var(--fg); color: var(--bg);
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-size: 0.6875rem; font-weight: 600;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 15px 34px 14px 36px; /* extra left pad rebalances tracking */
+    border: 1px solid var(--fg); cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover { background: transparent; color: var(--fg); }
+  .btn.ghost { background: transparent; color: var(--fg); }
+  .btn.ghost:hover { background: var(--fg); color: var(--bg); }
+
+  /* ============ Nav ============ */
+  nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em;
+    line-height: 1.25; text-decoration: none;
+    border: 1px solid var(--fg);
+    padding: 6px 8px 5px 9px;
+    display: inline-block; text-align: center;
+  }
+  nav ul { display: flex; gap: 44px; list-style: none; margin: 0; padding: 0; }
+  nav ul a {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-size: 0.625rem; letter-spacing: 0.32em; text-transform: uppercase;
+    text-decoration: none; color: var(--muted);
+  }
+  nav ul a:hover { color: var(--fg); }
+  @media (max-width: 760px) { nav ul { display: none; } }
+
+  /* ============ Hero — the TURA stack ============ */
+  header.hero {
+    min-height: calc(100svh - 72px);
+    display: grid; place-items: center;
+    position: relative;
+    text-align: center;
+    padding: 60px 0;
+  }
+  .hero-stack .kicker { margin-bottom: 34px; display: block; }
+  .hero-stack h1 {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-weight: 700;
+    font-size: clamp(3.2rem, 12vw, 8.5rem);
+    letter-spacing: 0.28em; padding-left: 0.28em;
+    line-height: 1;
+    margin: 0 0 34px;
+    text-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  }
+  .hero-stack .acro {
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.6875rem; letter-spacing: 0.18em;
+    color: var(--muted);
+    display: block; margin-bottom: 8px;
+  }
+  .hero-stack .acro b { color: var(--fg); font-weight: 700; }
+  .hero-stack .line {
+    color: var(--muted); font-size: 0.9375rem; max-width: 46ch;
+    margin: 26px auto 44px;
+  }
+  .scrolltag {
+    position: absolute; right: 34px; bottom: 48px;
+    writing-mode: vertical-rl;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .scrolltag::after { content: ""; width: 1px; height: 56px; background: var(--muted); }
+  @media (max-width: 900px) { .scrolltag { display: none; } }
+
+  /* ============ Metrics — hairline centered row ============ */
+  .metrics {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .metrics > div {
+    text-align: center; padding: 34px 18px 30px;
+    border-left: 1px solid var(--line);
+  }
+  .metrics > div:first-child { border-left: none; }
+  .metrics .num {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-weight: 500; font-size: clamp(1.6rem, 3vw, 2.3rem);
+    letter-spacing: 0.06em; font-variant-numeric: tabular-nums;
+    display: block; margin-bottom: 6px;
+  }
+  .metrics .lbl {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-size: 0.5625rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  @media (max-width: 720px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .metrics > div:nth-child(3) { border-left: none; }
+    .metrics > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  }
+
+  /* ============ Configurator ============ */
+  .config-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+  }
+  @media (max-width: 960px) { .config-grid { grid-template-columns: 1fr; } }
+
+  /* Identity — underline inputs, like the reference contact form */
+  .identity { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 16px; }
+  @media (max-width: 560px) { .identity { grid-template-columns: 1fr; } }
+  .field label {
+    display: block;
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-size: 0.5625rem; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 4px;
+  }
+  .field input {
+    width: 100%;
+    background: transparent; color: var(--fg);
+    border: none; border-bottom: 1px solid var(--line);
+    padding: 8px 0 10px; font-size: 0.9375rem;
+    font-family: inherit;
+  }
+  .field input:focus { border-bottom-color: var(--fg); outline: none; }
+  .pkg-preview {
+    grid-column: 1 / -1;
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.75rem; color: var(--muted);
+  }
+  .pkg-preview b { color: var(--fg); font-weight: 600; }
+
+  /* Module list */
+  .group-label {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-size: 0.5625rem; letter-spacing: 0.34em; text-transform: uppercase;
+    color: var(--muted);
+    margin: 44px 0 0; padding-bottom: 12px;
+  }
+  .mod {
+    display: grid; grid-template-columns: 18px 1fr; gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+    cursor: pointer;
+    transition: opacity 0.18s ease;
+  }
+  .mod:last-of-type { border-bottom: 1px solid var(--line); }
+  /* Unchecked modules recede like an out-of-focus photograph */
+  .mod:has(input:not(:checked)) { opacity: 0.38; }
+  .mod:hover { opacity: 1; }
+  .mod input[type="checkbox"] {
+    appearance: none; -webkit-appearance: none;
+    width: 15px; height: 15px; margin: 4px 0 0;
+    border: 1px solid var(--fg);
+    background: transparent; cursor: pointer; flex: none;
+  }
+  .mod input[type="checkbox"]:checked {
+    background: var(--fg);
+    box-shadow: inset 0 0 0 3px var(--bg);
+  }
+  .mod .name {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-weight: 500; font-size: 0.8125rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .mod .desc { color: var(--muted); font-size: 0.875rem; margin-top: 4px; display: block; }
+  .mod .deps {
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.625rem; color: var(--muted); margin-top: 10px; display: block;
+    letter-spacing: 0.02em;
+  }
+  .mod .deps span { border: 1px solid var(--line); padding: 2px 7px; margin-right: 6px; display: inline-block; margin-bottom: 4px; }
+
+  /* Theme preset — square radios */
+  .presets { display: flex; gap: 32px; padding: 22px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .presets label {
+    display: flex; gap: 10px; align-items: center; cursor: pointer;
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-size: 0.6875rem; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .presets input[type="radio"] {
+    appearance: none; -webkit-appearance: none;
+    width: 13px; height: 13px; margin: 0;
+    border: 1px solid var(--fg); background: transparent; cursor: pointer;
+  }
+  .presets input[type="radio"]:checked { background: var(--fg); box-shadow: inset 0 0 0 3px var(--bg); }
+
+  /* Preview — floating card with soft depth, sharp corners */
+  .preview {
+    position: sticky; top: 100px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+  }
+  @media (max-width: 960px) { .preview { position: static; } }
+  .preview-head { padding: 20px 24px 0; }
+  .preview-head .file {
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.8125rem; font-weight: 700;
+  }
+  .preview-head .sum { font-size: 0.6875rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 3px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-top: 18px; }
+  .tabs button {
+    background: none; border: none; cursor: pointer;
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-size: 0.5625rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 12px;
+    border-bottom: 1px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tabs button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--fg); }
+  .pane {
+    padding: 20px 24px 24px;
+    min-height: 360px; max-height: 420px; overflow-y: auto;
+    background: var(--panel-deep);
+  }
+  .pane pre {
+    margin: 0; font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.71875rem; line-height: 1.8;
+    overflow-x: auto;
+  }
+  .pane .add { color: var(--fg); font-weight: 700; }
+  .pane .dim { color: var(--muted); }
+  .steps { list-style: none; margin: 0; padding: 0; }
+  .steps li {
+    display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: baseline;
+    padding: 11px 0; border-bottom: 1px solid var(--line);
+    font-size: 0.8125rem;
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps .tag {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-size: 0.5rem; letter-spacing: 0.24em; text-transform: uppercase;
+    padding: 3px 8px 2px 10px; white-space: nowrap;
+  }
+  .steps .tag.auto { background: var(--fg); color: var(--bg); }
+  .steps .tag.manual { border: 1px solid var(--line); color: var(--muted); }
+  .steps .who { color: var(--muted); display: block; font-size: 0.65rem; margin-top: 2px; }
+  .preview-foot {
+    border-top: 1px solid var(--line);
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .preview-foot .note {
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.625rem; color: var(--muted);
+  }
+  .toast {
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.625rem; color: var(--fg);
+    display: none;
+  }
+  .toast.show { display: block; }
+
+  /* ============ Process — the light band ============ */
+  .band {
+    background: var(--band-bg); color: var(--band-fg);
+    margin-top: clamp(90px, 12vw, 150px);
+    padding: clamp(80px, 10vw, 120px) 0;
+  }
+  .band .sec-head .num, .band .sec-head .lede { color: var(--band-muted); }
+  .band .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .band .how > div {
+    text-align: center; padding: 10px 34px;
+    border-left: 1px solid var(--band-line);
+  }
+  .band .how > div:first-child { border-left: none; }
+  .band .how .n {
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.6875rem; color: var(--band-muted); letter-spacing: 0.2em;
+    display: block; margin-bottom: 20px;
+  }
+  .band .how h3 {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-weight: 500; font-size: 0.8125rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    margin: 0 0 14px; padding-left: 0.3em;
+  }
+  .band .how p { color: var(--band-muted); font-size: 0.875rem; margin: 0; }
+  .band .how code {
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.85em; border: 1px solid var(--band-line); padding: 1px 5px;
+  }
+  @media (max-width: 800px) {
+    .band .how { grid-template-columns: 1fr; gap: 44px; }
+    .band .how > div { border-left: none; }
+  }
+
+  /* ============ What's inside ============ */
+  .inside {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+  }
+  .inside > div {
+    border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    padding: 34px 30px 40px;
+    transition: opacity 0.18s ease;
+  }
+  @media (hover: hover) { .inside:hover > div:not(:hover) { opacity: 0.4; } }
+  .inside h3 {
+    font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+    font-weight: 500; font-size: 0.75rem;
+    letter-spacing: 0.26em; text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+  .inside p { color: var(--muted); font-size: 0.875rem; margin: 0; }
+  .inside code { font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.85em; }
+  @media (max-width: 800px) { .inside { grid-template-columns: 1fr; } }
+
+  /* ============ Bottom CTA + footer ============ */
+  .bottom-cta { text-align: center; padding-bottom: clamp(90px, 12vw, 150px); }
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 44px 0 52px;
+    text-align: center;
+  }
+  footer .micro { display: block; }
+  footer .micro + .micro { margin-top: 12px; letter-spacing: 0.24em; }
+</style>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#">CRA<br>FT</a>
+    <ul>
+      <li><a href="#configure">Configure</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#inside">Inside</a></li>
+      <li><a href="#">Docs</a></li>
+    </ul>
+    <a class="btn ghost" href="#configure" style="padding: 10px 20px 9px 24px;">Start</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-stack wrap">
+    <span class="micro kicker">Flutter starter — configured, not cloned</span>
+    <h1>CRAFT</h1>
+    <span class="acro" aria-label="CRAFT stands for Clean Riverpod Architecture Flutter Template"><b>C</b>LEAN&ensp;·&ensp;<b>R</b>IVERPOD&ensp;·&ensp;<b>A</b>RCHITECTURE&ensp;·&ensp;<b>F</b>LUTTER&ensp;·&ensp;<b>T</b>EMPLATE</span>
+    <p class="line">Pick your modules. Download a codebase containing only what you
+    chose — architecture, tests, docs, and a doctor that verifies your setup.</p>
+    <a class="btn" href="#configure">Configure your app</a>
+  </div>
+  <span class="scrolltag micro">Scroll</span>
+</header>
+
+<div class="wrap">
+  <div class="metrics">
+    <div><span class="num">07</span><span class="lbl">Configurable modules</span></div>
+    <div><span class="num">81%</span><span class="lbl">Line test coverage</span></div>
+    <div><span class="num">01</span><span class="lbl">Command to running app</span></div>
+    <div><span class="num">00</span><span class="lbl">Unused code shipped</span></div>
+  </div>
+</div>
+
+<section id="configure">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">.01</span>
+      <h2>Choose what ships</h2>
+      <p class="lede">Every module sits behind the same interfaces, so they compose
+      cleanly. The panel follows your selection — files, dependencies, setup steps.</p>
+    </div>
+
+    <div class="config-grid">
+      <div>
+        <div class="identity">
+          <div class="field">
+            <label for="appName">App name</label>
+            <input id="appName" type="text" value="My App" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="orgName">Organization</label>
+            <input id="orgName" type="text" value="com.example" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="pkg-preview mono">package: <b id="pkgOut">com.example.my_app</b></div>
+        </div>
+
+        <div id="moduleList"><!-- rendered by script --></div>
+
+        <p class="group-label">Theme preset</p>
+        <div class="presets" id="presetRow">
+          <label><input type="radio" name="preset" value="Graphite" checked> Graphite</label>
+          <label><input type="radio" name="preset" value="Signal"> Signal</label>
+          <label><input type="radio" name="preset" value="Mono"> Mono</label>
+        </div>
+      </div>
+
+      <aside class="preview" aria-label="Live preview of the generated project">
+        <div class="preview-head">
+          <div class="file mono" id="zipName">my_app.zip</div>
+          <div class="sum" id="summaryLine">4 modules · 11 dependencies · 6 setup steps</div>
+          <div class="tabs" role="tablist">
+            <button role="tab" aria-selected="true" data-pane="files">Files</button>
+            <button role="tab" aria-selected="false" data-pane="pubspec">pubspec.yaml</button>
+            <button role="tab" aria-selected="false" data-pane="steps">Setup steps</button>
+          </div>
+        </div>
+        <div class="pane" id="paneFiles" role="tabpanel"><pre id="treeOut"></pre></div>
+        <div class="pane" id="panePubspec" role="tabpanel" hidden><pre id="pubspecOut"></pre></div>
+        <div class="pane" id="paneSteps" role="tabpanel" hidden><ol class="steps" id="stepsOut"></ol></div>
+        <div class="preview-foot">
+          <button class="btn" id="downloadBtn">Download</button>
+          <span class="note">config.json — the generator's exact input</span>
+          <span class="toast" id="toast">// mockup — generator lands in Phase 8</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<div class="band" id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">.02</span>
+      <h2>Three steps</h2>
+      <p class="lede">Generation is the easy part — most templates die at setup. Ours verifies it.</p>
+    </div>
+    <div class="how">
+      <div>
+        <span class="n">.01</span>
+        <h3>Configure</h3>
+        <p>Toggle modules, name your app, pick a theme preset. The preview shows
+        exactly what your zip will contain.</p>
+      </div>
+      <div>
+        <span class="n">.02</span>
+        <h3>Generate</h3>
+        <p>We compose the codebase from your selection, rewrite packages and docs
+        to match, then run <code>flutter analyze</code> before you see it.</p>
+      </div>
+      <div>
+        <span class="n">.03</span>
+        <h3>Verify</h3>
+        <p>Run <code>dart tool/doctor.dart</code>. It checks every setup step it can
+        and gives exact instructions for the console work it can't.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="inside">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">.03</span>
+      <h2>In every download</h2>
+      <p class="lede">Opinionated where it matters. One state management, one router,
+      one way to handle errors — every generated app reads the same way.</p>
+    </div>
+    <div class="inside">
+      <div><h3>Clean architecture</h3><p>Presentation, domain, and data layers in every feature. One fully worked Firestore example traces the whole flow.</p></div>
+      <div><h3>Riverpod + go_router</h3><p>Code-generated providers and typed routing. No flavor menu of state managers — one good way, documented.</p></div>
+      <div><h3>Result-typed errors</h3><p>Every repository returns <code>Result&lt;T&gt;</code>. Failures are values, not surprises three layers up.</p></div>
+      <div><h3>Service layer</h3><p>Logging, analytics, crash reporting, storage, permissions, connectivity — behind interfaces with stub and Firebase implementations.</p></div>
+      <div><h3>Tests that exist</h3><p>81% line coverage: unit, widget, and provider tests, written as the pattern for your own features.</p></div>
+      <div><h3>Guide + doctor</h3><p>Docs generated for your configuration — no chapters for modules you didn't buy — plus a setup doctor and readiness checklist.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="bottom-cta" id="start">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num">.04</span>
+      <h2>Skip the first three weeks</h2>
+      <p class="lede">Configure once, download, run the doctor, ship features.</p>
+    </div>
+    <a class="btn" href="#configure">Configure your app</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="micro">Craft — design study v0.3</span>
+    <span class="micro">Crafted by hand · generated by machine</span>
+  </div>
+</footer>
+
+<script>
+  // ---- Module catalogue (mirrors the real template's current features) ----
+  const BASE_DEPS = ["flutter_riverpod", "riverpod_annotation", "go_router", "freezed_annotation", "json_annotation", "flutter_secure_storage"];
+
+  const MODULES = [
+    {
+      id: "auth", group: "Backend", checked: true,
+      name: "Firebase Auth",
+      desc: "Email/password, Google, Apple, and anonymous sign-in behind AuthRepository. Errors mapped into Result.",
+      deps: ["firebase_core", "firebase_auth", "google_sign_in", "sign_in_with_apple"],
+      files: [
+        ["lib/features/auth/", true],
+        ["  domain/auth_repository.dart", true],
+        ["  data/firebase_auth_repository_impl.dart", true],
+      ],
+      steps: [
+        ["Run flutterfire configure for dev/staging/prod", "auto"],
+        ["Enable sign-in providers in Firebase console", "manual"],
+        ["Add Sign in with Apple capability in Xcode", "manual"],
+      ],
+    },
+    {
+      id: "profile", group: "Backend", checked: true,
+      name: "Firestore profile (example feature)",
+      desc: "A complete worked feature: Firestore data source → repository → controller → view. The pattern to copy.",
+      deps: ["firebase_core", "cloud_firestore"],
+      files: [
+        ["lib/features/profile/", true],
+        ["  data/  domain/  presentation/", true],
+      ],
+      steps: [["Enable Firestore in Firebase console", "manual"]],
+    },
+    {
+      id: "observability", group: "Backend", checked: true,
+      name: "Analytics + Crashlytics",
+      desc: "Firebase implementations of AnalyticsService and CrashService. Stub impls remain for tests.",
+      deps: ["firebase_core", "firebase_analytics", "firebase_crashlytics"],
+      files: [
+        ["lib/core/services/analytics_service/firebase_*", true],
+        ["lib/core/services/crash_service/firebase_*", true],
+      ],
+      steps: [["Crashlytics dSYM upload build phase added", "auto"]],
+    },
+    {
+      id: "paywall", group: "Monetization", checked: true,
+      name: "Paywall — RevenueCat",
+      desc: "Subscription entitlements behind SubscriptionRepository, paywall screen, restore purchases.",
+      deps: ["purchases_flutter"],
+      files: [
+        ["lib/features/paywall/", true],
+        ["  presentation/paywall_screen.dart", true],
+      ],
+      steps: [
+        ["Add RevenueCat API keys to env config", "auto"],
+        ["Create products + entitlement in RevenueCat", "manual"],
+        ["Complete one sandbox purchase on each store", "manual"],
+      ],
+    },
+    {
+      id: "push", group: "Engagement", checked: true,
+      name: "Push notifications — FCM",
+      desc: "Token handling, foreground/background handlers, notification tap → deep link through go_router.",
+      deps: ["firebase_core", "firebase_messaging"],
+      files: [
+        ["lib/core/services/push_service/", true],
+      ],
+      steps: [
+        ["Upload APNs key to Firebase", "manual"],
+        ["Android notification icon present", "auto"],
+      ],
+    },
+    {
+      id: "onboarding", group: "Engagement", checked: true,
+      name: "Onboarding flow",
+      desc: "Three-page flow with persisted seen-state, wired into the startup redirect. First runs land here.",
+      deps: [],
+      files: [
+        ["lib/features/onboarding/", true],
+      ],
+      steps: [["Replace onboarding copy and artwork", "manual"]],
+    },
+    {
+      id: "i18n", group: "Polish", checked: false,
+      name: "Internationalization",
+      desc: "ARB-based localization scaffolding with l10n.yaml, one extra locale wired as the example.",
+      deps: ["intl"],
+      files: [
+        ["lib/l10n/", true],
+        ["l10n.yaml", true],
+      ],
+      steps: [["Add your locales to l10n.yaml", "auto"]],
+    },
+  ];
+
+  const BASE_TREE = [
+    ["lib/app/            router · theme · config", false],
+    ["lib/core/           widgets · services · utils", false],
+    ["lib/features/startup/", false],
+    ["test/               unit · widget · provider", false],
+    ["guide/              docs for THIS config", false],
+    ["tool/doctor.dart    setup verifier", false],
+  ];
+
+  // ---- Rendering ----
+  const $ = (id) => document.getElementById(id);
+
+  function snake(s) {
+    return s.trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "") || "my_app";
+  }
+  function esc(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  }
+
+  function renderModules() {
+    const groups = [...new Set(MODULES.map((m) => m.group))];
+    let html = "";
+    for (const g of groups) {
+      html += '<p class="group-label">' + g + "</p>";
+      for (const m of MODULES.filter((x) => x.group === g)) {
+        html +=
+          '<label class="mod">' +
+          '<input type="checkbox" data-id="' + m.id + '"' + (m.checked ? " checked" : "") + ">" +
+          '<span><span class="name">' + m.name + '</span>' +
+          '<span class="desc">' + m.desc + "</span>" +
+          (m.deps.length
+            ? '<span class="deps">' + m.deps.map((d) => "<span>" + d + "</span>").join("") + "</span>"
+            : "") +
+          "</span></label>";
+      }
+    }
+    $("moduleList").innerHTML = html;
+    $("moduleList").querySelectorAll("input").forEach((cb) => {
+      cb.addEventListener("change", () => {
+        MODULES.find((m) => m.id === cb.dataset.id).checked = cb.checked;
+        renderPreview();
+      });
+    });
+  }
+
+  function renderPreview() {
+    const on = MODULES.filter((m) => m.checked);
+    const pkg = $("orgName").value.trim() + "." + snake($("appName").value);
+    const zip = snake($("appName").value) + ".zip";
+    $("pkgOut").textContent = pkg;
+    $("zipName").textContent = zip;
+
+    // deps (deduped)
+    const deps = [...new Set(on.flatMap((m) => m.deps))].sort();
+    const steps = on.flatMap((m) => m.steps);
+    $("summaryLine").textContent =
+      on.length + " modules · " + (BASE_DEPS.length + deps.length) + " dependencies · " + steps.length + " setup steps";
+
+    // files tab
+    let tree = snake($("appName").value) + "/\n";
+    for (const [line] of BASE_TREE) tree += "  " + esc(line) + "\n";
+    let treeHtml = '<span class="dim">' + esc(tree) + "</span>";
+    for (const m of on) {
+      for (const [line] of m.files) {
+        treeHtml += '<span class="add">+ </span>' + esc(line) + "\n";
+      }
+    }
+    $("treeOut").innerHTML = treeHtml;
+
+    // pubspec tab
+    let py = '<span class="dim">name: ' + snake($("appName").value) + "\n\ndependencies:\n</span>";
+    for (const d of BASE_DEPS) py += '<span class="dim">  ' + d + "\n</span>";
+    for (const d of deps) py += '<span class="add">+ ' + d + "\n</span>";
+    $("pubspecOut").innerHTML = py;
+
+    // steps tab
+    $("stepsOut").innerHTML = steps
+      .map(
+        ([txt, kind]) =>
+          "<li><span>" + esc(txt) +
+          '<span class="who">' + (kind === "auto" ? "verified by doctor CLI" : "guided — deep link + confirm") + "</span></span>" +
+          '<span class="tag ' + kind + '">' + (kind === "auto" ? "doctor" : "guided") + "</span></li>"
+      )
+      .join("");
+  }
+
+  // tabs
+  document.querySelectorAll(".tabs button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", "false"));
+      btn.setAttribute("aria-selected", "true");
+      ["Files", "Pubspec", "Steps"].forEach((p) => ($("pane" + p).hidden = true));
+      $("pane" + btn.dataset.pane.charAt(0).toUpperCase() + btn.dataset.pane.slice(1)).hidden = false;
+    });
+  });
+
+  $("appName").addEventListener("input", renderPreview);
+  $("orgName").addEventListener("input", renderPreview);
+  $("downloadBtn").addEventListener("click", () => {
+    $("toast").classList.add("show");
+    setTimeout(() => $("toast").classList.remove("show"), 2600);
+  });
+
+  renderModules();
+  renderPreview();
+</script>

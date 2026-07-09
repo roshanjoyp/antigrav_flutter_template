@@ -145,7 +145,7 @@ the modules must exist first.
 
 ## Phase 9 — Configurator app + payments + delivery
 
-- [ ] Flutter web configurator (dogfooding: "this site was built with the template" is marketing) — a form producing config JSON
+- [ ] Flutter web configurator (dogfooding: "this site was built with the template" is marketing) — a form producing config JSON. UI design approved 2026-07-10: interactive mockup + token/type/component spec in `docs/design/` (monochrome studio-portfolio direction, sharp corners, live preview panel as the core demo moment)
 - [ ] Generator service on Cloud Run: private template baked into the image; receives config + payment proof, generates, uploads zip, returns short-lived signed URL
 - [ ] Payments — v1: Gumroad license key verified via Gumroad API (zero payment code); v2: Stripe Checkout + webhook minting download tokens (own margin, license enforcement)
 - [ ] Regeneration/re-download policy for paid configs (license key → stored config)
