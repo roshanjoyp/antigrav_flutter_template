@@ -67,6 +67,12 @@ class _StartupViewState extends ConsumerState<StartupView> {
               icon: const Icon(Icons.person),
               label: const Text('Profile Example'),
             ),
+            const SizedBox(height: AppConstants.spaceMd),
+            OutlinedButton.icon(
+              onPressed: () => context.push('/paywall'),
+              icon: const Icon(Icons.workspace_premium),
+              label: const Text('Paywall Example'),
+            ),
           ],
         ),
       ),

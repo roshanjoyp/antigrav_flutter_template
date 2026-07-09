@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:antigrav_flutter_template/app/app.dart';
 import 'package:antigrav_flutter_template/app/config/firebase_overrides.dart';
+import 'package:antigrav_flutter_template/app/config/revenuecat_overrides.dart';
 import 'package:antigrav_flutter_template/core/core.dart';
 import 'package:antigrav_flutter_template/core/services/crash_service/crash_service_impl.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +33,16 @@ void main() async {
   // Create a container to read providers before the app starts
   // and to use it for error reporting in the zone.
   //
-  // When Firebase is enabled, every stub service/repository is swapped
-  // for its Firebase implementation here — this is the single switch
-  // point (see lib/app/config/firebase_overrides.dart).
+  // When a backend module is enabled, its stub services/repositories are
+  // swapped for real implementations here — this is the single switch
+  // point per module (see lib/app/config/firebase_overrides.dart and
+  // lib/app/config/revenuecat_overrides.dart).
   final container = ProviderContainer(
-    overrides: FirebaseConfig.enabled ? firebaseServiceOverrides() : const [],
+    overrides: [
+      if (FirebaseConfig.enabled) ...firebaseServiceOverrides(),
+      if (RevenueCatConfig.enabled && RevenueCatConfig.isPlatformSupported)
+        ...revenueCatServiceOverrides(),
+    ],
   );
 
   runZonedGuarded(
@@ -53,6 +59,11 @@ void main() async {
       // FirebaseConfig.enabled is false (the template's stub-only default);
       // see docs/setup/FIREBASE_SETUP.md to enable it.
       await FirebaseConfig.initialize();
+
+      // Configures the RevenueCat SDK. No-op while RevenueCatConfig.enabled
+      // is false or the platform has no store; see
+      // docs/setup/REVENUECAT_SETUP.md to enable it.
+      await RevenueCatConfig.initialize();
 
       // Flutter Error Handling
       FlutterError.onError = (details) {

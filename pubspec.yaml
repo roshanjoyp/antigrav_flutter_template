@@ -54,6 +54,7 @@ dependencies:
   google_sign_in: ^7.2.0
   flutter_localizations:
     sdk: flutter
+  purchases_flutter: ^10.4.1
 
 dev_dependencies:
   flutter_test:

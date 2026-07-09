@@ -1,3 +1,4 @@
+import 'package:antigrav_flutter_template/features/paywall/paywall.dart';
 import 'package:antigrav_flutter_template/features/profile/profile.dart';
 import 'package:antigrav_flutter_template/features/startup/startup.dart';
 import 'package:antigrav_flutter_template/features/test_control_panel/test_control_panel.dart';
@@ -21,6 +22,10 @@ GoRouter goRouter(Ref ref) {
       GoRoute(
         path: '/profile',
         builder: (context, state) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: '/paywall',
+        builder: (context, state) => const PaywallScreen(),
       ),
       GoRoute(
         path: '/',

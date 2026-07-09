@@ -21,6 +21,7 @@ export 'package:antigrav_flutter_template/core/utils/result.dart';
 export 'package:antigrav_flutter_template/core/config/app_env.dart';
 export 'package:antigrav_flutter_template/core/config/app_flavor.dart';
 export 'package:antigrav_flutter_template/core/config/firebase/firebase_config.dart';
+export 'package:antigrav_flutter_template/core/config/revenuecat/revenuecat_config.dart';
 
 // Widgets
 export 'package:antigrav_flutter_template/core/widgets/widgets.dart';
