@@ -137,6 +137,39 @@ All auth methods return the template's `Result` type — Firebase error
 codes are mapped to user-presentable messages in
 `lib/features/auth/data/firebase_auth_error_mapper.dart`.
 
+## Crashlytics & Analytics
+
+`FirebaseCrashServiceImpl` and `FirebaseAnalyticsServiceImpl` implement the
+template's `CrashService` / `AnalyticsService` interfaces. Like auth, they
+are not bound by default — the debug implementations are. To activate:
+
+```dart
+final container = ProviderContainer(
+  overrides: [
+    crashServiceProvider.overrideWith(
+      (ref) => FirebaseCrashServiceImpl(ref.watch(logServiceProvider)),
+    ),
+    analyticsServiceProvider.overrideWith(
+      (ref) => FirebaseAnalyticsServiceImpl(ref.watch(logServiceProvider)),
+    ),
+  ],
+);
+```
+
+Setup notes:
+
+- **Re-run `flutterfire configure`** (per environment) after adding these
+  packages — it wires the required Android Gradle plugins
+  (`google-services`, `firebase-crashlytics`) into the project.
+- **Crashlytics** must be enabled once per project in the Firebase console
+  (Release & Monitor → Crashlytics) and only reports in non-debug builds
+  by default. It has no web/desktop support; `FirebaseCrashServiceImpl`
+  degrades to logged no-ops there (it never throws by contract — it sits
+  inside the global error handlers wired in `main.dart`).
+- **Analytics** needs no console setup; events appear in DebugView when
+  the device is started with the `--dart-define` / adb debug flag
+  documented in the Firebase docs.
+
 ## Environment switching
 
 `FirebaseConfig` resolves the options file from the active `AppEnv` at
