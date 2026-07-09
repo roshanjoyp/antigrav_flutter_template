@@ -100,6 +100,43 @@ used is whatever `main.dart` passes to `AppFlavor.initialize`
 
 ---
 
+## Sign-in providers (Firebase Auth)
+
+`FirebaseAuthRepositoryImpl` supports email/password, Google, Apple, and
+anonymous sign-in. It is not bound by default — `authRepositoryProvider`
+returns the stub; override it to activate Firebase auth:
+
+```dart
+// e.g. in main.dart when creating the ProviderContainer:
+final container = ProviderContainer(
+  overrides: [
+    authRepositoryProvider.overrideWith((ref) => FirebaseAuthRepositoryImpl()),
+  ],
+);
+```
+
+Per provider, in Firebase console → **Authentication → Sign-in method**:
+
+1. **Email/password & Anonymous** — toggle on. No platform config needed.
+2. **Google** — toggle on, then:
+   - *Android*: add your SHA-1 (and SHA-256) fingerprints in Project
+     settings → your Android app, then re-download
+     `google-services.json`. Pass the **web** client ID (Sign-in method →
+     Google → Web SDK configuration) as `googleServerClientId` to
+     `FirebaseFederatedSignIn` — required for the ID token on Android.
+   - *iOS/macOS*: add the reversed client ID from
+     `GoogleService-Info.plist` as a URL scheme in Xcode
+     (Runner → Info → URL Types).
+   - *Web*: no extra config — the popup flow is used automatically.
+3. **Apple** — toggle on, then enable the *Sign in with Apple* capability
+   for your bundle ID (Xcode → Signing & Capabilities, plus the Apple
+   Developer portal). Uses Firebase's built-in `AppleAuthProvider`; no
+   extra package.
+
+All auth methods return the template's `Result` type — Firebase error
+codes are mapped to user-presentable messages in
+`lib/features/auth/data/firebase_auth_error_mapper.dart`.
+
 ## Environment switching
 
 `FirebaseConfig` resolves the options file from the active `AppEnv` at

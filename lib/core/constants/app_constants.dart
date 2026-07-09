@@ -92,6 +92,10 @@ abstract final class AppConstants {
   /// even when startup logic completes quickly.
   static const Duration durationSplash = Duration(milliseconds: 1500);
 
+  /// 1000ms — simulated network latency used by stub repository and service
+  /// implementations, so loading states are visible during development.
+  static const Duration durationStubNetwork = Duration(milliseconds: 1000);
+
   // ---------------------------------------------------------------------------
   // 4. Font Sizes
   // ---------------------------------------------------------------------------

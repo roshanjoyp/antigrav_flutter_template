@@ -64,7 +64,7 @@ The template is backend-agnostic by design; keep that. Add Firebase as the
 the same abstractions.
 
 - [x] Add Firebase core setup: `firebase_core`, flavor-aware `firebase_options` per environment (dev/staging/prod), documented `flutterfire configure` workflow (2026-07-09)
-- [ ] **Auth**: `FirebaseAuthRepositoryImpl` implementing the existing `AuthRepository` — email/password, Google Sign-In, Apple Sign-In, anonymous; map Firebase errors into the `Result` type
+- [x] **Auth**: `FirebaseAuthRepositoryImpl` implementing the existing `AuthRepository` — email/password, Google Sign-In, Apple Sign-In, anonymous; map Firebase errors into the `Result` type (2026-07-09; also refactored `AuthRepository` to `Result` returns per CLAUDE.md §3, renamed stub to `StubAuthRepository`, expanded `UserEntity`)
 - [ ] **CrashService**: Crashlytics implementation
 - [ ] **AnalyticsService**: Firebase Analytics implementation
 - [ ] **Firestore example feature**: one small end-to-end feature (e.g. user profile) showing the full clean-architecture flow — Firestore data source → repository → Riverpod controller → view. This is the "how do I actually use this" sample buyers look for first
