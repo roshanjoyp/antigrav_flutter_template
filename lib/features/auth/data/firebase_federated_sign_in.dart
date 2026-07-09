@@ -37,7 +37,7 @@ class FirebaseFederatedSignIn {
   ///
   /// Find it under Firebase console → Authentication → Sign-in method →
   /// Google → Web SDK configuration. Not needed on iOS/macOS (configured
-  /// via the plist) or web (popup flow). See FIREBASE_SETUP.md.
+  /// via the plist) or web (popup flow). See docs/setup/FIREBASE_SETUP.md.
   final String? googleServerClientId;
 
   bool _googleInitialized = false;
@@ -55,7 +55,7 @@ class FirebaseFederatedSignIn {
     if (idToken == null) {
       throw const AppException(
         message: 'Google sign-in did not return an ID token. On Android, '
-            'set googleServerClientId (see FIREBASE_SETUP.md).',
+            'set googleServerClientId (see docs/setup/FIREBASE_SETUP.md).',
         code: 'auth/missing-google-id-token',
       );
     }

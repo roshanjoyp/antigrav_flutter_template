@@ -10,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 /// Wraps Firebase Auth and maps its `User` and errors into the domain's
 /// [UserEntity] / [AppException], so no Firebase type leaks past this
 /// layer. Requires `FirebaseConfig.initialize()` to have run (see
-/// FIREBASE_SETUP.md).
+/// docs/setup/FIREBASE_SETUP.md).
 ///
 /// Not bound by default — `authRepositoryProvider` returns the stub. To
 /// activate, override the provider:

@@ -69,7 +69,7 @@ the same abstractions.
 - [x] **AnalyticsService**: Firebase Analytics implementation (2026-07-09)
 - [ ] **Firestore example feature**: one small end-to-end feature (e.g. user profile) showing the full clean-architecture flow — Firestore data source → repository → Riverpod controller → view. This is the "how do I actually use this" sample buyers look for first
 - [ ] Wire service selection through flavors/env so stub vs. Firebase impls are swappable via a single provider override
-- [ ] Update `SERVICES.md` and `ARCHITECTURE_FLOW.md` to cover the Firebase layer
+- [ ] Update `docs/architecture/SERVICES.md` and `docs/architecture/ARCHITECTURE_FLOW.md` to cover the Firebase layer
 
 ## Phase 2 — Monetization + push (what buyers pay for)
 
@@ -96,7 +96,7 @@ the same abstractions.
 Valuable in the plain v1 zip on day one, and the per-module manifests it
 produces are exactly what the v2 generator consumes later.
 
-- [ ] **`guide/`**: restructure `ARCHITECTURE_FLOW.md` / `RIVERPOD_GUIDE.md` / `SERVICES.md` material into buyer-facing walkthroughs — "anatomy of a feature" (trace one real feature layer by layer), "add a new feature step-by-step", "model vs. entity: when and where", "how a controller binds to a view". Markdown first; pretty rendered version is later polish
+- [ ] **`guide/`**: restructure the `docs/architecture/` material (ARCHITECTURE_FLOW, RIVERPOD_GUIDE, SERVICES) into buyer-facing walkthroughs — "anatomy of a feature" (trace one real feature layer by layer), "add a new feature step-by-step", "model vs. entity: when and where", "how a controller binds to a view". Markdown first; pretty rendered version is later polish
 - [ ] **Setup-steps manifest**: per module, a declared list of setup steps, each with a check implementation (static or runtime) or `manual` flag. Single source of truth for doctor CLI, in-app screen, and (later) generator
 - [ ] **`tool/doctor.dart`**: doctor CLI running the static checks — config files present and non-placeholder, bundle IDs consistent post-rename, `pub get` resolves, generated files fresh. `x/y` summary + per-failure remediation text (same mechanics/style as `setup/setup.dart`)
 - [ ] **Setup Status screen**: dev-only runtime checks (Firebase init, auth ping, FCM token) as an extension of `test_control_panel`; excluded from release builds

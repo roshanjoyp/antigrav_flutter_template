@@ -12,7 +12,7 @@ part of 'auth_repository_impl.dart';
 ///
 /// Defaults to [StubAuthRepository]. To use Firebase, override this
 /// provider with a `FirebaseAuthRepositoryImpl` instance (flavor-based
-/// selection is planned; see PRODUCTION_ROADMAP.md Phase 1).
+/// selection is planned; see docs/planning/PRODUCTION_ROADMAP.md Phase 1).
 
 @ProviderFor(authRepository)
 final authRepositoryProvider = AuthRepositoryProvider._();
@@ -21,7 +21,7 @@ final authRepositoryProvider = AuthRepositoryProvider._();
 ///
 /// Defaults to [StubAuthRepository]. To use Firebase, override this
 /// provider with a `FirebaseAuthRepositoryImpl` instance (flavor-based
-/// selection is planned; see PRODUCTION_ROADMAP.md Phase 1).
+/// selection is planned; see docs/planning/PRODUCTION_ROADMAP.md Phase 1).
 
 final class AuthRepositoryProvider
     extends $FunctionalProvider<AuthRepository, AuthRepository, AuthRepository>
@@ -30,7 +30,7 @@ final class AuthRepositoryProvider
   ///
   /// Defaults to [StubAuthRepository]. To use Firebase, override this
   /// provider with a `FirebaseAuthRepositoryImpl` instance (flavor-based
-  /// selection is planned; see PRODUCTION_ROADMAP.md Phase 1).
+  /// selection is planned; see docs/planning/PRODUCTION_ROADMAP.md Phase 1).
   AuthRepositoryProvider._()
     : super(
         from: null,

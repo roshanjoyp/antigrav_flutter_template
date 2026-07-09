@@ -10,7 +10,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 /// surfaced to callers, never silently swallowed.
 ///
 /// Not bound by default — `analyticsServiceProvider` returns the debug
-/// implementation. To activate (see FIREBASE_SETUP.md):
+/// implementation. To activate (see docs/setup/FIREBASE_SETUP.md):
 ///
 /// ```dart
 /// analyticsServiceProvider.overrideWith(

@@ -81,7 +81,7 @@ The script updates every location where the app name and package name appear:
 - **Android files** — `AndroidManifest.xml`, `build.gradle`, `MainActivity.kt`, package directory structure
 - **iOS files** — `Info.plist`, `AppDelegate.swift`, `project.pbxproj`, bundle identifier references
 - **Dart/Flutter files** — `pubspec.yaml`, `app.dart`, import paths that include the package name
-- **Documentation files** — `README.md`, `CLAUDE.md`, `CONTEXT.md`, and any other docs that reference the template name
+- **Documentation files** — `README.md`, `CLAUDE.md`, and any other docs that reference the template name
 
 ## Template features
 
@@ -99,4 +99,5 @@ The script updates every location where the app name and package name appear:
 
 - Replace stub service implementations with real ones as needed — stubs exist to show structure, not to be shipped as-is
 - Read `CLAUDE.md` before starting development — it contains standing rules for code organisation, architecture, and tooling
-- Read `ARCHITECTURE_FLOW.md` for a full overview of data flow and layer responsibilities
+- Read `docs/architecture/ARCHITECTURE_FLOW.md` for a full overview of data flow and layer responsibilities
+- Browse [`docs/`](docs/README.md) for the full documentation set (architecture, setup guides, planning)

@@ -19,7 +19,7 @@ import 'package:firebase_core/firebase_core.dart';
 /// services out of the box. To turn Firebase on:
 ///
 /// 1. Run `flutterfire configure` once per environment, targeting the
-///    matching `--out` file (see FIREBASE_SETUP.md for the exact commands).
+///    matching `--out` file (see docs/setup/FIREBASE_SETUP.md for the exact commands).
 /// 2. Flip [enabled] to `true`.
 class FirebaseConfig {
   /// Not instantiable — all members are static.

@@ -18,7 +18,7 @@ part 'auth_repository_impl.g.dart';
 /// Template note: this stub is the default binding of
 /// `authRepositoryProvider`. Do not replace it — to use Firebase instead,
 /// override the provider with `FirebaseAuthRepositoryImpl` (see
-/// FIREBASE_SETUP.md).
+/// docs/setup/FIREBASE_SETUP.md).
 class StubAuthRepository implements AuthRepository {
   UserEntity? _currentUser;
 
@@ -101,7 +101,7 @@ class StubAuthRepository implements AuthRepository {
 ///
 /// Defaults to [StubAuthRepository]. To use Firebase, override this
 /// provider with a `FirebaseAuthRepositoryImpl` instance (flavor-based
-/// selection is planned; see PRODUCTION_ROADMAP.md Phase 1).
+/// selection is planned; see docs/planning/PRODUCTION_ROADMAP.md Phase 1).
 @Riverpod(keepAlive: true)
 AuthRepository authRepository(Ref ref) {
   return StubAuthRepository();

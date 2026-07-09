@@ -12,7 +12,7 @@ import 'package:flutter/foundation.dart';
 /// rather than crashing.
 ///
 /// Not bound by default — `crashServiceProvider` returns the debug
-/// implementation. To activate (see FIREBASE_SETUP.md):
+/// implementation. To activate (see docs/setup/FIREBASE_SETUP.md):
 ///
 /// ```dart
 /// crashServiceProvider.overrideWith(

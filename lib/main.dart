@@ -44,7 +44,7 @@ void main() async {
 
       // Initializes Firebase for the active flavor. No-op while
       // FirebaseConfig.enabled is false (the template's stub-only default);
-      // see FIREBASE_SETUP.md to enable it.
+      // see docs/setup/FIREBASE_SETUP.md to enable it.
       await FirebaseConfig.initialize();
 
       // Flutter Error Handling

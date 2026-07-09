@@ -8,7 +8,7 @@
 //     --out=lib/core/config/firebase/firebase_options_prod.dart
 //
 // The CLI overwrites this entire file with real credentials.
-// See FIREBASE_SETUP.md for the full workflow.
+// See docs/setup/FIREBASE_SETUP.md for the full workflow.
 
 import 'package:firebase_core/firebase_core.dart';
 
@@ -20,13 +20,13 @@ class DefaultFirebaseOptions {
   /// Returns the [FirebaseOptions] for the current platform.
   ///
   /// Throws [UnsupportedError] until the placeholder has been replaced by
-  /// running `flutterfire configure` (see file header and FIREBASE_SETUP.md).
+  /// running `flutterfire configure` (see file header and docs/setup/FIREBASE_SETUP.md).
   static FirebaseOptions get currentPlatform {
     throw UnsupportedError(
       'Firebase is not configured for the production environment. '
       'Run flutterfire configure with '
       '--out=lib/core/config/firebase/firebase_options_prod.dart '
-      '(see FIREBASE_SETUP.md).',
+      '(see docs/setup/FIREBASE_SETUP.md).',
     );
   }
 }
