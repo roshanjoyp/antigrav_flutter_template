@@ -27,6 +27,12 @@ The generated zip additionally contains:
   existing `test_control_panel`) running *runtime* checks static analysis
   can't: Firebase initializes, anonymous auth succeeds, FCM token issued.
   Stripped from release builds.
+- **Production Readiness checklist** — dev-only checklist UI (sibling of the
+  Setup Status screen) covering what a shipping app needs: icon replaced,
+  splash branded, flavors configured, store metadata, signing, plus
+  module-conditional items (push → APNs key; paywall → products created &
+  sandbox-tested). Users can skip items they don't want and add their own —
+  see Phase 5 for the full design.
 
 Steps that can't be machine-verified (console work: creating the Firebase
 project, APNs keys, RevenueCat dashboard) get guided instructions + deep
@@ -100,6 +106,11 @@ produces are exactly what the v2 generator consumes later.
 - [ ] **Setup-steps manifest**: per module, a declared list of setup steps, each with a check implementation (static or runtime) or `manual` flag. Single source of truth for doctor CLI, in-app screen, and (later) generator
 - [ ] **`tool/doctor.dart`**: doctor CLI running the static checks — config files present and non-placeholder, bundle IDs consistent post-rename, `pub get` resolves, generated files fresh. `x/y` summary + per-failure remediation text (same mechanics/style as `setup/setup.dart`)
 - [ ] **Setup Status screen**: dev-only runtime checks (Firebase init, auth ping, FCM token) as an extension of `test_control_panel`; excluded from release builds
+- [ ] **Production Readiness checklist**: dev-only UI (sibling tab of the Setup Status screen, also reported by the doctor CLI) listing what a shipping app needs — icon replaced (auto-check: hash vs. default Flutter icon), splash branded, pubspec description changed, flavors configured, signing, store metadata, privacy policy — plus module-conditional items sourced from the same per-module manifests (push → APNs key uploaded, notification icon; paywall → RevenueCat products created, sandbox purchase tested). Design rules:
+  - **State lives in a git-tracked file** (`checklist.yaml`) in the generated project — diffable, PR-reviewable, shared via `git pull`; never per-device storage, no backend
+  - **Skip/include is first-class**: dismissing an item sets `status: skipped` (optional reason) rather than deleting it — auditable, "show skipped" toggle in the UI, skipped items excluded from the `x/y` completion count
+  - **Custom tasks**: users append their own items to the same file in a free-form section; optional free-text `owner:` field per task ("who's doing this" for small teams). No accounts, no assignment backend — real multi-user task management is out of scope (a possible hosted upsell once the v2 configurator has accounts, never a blocker)
+  - **Staleness containment**: items are link-don't-restate (one-line what/why + deep link to the authoritative doc; no step-by-step prose that rots), verifiable-first (auto-checks break visibly instead of silently going stale), and checklist definitions ship in the module manifests so every template release can revise them
 
 ## Phase 6 — Polish for listing
 
