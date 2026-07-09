@@ -69,7 +69,7 @@ the same abstractions.
 - [x] **AnalyticsService**: Firebase Analytics implementation (2026-07-09)
 - [x] **Firestore example feature**: one small end-to-end feature (e.g. user profile) showing the full clean-architecture flow — Firestore data source → repository → Riverpod controller → view. This is the "how do I actually use this" sample buyers look for first (2026-07-09: profile feature + first unit tests in test/)
 - [x] Wire service selection through flavors/env so stub vs. Firebase impls are swappable via a single provider override (2026-07-09: lib/app/config/firebase_overrides.dart, applied in main.dart on FirebaseConfig.enabled)
-- [ ] Update `docs/architecture/SERVICES.md` and `docs/architecture/ARCHITECTURE_FLOW.md` to cover the Firebase layer
+- [x] Update `docs/architecture/SERVICES.md` and `docs/architecture/ARCHITECTURE_FLOW.md` to cover the Firebase layer (2026-07-09)
 
 ## Phase 2 — Monetization + push (what buyers pay for)
 

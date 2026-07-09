@@ -4,9 +4,11 @@ This document explains how the application is wired together, from the entry poi
 
 ## 1. Entry Point (`main.dart`)
 Everything starts in `lib/main.dart`.
-1.  **Global Error Handling**: The app is wrapped in `runZonedGuarded` to catch any unhandled async errors.
-2.  **DI Initialization**: A `ProviderContainer` is created manually. This holds the state of all Riverpod providers.
-3.  **App Launch**: `runApp` is called with `UncontrolledProviderScope`, passing the container. This makes the providers available to the widget tree.
+1.  **Flavor**: `AppFlavor.initialize(AppEnv...)` pins the environment (dev/staging/prod) for the whole run.
+2.  **DI Initialization**: A `ProviderContainer` is created manually. When `FirebaseConfig.enabled` is `true`, the container is created with `firebaseServiceOverrides()` (`lib/app/config/firebase_overrides.dart`), swapping every stub for its Firebase implementation in one place.
+3.  **Global Error Handling**: The app is wrapped in `runZonedGuarded` to catch any unhandled async errors; both handlers report through `CrashService`.
+4.  **Firebase Init**: `FirebaseConfig.initialize()` runs inside the guarded zone — a no-op until Firebase is enabled, otherwise it initializes the options file matching the active flavor.
+5.  **App Launch**: `runApp` is called with `UncontrolledProviderScope`, passing the container. This makes the providers available to the widget tree.
 
 ## 2. The App Widget (`lib/app/app.dart`)
 The `App` widget is the root `ConsumerWidget`.
@@ -43,6 +45,14 @@ Example: **Startup Feature**
 1.  **UI**: `StartupView` (Widget) watches `startupControllerProvider`.
 2.  **Controller**: `StartupController` (Riverpod Notifier) executes logic.
 3.  **Logic**: The controller calls `LogService` and typically would call `AuthRepository` to check session status.
+
+### Reference feature: Profile (`lib/features/profile`)
+The profile feature is the complete worked example — read it top to bottom to learn the house pattern:
+*   **Domain**: `ProfileEntity` (pure — no JSON) and `ProfileRepository` (interface, `Result` returns).
+*   **Data**: `ProfileModel` owns serialization (JSON field names, Firestore `Timestamp` ↔ `DateTime`) and converts to/from the entity at the boundary; `StubProfileRepository` (default) and `FirestoreProfileRepositoryImpl` implement the interface.
+*   **Presentation**: `ProfileController` returns the repository's watch stream from `build()`; `ProfileScreen` renders the `AsyncValue` states (loading/error/data) with core widgets and zero business logic.
+
+This is also the template's **model-vs-entity** example: entities are pure domain objects; models live in the data layer and never leak past the repository.
 
 ## 5. Dependency Injection (Riverpod)
 *   **Providers**: defined globally or via code generation (`@riverpod`).
