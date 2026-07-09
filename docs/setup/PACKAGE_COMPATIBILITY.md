@@ -14,6 +14,7 @@ This table outlines the platform support for the keys packages used in this temp
 | **flutter_dotenv** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Environment config. |
 | **firebase_core** | ✅ | ✅ | ✅ | ✅ | ❌ | ⚠️ | Firebase init. Windows support covers only a subset of Firebase plugins; no Linux support. Disabled by default (`FirebaseConfig.enabled`). |
 | **firebase_auth** | ✅ | ✅ | ✅ | ✅ | ❌ | ⚠️ | Firebase Auth impl of `AuthRepository`. Not bound by default (stub is). |
+| **cloud_firestore** | ✅ | ✅ | ✅ | ✅ | ❌ | ⚠️ | Firestore impl of `ProfileRepository` (reference feature). Bound when Firebase is enabled. |
 | **firebase_crashlytics** | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | Crashlytics impl of `CrashService`. Not bound by default; degrades to logged no-ops on unsupported platforms. |
 | **firebase_analytics** | ✅ | ✅ | ✅ | ✅ | ❌ | ⚠️ | Firebase Analytics impl of `AnalyticsService`. Not bound by default. |
 | **google_sign_in** | ✅ | ✅ | ✅ | ⚠️ | ❌ | ❌ | Native Google flow. On web the Firebase popup flow is used instead (handled automatically by `FirebaseFederatedSignIn`). |

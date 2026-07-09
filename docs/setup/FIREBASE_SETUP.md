@@ -100,20 +100,21 @@ used is whatever `main.dart` passes to `AppFlavor.initialize`
 
 ---
 
+## How the app switches to Firebase (automatic)
+
+Flipping `FirebaseConfig.enabled` to `true` does two things at startup:
+Firebase initializes for the active flavor, **and** every stub is swapped
+for its Firebase implementation via the provider override list in
+`lib/app/config/firebase_overrides.dart` — auth, profile (Firestore),
+Crashlytics, and Analytics. No call-site changes anywhere.
+
+When you add your own Firebase-backed service or repository, add its
+override to that same list.
+
 ## Sign-in providers (Firebase Auth)
 
 `FirebaseAuthRepositoryImpl` supports email/password, Google, Apple, and
-anonymous sign-in. It is not bound by default — `authRepositoryProvider`
-returns the stub; override it to activate Firebase auth:
-
-```dart
-// e.g. in main.dart when creating the ProviderContainer:
-final container = ProviderContainer(
-  overrides: [
-    authRepositoryProvider.overrideWith((ref) => FirebaseAuthRepositoryImpl()),
-  ],
-);
-```
+anonymous sign-in (bound automatically — see above).
 
 Per provider, in Firebase console → **Authentication → Sign-in method**:
 
@@ -137,24 +138,38 @@ All auth methods return the template's `Result` type — Firebase error
 codes are mapped to user-presentable messages in
 `lib/features/auth/data/firebase_auth_error_mapper.dart`.
 
+## Firestore (profile example feature)
+
+The profile feature (`lib/features/profile/`) is the template's reference
+end-to-end Firestore slice: `FirestoreProfileRepositoryImpl` stores one
+document per user in the `profiles` collection (bound automatically when
+Firebase is enabled).
+
+1. In Firebase console → **Firestore Database**, create a database
+   (production mode) per environment project.
+2. Publish security rules that let each user manage only their own
+   profile document:
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /profiles/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
+```
+
+Note: the signed-out fallback profile (`demo-user`) works only against
+the stub repository — with the rules above, Firestore requires a
+signed-in user, which is the correct production behaviour.
+
 ## Crashlytics & Analytics
 
 `FirebaseCrashServiceImpl` and `FirebaseAnalyticsServiceImpl` implement the
-template's `CrashService` / `AnalyticsService` interfaces. Like auth, they
-are not bound by default — the debug implementations are. To activate:
-
-```dart
-final container = ProviderContainer(
-  overrides: [
-    crashServiceProvider.overrideWith(
-      (ref) => FirebaseCrashServiceImpl(ref.watch(logServiceProvider)),
-    ),
-    analyticsServiceProvider.overrideWith(
-      (ref) => FirebaseAnalyticsServiceImpl(ref.watch(logServiceProvider)),
-    ),
-  ],
-);
-```
+template's `CrashService` / `AnalyticsService` interfaces (bound
+automatically when Firebase is enabled).
 
 Setup notes:
 

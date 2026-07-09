@@ -61,6 +61,12 @@ class _StartupViewState extends ConsumerState<StartupView> {
               icon: const Icon(Icons.build),
               label: const Text('Test Services'),
             ),
+            const SizedBox(height: AppConstants.spaceMd),
+            OutlinedButton.icon(
+              onPressed: () => context.push('/profile'),
+              icon: const Icon(Icons.person),
+              label: const Text('Profile Example'),
+            ),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:antigrav_flutter_template/features/profile/profile.dart';
 import 'package:antigrav_flutter_template/features/startup/startup.dart';
 import 'package:antigrav_flutter_template/features/test_control_panel/test_control_panel.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,10 @@ GoRouter goRouter(Ref ref) {
         builder: (context, state) => const StartupView(),
       ),
       GoRoute(path: '/test', builder: (context, state) => const TestScreen()),
+      GoRoute(
+        path: '/profile',
+        builder: (context, state) => const ProfileScreen(),
+      ),
       GoRoute(
         path: '/',
         builder: (context, state) =>

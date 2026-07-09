@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:antigrav_flutter_template/app/app.dart';
+import 'package:antigrav_flutter_template/app/config/firebase_overrides.dart';
 import 'package:antigrav_flutter_template/core/core.dart';
 import 'package:antigrav_flutter_template/core/services/crash_service/crash_service_impl.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,13 @@ void main() async {
 
   // Create a container to read providers before the app starts
   // and to use it for error reporting in the zone.
-  final container = ProviderContainer();
+  //
+  // When Firebase is enabled, every stub service/repository is swapped
+  // for its Firebase implementation here — this is the single switch
+  // point (see lib/app/config/firebase_overrides.dart).
+  final container = ProviderContainer(
+    overrides: FirebaseConfig.enabled ? firebaseServiceOverrides() : const [],
+  );
 
   runZonedGuarded(
     () async {
