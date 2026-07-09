@@ -1,4 +1,5 @@
 import 'package:antigrav_flutter_template/app/config/app_config_controller.dart';
+import 'package:antigrav_flutter_template/app/config/push_deep_link_listener.dart';
 import 'package:antigrav_flutter_template/app/router/app_router.dart';
 import 'package:antigrav_flutter_template/app/theme/app_theme.dart';
 import 'package:antigrav_flutter_template/l10n/app_localizations.dart';
@@ -22,6 +23,10 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouterProvider);
     final appConfig = ref.watch(appConfigControllerProvider);
+
+    // Activates notification-tap deep linking for the app's lifetime
+    // (see lib/app/config/push_deep_link_listener.dart).
+    ref.watch(pushDeepLinkListenerProvider);
 
     return MaterialApp.router(
       title: 'AntiGrav Template',

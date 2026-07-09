@@ -4,6 +4,9 @@ import 'package:antigrav_flutter_template/core/services/analytics_service/fireba
 import 'package:antigrav_flutter_template/core/services/crash_service/crash_service_impl.dart';
 import 'package:antigrav_flutter_template/core/services/crash_service/firebase_crash_service_impl.dart';
 import 'package:antigrav_flutter_template/core/services/log_service/log_service_impl.dart';
+import 'package:antigrav_flutter_template/core/services/permissions/permission_service_impl.dart';
+import 'package:antigrav_flutter_template/core/services/push_service/firebase_push_service_impl.dart';
+import 'package:antigrav_flutter_template/core/services/push_service/push_service_impl.dart';
 import 'package:antigrav_flutter_template/features/auth/auth.dart';
 import 'package:antigrav_flutter_template/features/profile/profile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,5 +35,11 @@ List<Override> firebaseServiceOverrides() => <Override>[
   ),
   analyticsServiceProvider.overrideWith(
     (Ref ref) => FirebaseAnalyticsServiceImpl(ref.watch(logServiceProvider)),
+  ),
+  pushServiceProvider.overrideWith(
+    (Ref ref) => FirebasePushServiceImpl(
+      ref.watch(permissionServiceProvider),
+      ref.watch(logServiceProvider),
+    ),
   ),
 ];
