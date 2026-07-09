@@ -19,10 +19,7 @@ class AppDivider extends StatelessWidget {
   /// Creates an [AppDivider].
   ///
   /// [horizontalPadding] adds equal left and right insets. Defaults to `0`.
-  const AppDivider({
-    super.key,
-    this.horizontalPadding = 0,
-  });
+  const AppDivider({super.key, this.horizontalPadding = 0});
 
   /// The horizontal inset applied equally to both sides of the divider line.
   ///

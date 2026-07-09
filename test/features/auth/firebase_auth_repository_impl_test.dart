@@ -45,8 +45,7 @@ void main() {
   });
 
   group('FirebaseAuthRepositoryImpl', () {
-    test('maps a Firebase user to UserEntity on successful sign-in',
-        () async {
+    test('maps a Firebase user to UserEntity on successful sign-in', () async {
       // Note: build the mock user *before* stubbing `credential.user` —
       // mocktail forbids calling `when` while another stub is being set up.
       final MockUser firebaseUser = buildUser();
@@ -71,40 +70,38 @@ void main() {
       expect(user?.isAnonymous, isFalse);
     });
 
-    test('maps FirebaseAuthException into a Failure with auth/* code',
-        () async {
-      when(
-        () => auth.signInWithEmailAndPassword(
-          email: any(named: 'email'),
-          password: any(named: 'password'),
-        ),
-      ).thenThrow(FirebaseAuthException(code: 'user-disabled'));
+    test(
+      'maps FirebaseAuthException into a Failure with auth/* code',
+      () async {
+        when(
+          () => auth.signInWithEmailAndPassword(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+          ),
+        ).thenThrow(FirebaseAuthException(code: 'user-disabled'));
 
-      final result = await repository.signInWithEmailAndPassword(
-        email: 'a@b.c',
-        password: 'secret',
-      );
+        final result = await repository.signInWithEmailAndPassword(
+          email: 'a@b.c',
+          password: 'secret',
+        );
 
-      expect(result.isFailure, isTrue);
-      final AppException exception =
-          (result as Failure<UserEntity>).exception;
-      expect(exception.code, 'auth/user-disabled');
-      expect(exception.message, 'This account has been disabled.');
-    });
+        expect(result.isFailure, isTrue);
+        final AppException exception =
+            (result as Failure<UserEntity>).exception;
+        expect(exception.code, 'auth/user-disabled');
+        expect(exception.message, 'This account has been disabled.');
+      },
+    );
 
     test('fails with auth/no-user when Firebase returns no user', () async {
       final MockUserCredential credential = MockUserCredential();
       when(() => credential.user).thenReturn(null);
-      when(() => auth.signInAnonymously())
-          .thenAnswer((_) async => credential);
+      when(() => auth.signInAnonymously()).thenAnswer((_) async => credential);
 
       final result = await repository.signInAnonymously();
 
       expect(result.isFailure, isTrue);
-      expect(
-        (result as Failure<UserEntity>).exception.code,
-        'auth/no-user',
-      );
+      expect((result as Failure<UserEntity>).exception.code, 'auth/no-user');
     });
 
     test('authStateChanges maps Firebase users and nulls', () async {
@@ -113,8 +110,8 @@ void main() {
         (_) => Stream<User?>.fromIterable(<User?>[null, firebaseUser]),
       );
 
-      final List<UserEntity?> emitted =
-          await repository.authStateChanges.toList();
+      final List<UserEntity?> emitted = await repository.authStateChanges
+          .toList();
 
       expect(emitted.length, 2);
       expect(emitted.first, isNull);
@@ -131,16 +128,14 @@ void main() {
     });
 
     test('sendPasswordResetEmail maps failures', () async {
-      when(() => auth.sendPasswordResetEmail(email: any(named: 'email')))
-          .thenThrow(FirebaseAuthException(code: 'invalid-email'));
+      when(
+        () => auth.sendPasswordResetEmail(email: any(named: 'email')),
+      ).thenThrow(FirebaseAuthException(code: 'invalid-email'));
 
       final result = await repository.sendPasswordResetEmail('bad');
 
       expect(result.isFailure, isTrue);
-      expect(
-        (result as Failure<void>).exception.code,
-        'auth/invalid-email',
-      );
+      expect((result as Failure<void>).exception.code, 'auth/invalid-email');
     });
   });
 }

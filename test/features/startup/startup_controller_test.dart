@@ -15,10 +15,7 @@ void main() {
       final ProviderContainer container = ProviderContainer();
       addTearDown(container.dispose);
 
-      expect(
-        container.read(startupControllerProvider).value,
-        isNull,
-      );
+      expect(container.read(startupControllerProvider).value, isNull);
     });
 
     test('runStartupLogic resolves to the home route', () async {
@@ -33,8 +30,9 @@ void main() {
           .read(startupControllerProvider.notifier)
           .runStartupLogic();
 
-      final AsyncValue<String?> state =
-          container.read(startupControllerProvider);
+      final AsyncValue<String?> state = container.read(
+        startupControllerProvider,
+      );
       expect(state.hasError, isFalse);
       expect(state.value, '/');
     });

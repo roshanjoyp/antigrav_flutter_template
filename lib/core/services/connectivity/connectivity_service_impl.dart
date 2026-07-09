@@ -24,8 +24,8 @@ class RealConnectivityService implements ConnectivityService {
   RealConnectivityService({
     InternetConnection? internetConnection,
     required LogService logger,
-  })  : _internetConnection = internetConnection ?? InternetConnection(),
-        _logger = logger;
+  }) : _internetConnection = internetConnection ?? InternetConnection(),
+       _logger = logger;
 
   final InternetConnection _internetConnection;
   final LogService _logger;

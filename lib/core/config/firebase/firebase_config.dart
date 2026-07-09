@@ -39,10 +39,10 @@ class FirebaseConfig {
   /// must be initialized first. Throws [UnsupportedError] if the selected
   /// environment's options file is still the unconfigured placeholder.
   static FirebaseOptions get currentOptions => switch (AppFlavor.instance.env) {
-        AppEnv.development => dev.DefaultFirebaseOptions.currentPlatform,
-        AppEnv.staging => staging.DefaultFirebaseOptions.currentPlatform,
-        AppEnv.production => prod.DefaultFirebaseOptions.currentPlatform,
-      };
+    AppEnv.development => dev.DefaultFirebaseOptions.currentPlatform,
+    AppEnv.staging => staging.DefaultFirebaseOptions.currentPlatform,
+    AppEnv.production => prod.DefaultFirebaseOptions.currentPlatform,
+  };
 
   /// Initializes Firebase for the active environment.
   ///

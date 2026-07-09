@@ -26,8 +26,8 @@ class FirebaseAuthRepositoryImpl implements AuthRepository {
   FirebaseAuthRepositoryImpl({
     FirebaseAuth? auth,
     FirebaseFederatedSignIn? federated,
-  })  : _auth = auth ?? FirebaseAuth.instance,
-        _federated = federated ?? FirebaseFederatedSignIn();
+  }) : _auth = auth ?? FirebaseAuth.instance,
+       _federated = federated ?? FirebaseFederatedSignIn();
 
   final FirebaseAuth _auth;
   final FirebaseFederatedSignIn _federated;
@@ -43,23 +43,23 @@ class FirebaseAuthRepositoryImpl implements AuthRepository {
   Future<Result<UserEntity>> signInWithEmailAndPassword({
     required String email,
     required String password,
-  }) =>
-      _guardUser(() async {
-        final UserCredential credential = await _auth
-            .signInWithEmailAndPassword(email: email, password: password);
-        return credential.user;
-      });
+  }) => _guardUser(() async {
+    final UserCredential credential = await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return credential.user;
+  });
 
   @override
   Future<Result<UserEntity>> createUserWithEmailAndPassword({
     required String email,
     required String password,
-  }) =>
-      _guardUser(() async {
-        final UserCredential credential = await _auth
-            .createUserWithEmailAndPassword(email: email, password: password);
-        return credential.user;
-      });
+  }) => _guardUser(() async {
+    final UserCredential credential = await _auth
+        .createUserWithEmailAndPassword(email: email, password: password);
+    return credential.user;
+  });
 
   @override
   Future<Result<UserEntity>> signInWithGoogle() =>
@@ -79,9 +79,9 @@ class FirebaseAuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Result<void>> signOut() => _guardVoid(() async {
-        await _federated.signOutProviders();
-        await _auth.signOut();
-      });
+    await _federated.signOutProviders();
+    await _auth.signOut();
+  });
 
   /// Maps a Firebase [User] to the domain [UserEntity] (`null` → `null`).
   UserEntity? _toEntityOrNull(User? user) => user == null

@@ -34,12 +34,12 @@ class FailingProfileRepository implements ProfileRepository {
 
 void main() {
   Widget buildScreen(ProfileRepository repository) => ProviderScope(
-        overrides: [
-          profileRepositoryProvider.overrideWith((ref) => repository),
-          authRepositoryProvider.overrideWith((ref) => StubAuthRepository()),
-        ],
-        child: const MaterialApp(home: ProfileScreen()),
-      );
+    overrides: [
+      profileRepositoryProvider.overrideWith((ref) => repository),
+      authRepositoryProvider.overrideWith((ref) => StubAuthRepository()),
+    ],
+    child: const MaterialApp(home: ProfileScreen()),
+  );
 
   group('ProfileScreen', () {
     testWidgets('shows loading, then the editable form', (tester) async {
@@ -51,8 +51,9 @@ void main() {
       expect(find.byType(TextField), findsNWidgets(2));
     });
 
-    testWidgets('saving shows feedback and the stream updates the form',
-        (tester) async {
+    testWidgets('saving shows feedback and the stream updates the form', (
+      tester,
+    ) async {
       await tester.pumpWidget(buildScreen(StubProfileRepository()));
       await tester.pump();
 
@@ -68,8 +69,9 @@ void main() {
       expect(find.text('Your profile'), findsOneWidget);
     });
 
-    testWidgets('shows AppError with retry when the stream fails',
-        (tester) async {
+    testWidgets('shows AppError with retry when the stream fails', (
+      tester,
+    ) async {
       await tester.pumpWidget(buildScreen(FailingProfileRepository()));
       // Two pumps: one for the stream error to arrive, one for the
       // AsyncError rebuild.

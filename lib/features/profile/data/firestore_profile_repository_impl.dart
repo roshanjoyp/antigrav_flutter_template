@@ -20,7 +20,7 @@ class FirestoreProfileRepositoryImpl implements ProfileRepository {
   /// [firestore] defaults to [FirebaseFirestore.instance]; inject a fake
   /// in tests.
   FirestoreProfileRepositoryImpl({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+    : _firestore = firestore ?? FirebaseFirestore.instance;
 
   final FirebaseFirestore _firestore;
 
@@ -31,8 +31,11 @@ class FirestoreProfileRepositoryImpl implements ProfileRepository {
       _firestore.collection(collectionName);
 
   @override
-  Stream<ProfileEntity?> watchProfile(String uid) =>
-      _profiles.doc(uid).snapshots().map(_toEntityOrNull).handleError(
+  Stream<ProfileEntity?> watchProfile(String uid) => _profiles
+      .doc(uid)
+      .snapshots()
+      .map(_toEntityOrNull)
+      .handleError(
         // Re-throw as AppException so stream consumers never see
         // Firestore types.
         (Object error, StackTrace stackTrace) =>
@@ -42,8 +45,9 @@ class FirestoreProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<Result<ProfileEntity?>> fetchProfile(String uid) async {
     try {
-      final DocumentSnapshot<Map<String, dynamic>> snapshot =
-          await _profiles.doc(uid).get();
+      final DocumentSnapshot<Map<String, dynamic>> snapshot = await _profiles
+          .doc(uid)
+          .get();
       return Success<ProfileEntity?>(_toEntityOrNull(snapshot));
     } catch (error, stackTrace) {
       return Failure<ProfileEntity?>(_mapError(error, stackTrace));
@@ -82,13 +86,11 @@ class FirestoreProfileRepositoryImpl implements ProfileRepository {
   /// user-presentable message and a `profile/*` code.
   AppException _mapError(Object error, StackTrace stackTrace) {
     if (error is AppException) return error;
-    final String code =
-        error is FirebaseException ? error.code : 'unknown';
+    final String code = error is FirebaseException ? error.code : 'unknown';
     final String message = switch (code) {
       'permission-denied' =>
         'You do not have permission to access this profile.',
-      'unavailable' =>
-        'Profile service is unreachable. Check your connection.',
+      'unavailable' => 'Profile service is unreachable. Check your connection.',
       'deadline-exceeded' => 'The request timed out. Please try again.',
       _ => 'Failed to access profile data. Please try again.',
     };

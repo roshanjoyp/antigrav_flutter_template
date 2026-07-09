@@ -21,17 +21,16 @@ import 'package:riverpod_annotation/riverpod_annotation.dart' show Override;
 /// When adding a new service or repository with a Firebase-backed
 /// implementation, add its override here.
 List<Override> firebaseServiceOverrides() => <Override>[
-      authRepositoryProvider.overrideWith(
-        (Ref ref) => FirebaseAuthRepositoryImpl(),
-      ),
-      profileRepositoryProvider.overrideWith(
-        (Ref ref) => FirestoreProfileRepositoryImpl(),
-      ),
-      crashServiceProvider.overrideWith(
-        (Ref ref) => FirebaseCrashServiceImpl(ref.watch(logServiceProvider)),
-      ),
-      analyticsServiceProvider.overrideWith(
-        (Ref ref) =>
-            FirebaseAnalyticsServiceImpl(ref.watch(logServiceProvider)),
-      ),
-    ];
+  authRepositoryProvider.overrideWith(
+    (Ref ref) => FirebaseAuthRepositoryImpl(),
+  ),
+  profileRepositoryProvider.overrideWith(
+    (Ref ref) => FirestoreProfileRepositoryImpl(),
+  ),
+  crashServiceProvider.overrideWith(
+    (Ref ref) => FirebaseCrashServiceImpl(ref.watch(logServiceProvider)),
+  ),
+  analyticsServiceProvider.overrideWith(
+    (Ref ref) => FirebaseAnalyticsServiceImpl(ref.watch(logServiceProvider)),
+  ),
+];

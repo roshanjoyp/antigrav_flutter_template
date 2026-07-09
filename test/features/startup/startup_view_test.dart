@@ -6,8 +6,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('StartupView', () {
-    testWidgets('renders title, loader, and navigation actions',
-        (tester) async {
+    testWidgets('renders title, loader, and navigation actions', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         const ProviderScope(child: MaterialApp(home: StartupView())),
       );

@@ -26,8 +26,7 @@ void main() {
 
     setUp(() {
       crashlytics = MockFirebaseCrashlytics();
-      service =
-          FirebaseCrashServiceImpl(logger, crashlytics: crashlytics);
+      service = FirebaseCrashServiceImpl(logger, crashlytics: crashlytics);
     });
 
     test('delegates to Crashlytics', () async {
@@ -40,8 +39,7 @@ void main() {
         ),
       ).thenAnswer((_) async {});
       when(() => crashlytics.log(any())).thenAnswer((_) async {});
-      when(() => crashlytics.setUserIdentifier(any()))
-          .thenAnswer((_) async {});
+      when(() => crashlytics.setUserIdentifier(any())).thenAnswer((_) async {});
 
       await service.recordError(StateError('boom'), null, fatal: true);
       await service.log('breadcrumb');
@@ -80,8 +78,7 @@ void main() {
 
     setUp(() {
       analytics = MockFirebaseAnalytics();
-      service =
-          FirebaseAnalyticsServiceImpl(logger, analytics: analytics);
+      service = FirebaseAnalyticsServiceImpl(logger, analytics: analytics);
     });
 
     test('delegates to Firebase Analytics', () async {
@@ -91,9 +88,9 @@ void main() {
           parameters: any(named: 'parameters'),
         ),
       ).thenAnswer((_) async {});
-      when(() => analytics.logScreenView(
-            screenName: any(named: 'screenName'),
-          )).thenAnswer((_) async {});
+      when(
+        () => analytics.logScreenView(screenName: any(named: 'screenName')),
+      ).thenAnswer((_) async {});
       when(
         () => analytics.setUserProperty(
           name: any(named: 'name'),
@@ -107,8 +104,9 @@ void main() {
 
       verify(() => analytics.logEvent(name: 'tapped')).called(1);
       verify(() => analytics.logScreenView(screenName: 'home')).called(1);
-      verify(() => analytics.setUserProperty(name: 'tier', value: 'gold'))
-          .called(1);
+      verify(
+        () => analytics.setUserProperty(name: 'tier', value: 'gold'),
+      ).called(1);
     });
 
     test('logs then throws AppException when Analytics fails', () async {

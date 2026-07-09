@@ -38,42 +38,40 @@ class StubAuthRepository implements AuthRepository {
   Future<Result<UserEntity>> signInWithEmailAndPassword({
     required String email,
     required String password,
-  }) =>
-      _fakeSignIn(
-        UserEntity(id: 'stub-email-user', email: email, displayName: 'Stub User'),
-      );
+  }) => _fakeSignIn(
+    UserEntity(id: 'stub-email-user', email: email, displayName: 'Stub User'),
+  );
 
   @override
   Future<Result<UserEntity>> createUserWithEmailAndPassword({
     required String email,
     required String password,
-  }) =>
-      _fakeSignIn(
-        UserEntity(id: 'stub-new-user', email: email, displayName: 'New Stub User'),
-      );
+  }) => _fakeSignIn(
+    UserEntity(id: 'stub-new-user', email: email, displayName: 'New Stub User'),
+  );
 
   @override
   Future<Result<UserEntity>> signInWithGoogle() => _fakeSignIn(
-        const UserEntity(
-          id: 'stub-google-user',
-          email: 'stub.google@example.com',
-          displayName: 'Stub Google User',
-        ),
-      );
+    const UserEntity(
+      id: 'stub-google-user',
+      email: 'stub.google@example.com',
+      displayName: 'Stub Google User',
+    ),
+  );
 
   @override
   Future<Result<UserEntity>> signInWithApple() => _fakeSignIn(
-        const UserEntity(
-          id: 'stub-apple-user',
-          email: 'stub.apple@example.com',
-          displayName: 'Stub Apple User',
-        ),
-      );
+    const UserEntity(
+      id: 'stub-apple-user',
+      email: 'stub.apple@example.com',
+      displayName: 'Stub Apple User',
+    ),
+  );
 
   @override
   Future<Result<UserEntity>> signInAnonymously() => _fakeSignIn(
-        const UserEntity(id: 'stub-anonymous-user', isAnonymous: true),
-      );
+    const UserEntity(id: 'stub-anonymous-user', isAnonymous: true),
+  );
 
   @override
   Future<Result<void>> sendPasswordResetEmail(String email) async {

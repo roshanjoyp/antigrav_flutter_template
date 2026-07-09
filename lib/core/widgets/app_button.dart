@@ -59,19 +59,18 @@ class AppButton extends StatelessWidget {
     final button = FilledButton(
       onPressed: _isDisabled ? null : onPressed,
       style: FilledButton.styleFrom(
-        backgroundColor:
-            _isDisabled ? AppColors.accentMuted : AppColors.accent,
+        backgroundColor: _isDisabled ? AppColors.accentMuted : AppColors.accent,
         foregroundColor: AppColors.textOnAccent,
         disabledBackgroundColor: AppColors.accentMuted,
-        disabledForegroundColor:
-            AppColors.textOnAccent.withValues(alpha: AppConstants.opacityDim),
+        disabledForegroundColor: AppColors.textOnAccent.withValues(
+          alpha: AppConstants.opacityDim,
+        ),
         padding: const EdgeInsets.symmetric(
           horizontal: AppConstants.spaceLg,
           vertical: AppConstants.spaceMd,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(AppConstants.radiusMd),
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
         ),
         minimumSize: isFullWidth
             ? const Size(double.infinity, AppConstants.space4xl)
@@ -103,8 +102,7 @@ class AppButton extends StatelessWidget {
       child: CircularProgressIndicator(
         strokeWidth: 2,
         valueColor: AlwaysStoppedAnimation<Color>(
-          AppColors.textOnAccent
-              .withValues(alpha: AppConstants.opacityStrong),
+          AppColors.textOnAccent.withValues(alpha: AppConstants.opacityStrong),
         ),
       ),
     );

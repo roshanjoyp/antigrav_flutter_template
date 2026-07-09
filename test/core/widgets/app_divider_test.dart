@@ -18,10 +18,7 @@ void main() {
       );
 
       final Padding padding = tester.widget<Padding>(
-        find.ancestor(
-          of: find.byType(Divider),
-          matching: find.byType(Padding),
-        ),
+        find.ancestor(of: find.byType(Divider), matching: find.byType(Padding)),
       );
       expect(
         padding.padding,

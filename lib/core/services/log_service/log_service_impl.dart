@@ -32,8 +32,7 @@ class LoggerLogService implements LogService {
   /// Whether the current environment suppresses non-critical log calls.
   ///
   /// `true` in production — [debug], [info], and [warning] are no-ops.
-  static bool get _isProductionSilent =>
-      AppFlavor.instance.env.isProduction;
+  static bool get _isProductionSilent => AppFlavor.instance.env.isProduction;
 
   // ---------------------------------------------------------------------------
   // Logger factory
@@ -45,38 +44,38 @@ class LoggerLogService implements LogService {
 
     return switch (env) {
       AppEnv.development => Logger(
-          level: Level.trace,
-          printer: PrettyPrinter(
-            methodCount: 2,
-            errorMethodCount: 8,
-            lineLength: 120,
-            colors: true,
-            printEmojis: true,
-            dateTimeFormat: DateTimeFormat.none,
-          ),
+        level: Level.trace,
+        printer: PrettyPrinter(
+          methodCount: 2,
+          errorMethodCount: 8,
+          lineLength: 120,
+          colors: true,
+          printEmojis: true,
+          dateTimeFormat: DateTimeFormat.none,
         ),
+      ),
       AppEnv.staging => Logger(
-          level: Level.warning,
-          printer: PrettyPrinter(
-            methodCount: 1,
-            errorMethodCount: 5,
-            lineLength: 100,
-            colors: false,
-            printEmojis: false,
-            dateTimeFormat: DateTimeFormat.none,
-          ),
+        level: Level.warning,
+        printer: PrettyPrinter(
+          methodCount: 1,
+          errorMethodCount: 5,
+          lineLength: 100,
+          colors: false,
+          printEmojis: false,
+          dateTimeFormat: DateTimeFormat.none,
         ),
+      ),
       AppEnv.production => Logger(
-          level: Level.error,
-          printer: PrettyPrinter(
-            methodCount: 0,
-            errorMethodCount: 3,
-            lineLength: 80,
-            colors: false,
-            printEmojis: false,
-            dateTimeFormat: DateTimeFormat.none,
-          ),
+        level: Level.error,
+        printer: PrettyPrinter(
+          methodCount: 0,
+          errorMethodCount: 3,
+          lineLength: 80,
+          colors: false,
+          printEmojis: false,
+          dateTimeFormat: DateTimeFormat.none,
         ),
+      ),
     };
   }
 

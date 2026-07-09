@@ -26,11 +26,7 @@ class AppError extends StatelessWidget {
   ///
   /// [message] describes what went wrong. Keep it user-friendly.
   /// [onRetry] is an optional callback invoked when the user taps 'Retry'.
-  const AppError({
-    super.key,
-    required this.message,
-    this.onRetry,
-  });
+  const AppError({super.key, required this.message, this.onRetry});
 
   /// A user-facing description of the error.
   final String message;
@@ -54,16 +50,10 @@ class AppError extends StatelessWidget {
               size: AppConstants.iconXl,
             ),
             const SizedBox(height: AppConstants.spaceMd),
-            AppText.bodyMedium(
-              message,
-              textAlign: TextAlign.center,
-            ),
+            AppText.bodyMedium(message, textAlign: TextAlign.center),
             if (onRetry != null) ...[
               const SizedBox(height: AppConstants.spaceXl),
-              AppButton(
-                label: 'Retry',
-                onPressed: onRetry,
-              ),
+              AppButton(label: 'Retry', onPressed: onRetry),
             ],
           ],
         ),

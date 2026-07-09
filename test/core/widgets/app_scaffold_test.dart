@@ -4,14 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  Widget wrap(Widget child) =>
-      ProviderScope(child: MaterialApp(home: child));
+  Widget wrap(Widget child) => ProviderScope(child: MaterialApp(home: child));
 
   group('AppScaffold', () {
     testWidgets('renders its body', (tester) async {
-      await tester.pumpWidget(
-        wrap(const AppScaffold(body: Text('content'))),
-      );
+      await tester.pumpWidget(wrap(const AppScaffold(body: Text('content'))));
       expect(find.text('content'), findsOneWidget);
     });
 
@@ -29,9 +26,7 @@ void main() {
     });
 
     testWidgets('wraps the body in a SafeArea by default', (tester) async {
-      await tester.pumpWidget(
-        wrap(const AppScaffold(body: Text('content'))),
-      );
+      await tester.pumpWidget(wrap(const AppScaffold(body: Text('content'))));
       expect(
         find.ancestor(
           of: find.text('content'),
@@ -41,12 +36,9 @@ void main() {
       );
     });
 
-    testWidgets('skips the SafeArea when useSafeArea is false',
-        (tester) async {
+    testWidgets('skips the SafeArea when useSafeArea is false', (tester) async {
       await tester.pumpWidget(
-        wrap(
-          const AppScaffold(useSafeArea: false, body: Text('content')),
-        ),
+        wrap(const AppScaffold(useSafeArea: false, body: Text('content'))),
       );
       expect(
         find.ancestor(

@@ -21,13 +21,15 @@ void main() {
     });
 
     test('fromJson tolerates a missing or malformed updatedAt', () {
-      final ProfileModel missing =
-          ProfileModel.fromJson(<String, dynamic>{'uid': 'u1'});
+      final ProfileModel missing = ProfileModel.fromJson(<String, dynamic>{
+        'uid': 'u1',
+      });
       expect(missing.updatedAt, isNull);
 
-      final ProfileModel malformed = ProfileModel.fromJson(
-        <String, dynamic>{'uid': 'u1', 'updatedAt': 'not-a-timestamp'},
-      );
+      final ProfileModel malformed = ProfileModel.fromJson(<String, dynamic>{
+        'uid': 'u1',
+        'updatedAt': 'not-a-timestamp',
+      });
       expect(malformed.updatedAt, isNull);
     });
 

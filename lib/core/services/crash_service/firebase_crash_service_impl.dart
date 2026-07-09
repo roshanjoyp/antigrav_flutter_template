@@ -25,7 +25,7 @@ class FirebaseCrashServiceImpl implements CrashService {
   /// [crashlytics] defaults to [FirebaseCrashlytics.instance]; inject a
   /// fake in tests.
   FirebaseCrashServiceImpl(this._logger, {FirebaseCrashlytics? crashlytics})
-      : _crashlytics = crashlytics ?? FirebaseCrashlytics.instance;
+    : _crashlytics = crashlytics ?? FirebaseCrashlytics.instance;
 
   final LogService _logger;
   final FirebaseCrashlytics _crashlytics;

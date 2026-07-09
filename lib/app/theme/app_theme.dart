@@ -67,9 +67,7 @@ abstract final class AppTheme {
       snackBarTheme: AppThemeComponents.darkSnackBar,
       dialogTheme: AppThemeComponents.darkDialog,
       listTileTheme: AppThemeComponents.darkListTile,
-      extensions: const [
-        AppStatusColors(),
-      ],
+      extensions: const [AppStatusColors()],
     );
   }
 
@@ -148,9 +146,7 @@ abstract final class AppTheme {
         thickness: 1,
         space: AppConstants.spaceXs,
       ),
-      extensions: const [
-        AppStatusColors(),
-      ],
+      extensions: const [AppStatusColors()],
     );
   }
 }

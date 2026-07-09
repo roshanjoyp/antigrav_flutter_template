@@ -7,8 +7,7 @@ void main() {
     test('watchProfile emits null first, then saved profiles', () async {
       final StubProfileRepository repository = StubProfileRepository();
       final List<ProfileEntity?> emitted = <ProfileEntity?>[];
-      final subscription =
-          repository.watchProfile('u1').listen(emitted.add);
+      final subscription = repository.watchProfile('u1').listen(emitted.add);
       // Let the initial emission arrive.
       await Future<void>.delayed(Duration.zero);
       expect(emitted, <ProfileEntity?>[null]);
@@ -49,8 +48,7 @@ void main() {
     test('watchProfile ignores changes to other uids', () async {
       final StubProfileRepository repository = StubProfileRepository();
       final List<ProfileEntity?> emitted = <ProfileEntity?>[];
-      final subscription =
-          repository.watchProfile('u1').listen(emitted.add);
+      final subscription = repository.watchProfile('u1').listen(emitted.add);
       await Future<void>.delayed(Duration.zero);
 
       await repository.saveProfile(

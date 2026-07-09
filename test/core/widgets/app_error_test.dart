@@ -6,16 +6,16 @@ import '../../helpers/pump_app.dart';
 
 void main() {
   group('AppError', () {
-    testWidgets('shows the message without a retry button by default',
-        (tester) async {
+    testWidgets('shows the message without a retry button by default', (
+      tester,
+    ) async {
       await tester.pumpApp(const AppError(message: 'It broke.'));
 
       expect(find.text('It broke.'), findsOneWidget);
       expect(find.byType(AppButton), findsNothing);
     });
 
-    testWidgets('shows a retry button that invokes onRetry',
-        (tester) async {
+    testWidgets('shows a retry button that invokes onRetry', (tester) async {
       int retries = 0;
       await tester.pumpApp(
         AppError(message: 'It broke.', onRetry: () => retries++),

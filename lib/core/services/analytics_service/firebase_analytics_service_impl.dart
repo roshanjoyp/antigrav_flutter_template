@@ -23,7 +23,7 @@ class FirebaseAnalyticsServiceImpl implements AnalyticsService {
   /// [analytics] defaults to [FirebaseAnalytics.instance]; inject a fake
   /// in tests.
   FirebaseAnalyticsServiceImpl(this._logger, {FirebaseAnalytics? analytics})
-      : _analytics = analytics ?? FirebaseAnalytics.instance;
+    : _analytics = analytics ?? FirebaseAnalytics.instance;
 
   final LogService _logger;
   final FirebaseAnalytics _analytics;
@@ -44,10 +44,10 @@ class FirebaseAnalyticsServiceImpl implements AnalyticsService {
   /// Throws [AppException] (code `analytics/log-screen-failed`) on failure.
   @override
   Future<void> logScreenView(String screenName) => _guard(
-        () => _analytics.logScreenView(screenName: screenName),
-        operation: 'log screen view: $screenName',
-        code: 'analytics/log-screen-failed',
-      );
+    () => _analytics.logScreenView(screenName: screenName),
+    operation: 'log screen view: $screenName',
+    code: 'analytics/log-screen-failed',
+  );
 
   /// Sets a persistent user property by [name] to [value].
   ///
@@ -55,10 +55,10 @@ class FirebaseAnalyticsServiceImpl implements AnalyticsService {
   /// failure.
   @override
   Future<void> setUserProperty(String name, String value) => _guard(
-        () => _analytics.setUserProperty(name: name, value: value),
-        operation: 'set user property: $name',
-        code: 'analytics/set-property-failed',
-      );
+    () => _analytics.setUserProperty(name: name, value: value),
+    operation: 'set user property: $name',
+    code: 'analytics/set-property-failed',
+  );
 
   /// Runs [run]; on failure logs via [LogService] and throws an
   /// [AppException] with the given [code], per the service error contract.

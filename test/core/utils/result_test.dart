@@ -32,8 +32,7 @@ void main() {
     });
 
     test('mapSuccess transforms the value', () {
-      final Result<String> mapped =
-          result.mapSuccess((int value) => 'v$value');
+      final Result<String> mapped = result.mapSuccess((int value) => 'v$value');
       expect(mapped.getOrNull(), 'v42');
     });
   });
@@ -63,8 +62,7 @@ void main() {
     });
 
     test('mapSuccess keeps the failure untouched', () {
-      final Result<String> mapped =
-          result.mapSuccess((int value) => 'v$value');
+      final Result<String> mapped = result.mapSuccess((int value) => 'v$value');
       expect(mapped.isFailure, isTrue);
       expect((mapped as Failure<String>).exception, same(exception));
     });

@@ -58,17 +58,16 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) =>
-      AppText(
-        text,
-        key: key,
-        fontSize: AppConstants.font3xl,
-        color: color,
-        fontWeight: FontWeight.w700,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        overflow: overflow,
-      );
+  }) => AppText(
+    text,
+    key: key,
+    fontSize: AppConstants.font3xl,
+    color: color,
+    fontWeight: FontWeight.w700,
+    textAlign: textAlign,
+    maxLines: maxLines,
+    overflow: overflow,
+  );
 
   /// Medium heading. 24sp semibold. For section titles and dialog headings.
   factory AppText.headingMedium(
@@ -78,17 +77,16 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) =>
-      AppText(
-        text,
-        key: key,
-        fontSize: AppConstants.fontXxl,
-        color: color,
-        fontWeight: FontWeight.w600,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        overflow: overflow,
-      );
+  }) => AppText(
+    text,
+    key: key,
+    fontSize: AppConstants.fontXxl,
+    color: color,
+    fontWeight: FontWeight.w600,
+    textAlign: textAlign,
+    maxLines: maxLines,
+    overflow: overflow,
+  );
 
   /// Small heading. 20sp semibold. For card titles and sub-section headings.
   factory AppText.headingSmall(
@@ -98,17 +96,16 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) =>
-      AppText(
-        text,
-        key: key,
-        fontSize: AppConstants.fontXl,
-        color: color,
-        fontWeight: FontWeight.w600,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        overflow: overflow,
-      );
+  }) => AppText(
+    text,
+    key: key,
+    fontSize: AppConstants.fontXl,
+    color: color,
+    fontWeight: FontWeight.w600,
+    textAlign: textAlign,
+    maxLines: maxLines,
+    overflow: overflow,
+  );
 
   /// Large body text. 18sp regular. For emphasized body copy.
   factory AppText.bodyLarge(
@@ -118,17 +115,16 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) =>
-      AppText(
-        text,
-        key: key,
-        fontSize: AppConstants.fontLg,
-        color: color,
-        fontWeight: FontWeight.w400,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        overflow: overflow,
-      );
+  }) => AppText(
+    text,
+    key: key,
+    fontSize: AppConstants.fontLg,
+    color: color,
+    fontWeight: FontWeight.w400,
+    textAlign: textAlign,
+    maxLines: maxLines,
+    overflow: overflow,
+  );
 
   /// Base body text. 16sp regular. Default for paragraph and list content.
   factory AppText.bodyMedium(
@@ -138,17 +134,16 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) =>
-      AppText(
-        text,
-        key: key,
-        fontSize: AppConstants.fontMd,
-        color: color,
-        fontWeight: FontWeight.w400,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        overflow: overflow,
-      );
+  }) => AppText(
+    text,
+    key: key,
+    fontSize: AppConstants.fontMd,
+    color: color,
+    fontWeight: FontWeight.w400,
+    textAlign: textAlign,
+    maxLines: maxLines,
+    overflow: overflow,
+  );
 
   /// Small body text. 14sp regular. For secondary copy and form labels.
   factory AppText.bodySmall(
@@ -158,18 +153,17 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) =>
-      AppText(
-        text,
-        key: key,
-        fontSize: AppConstants.fontSm,
-        color: color,
-        fontWeight: FontWeight.w400,
-        colorRole: _ColorRole.secondary,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        overflow: overflow,
-      );
+  }) => AppText(
+    text,
+    key: key,
+    fontSize: AppConstants.fontSm,
+    color: color,
+    fontWeight: FontWeight.w400,
+    colorRole: _ColorRole.secondary,
+    textAlign: textAlign,
+    maxLines: maxLines,
+    overflow: overflow,
+  );
 
   /// Caption text. 12sp regular. For metadata, timestamps, and helper text.
   factory AppText.caption(
@@ -179,18 +173,17 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) =>
-      AppText(
-        text,
-        key: key,
-        fontSize: AppConstants.fontXs,
-        color: color,
-        fontWeight: FontWeight.w400,
-        colorRole: _ColorRole.tertiary,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        overflow: overflow,
-      );
+  }) => AppText(
+    text,
+    key: key,
+    fontSize: AppConstants.fontXs,
+    color: color,
+    fontWeight: FontWeight.w400,
+    colorRole: _ColorRole.tertiary,
+    textAlign: textAlign,
+    maxLines: maxLines,
+    overflow: overflow,
+  );
 
   /// Label text. 12sp medium weight. For tags, badges, and input labels.
   factory AppText.label(
@@ -200,18 +193,17 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) =>
-      AppText(
-        text,
-        key: key,
-        fontSize: AppConstants.fontXs,
-        color: color,
-        fontWeight: FontWeight.w500,
-        colorRole: _ColorRole.secondary,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        overflow: overflow,
-      );
+  }) => AppText(
+    text,
+    key: key,
+    fontSize: AppConstants.fontXs,
+    color: color,
+    fontWeight: FontWeight.w500,
+    colorRole: _ColorRole.secondary,
+    textAlign: textAlign,
+    maxLines: maxLines,
+    overflow: overflow,
+  );
 
   // ---------------------------------------------------------------------------
   // Properties
@@ -256,8 +248,9 @@ class AppText extends StatelessWidget {
     return switch (_colorRole) {
       _ColorRole.primary => cs.onSurface,
       _ColorRole.secondary => cs.onSurfaceVariant,
-      _ColorRole.tertiary =>
-        cs.onSurfaceVariant.withValues(alpha: AppConstants.opacityDim),
+      _ColorRole.tertiary => cs.onSurfaceVariant.withValues(
+        alpha: AppConstants.opacityDim,
+      ),
     };
   }
 

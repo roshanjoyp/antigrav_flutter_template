@@ -21,7 +21,8 @@ class StubProfileRepository implements ProfileRepository {
   final Map<String, ProfileEntity> _profiles = <String, ProfileEntity>{};
 
   /// Emits the uid of every profile that changes.
-  final StreamController<String> _changes = StreamController<String>.broadcast();
+  final StreamController<String> _changes =
+      StreamController<String>.broadcast();
 
   @override
   Stream<ProfileEntity?> watchProfile(String uid) async* {

@@ -26,8 +26,8 @@ class FirebaseFederatedSignIn {
     FirebaseAuth? auth,
     GoogleSignIn? googleSignIn,
     this.googleServerClientId,
-  })  : _auth = auth ?? FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn.instance;
+  }) : _auth = auth ?? FirebaseAuth.instance,
+       _googleSignIn = googleSignIn ?? GoogleSignIn.instance;
 
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
@@ -54,13 +54,15 @@ class FirebaseFederatedSignIn {
     final String? idToken = account.authentication.idToken;
     if (idToken == null) {
       throw const AppException(
-        message: 'Google sign-in did not return an ID token. On Android, '
+        message:
+            'Google sign-in did not return an ID token. On Android, '
             'set googleServerClientId (see docs/setup/FIREBASE_SETUP.md).',
         code: 'auth/missing-google-id-token',
       );
     }
-    final OAuthCredential credential =
-        GoogleAuthProvider.credential(idToken: idToken);
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      idToken: idToken,
+    );
     return _auth.signInWithCredential(credential);
   }
 

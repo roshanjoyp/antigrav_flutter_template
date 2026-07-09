@@ -6,8 +6,7 @@ import '../../helpers/pump_app.dart';
 
 void main() {
   group('AppLoading', () {
-    testWidgets('shows a spinner without a message by default',
-        (tester) async {
+    testWidgets('shows a spinner without a message by default', (tester) async {
       await tester.pumpApp(const AppLoading());
       // One pump frame only — the spinner animates forever, so
       // pumpAndSettle would never return.

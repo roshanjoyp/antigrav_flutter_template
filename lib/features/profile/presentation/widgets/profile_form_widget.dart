@@ -30,8 +30,9 @@ class _ProfileFormWidgetState extends ConsumerState<ProfileFormWidget> {
   @override
   void initState() {
     super.initState();
-    _displayNameController =
-        TextEditingController(text: widget.profile?.displayName);
+    _displayNameController = TextEditingController(
+      text: widget.profile?.displayName,
+    );
     _bioController = TextEditingController(text: widget.profile?.bio);
   }
 
@@ -44,19 +45,21 @@ class _ProfileFormWidgetState extends ConsumerState<ProfileFormWidget> {
 
   Future<void> _save() async {
     setState(() => _isSaving = true);
-    final Result<void> result =
-        await ref.read(profileControllerProvider.notifier).save(
-              displayName: _displayNameController.text,
-              bio: _bioController.text,
-            );
+    final Result<void> result = await ref
+        .read(profileControllerProvider.notifier)
+        .save(
+          displayName: _displayNameController.text,
+          bio: _bioController.text,
+        );
     if (!mounted) return;
     setState(() => _isSaving = false);
     final String feedback = result.fold(
       onSuccess: (_) => 'Profile saved.',
       onFailure: (AppException exception) => exception.message,
     );
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(feedback)));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(feedback)));
   }
 
   @override

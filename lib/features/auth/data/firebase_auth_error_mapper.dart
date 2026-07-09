@@ -37,8 +37,7 @@ AppException _mapFirebaseAuthException(
     'user-not-found' ||
     'wrong-password' ||
     'invalid-credential' ||
-    'INVALID_LOGIN_CREDENTIALS' =>
-      'Incorrect email or password.',
+    'INVALID_LOGIN_CREDENTIALS' => 'Incorrect email or password.',
     'email-already-in-use' => 'An account already exists with this email.',
     'weak-password' => 'The password is too weak — use at least 6 characters.',
     'operation-not-allowed' =>
@@ -46,8 +45,7 @@ AppException _mapFirebaseAuthException(
     'too-many-requests' => 'Too many attempts. Please try again later.',
     'network-request-failed' =>
       'Network error. Check your connection and try again.',
-    'requires-recent-login' =>
-      'Please sign in again to complete this action.',
+    'requires-recent-login' => 'Please sign in again to complete this action.',
     'account-exists-with-different-credential' =>
       'An account already exists with this email using a different '
           'sign-in method.',
@@ -55,8 +53,7 @@ AppException _mapFirebaseAuthException(
     'cancelled-popup-request' ||
     'web-context-canceled' ||
     'user-cancelled' ||
-    'canceled' =>
-      'Sign-in was cancelled.',
+    'canceled' => 'Sign-in was cancelled.',
     _ => 'Authentication failed. Please try again.',
   };
   return AppException(
@@ -73,7 +70,8 @@ AppException _mapGoogleSignInException(
   GoogleSignInException error,
   StackTrace stackTrace,
 ) {
-  final bool cancelled = error.code == GoogleSignInExceptionCode.canceled ||
+  final bool cancelled =
+      error.code == GoogleSignInExceptionCode.canceled ||
       error.code == GoogleSignInExceptionCode.interrupted;
   return AppException(
     message: cancelled

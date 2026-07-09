@@ -39,21 +39,21 @@ abstract class ProfileModel with _$ProfileModel {
 
   /// Creates a [ProfileModel] from the domain [entity].
   factory ProfileModel.fromEntity(ProfileEntity entity) => ProfileModel(
-        uid: entity.uid,
-        displayName: entity.displayName,
-        bio: entity.bio,
-        photoUrl: entity.photoUrl,
-        updatedAt: entity.updatedAt,
-      );
+    uid: entity.uid,
+    displayName: entity.displayName,
+    bio: entity.bio,
+    photoUrl: entity.photoUrl,
+    updatedAt: entity.updatedAt,
+  );
 
   /// Converts this model to the domain [ProfileEntity].
   ProfileEntity toEntity() => ProfileEntity(
-        uid: uid,
-        displayName: displayName,
-        bio: bio,
-        photoUrl: photoUrl,
-        updatedAt: updatedAt,
-      );
+    uid: uid,
+    displayName: displayName,
+    bio: bio,
+    photoUrl: photoUrl,
+    updatedAt: updatedAt,
+  );
 }
 
 /// Converts between Firestore [Timestamp] values and Dart [DateTime].
@@ -66,8 +66,7 @@ class TimestampConverter implements JsonConverter<DateTime?, Object?> {
   const TimestampConverter();
 
   @override
-  DateTime? fromJson(Object? json) =>
-      json is Timestamp ? json.toDate() : null;
+  DateTime? fromJson(Object? json) => json is Timestamp ? json.toDate() : null;
 
   @override
   Object? toJson(DateTime? object) =>

@@ -84,15 +84,15 @@ sealed class Result<T> {
 
   /// Returns the success value, or `null` if this is a [Failure].
   T? getOrNull() => switch (this) {
-        Success<T>(value: final v) => v,
-        Failure<T>() => null,
-      };
+    Success<T>(value: final v) => v,
+    Failure<T>() => null,
+  };
 
   /// Returns the success value, or [fallback] if this is a [Failure].
   T getOrElse(T fallback) => switch (this) {
-        Success<T>(value: final v) => v,
-        Failure<T>() => fallback,
-      };
+    Success<T>(value: final v) => v,
+    Failure<T>() => fallback,
+  };
 
   /// Transforms this result by applying one of two functions depending
   /// on whether it is a [Success] or a [Failure].
@@ -109,11 +109,10 @@ sealed class Result<T> {
   R fold<R>({
     required R Function(T value) onSuccess,
     required R Function(AppException exception) onFailure,
-  }) =>
-      switch (this) {
-        Success<T>(value: final v) => onSuccess(v),
-        Failure<T>(exception: final e) => onFailure(e),
-      };
+  }) => switch (this) {
+    Success<T>(value: final v) => onSuccess(v),
+    Failure<T>(exception: final e) => onFailure(e),
+  };
 
   /// Transforms the success value using [transform], leaving
   /// any [Failure] untouched.
@@ -126,11 +125,10 @@ sealed class Result<T> {
   /// final result = await fetchUser('123');
   /// final nameResult = result.mapSuccess((user) => user.name);
   /// ```
-  Result<R> mapSuccess<R>(R Function(T value) transform) =>
-      switch (this) {
-        Success<T>(value: final v) => Success(transform(v)),
-        Failure<T>(exception: final e) => Failure(e),
-      };
+  Result<R> mapSuccess<R>(R Function(T value) transform) => switch (this) {
+    Success<T>(value: final v) => Success(transform(v)),
+    Failure<T>(exception: final e) => Failure(e),
+  };
 }
 
 // -----------------------------------------------------------------------------

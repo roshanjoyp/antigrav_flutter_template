@@ -31,8 +31,9 @@ void main() {
 
   group('ProfileController', () {
     test('emits null for a user with no profile yet', () async {
-      final ProfileEntity? profile =
-          await container.read(profileControllerProvider.future);
+      final ProfileEntity? profile = await container.read(
+        profileControllerProvider.future,
+      );
       expect(profile, isNull);
     });
 
@@ -45,29 +46,33 @@ void main() {
       );
       // Let the repository's change event flow through the watch stream.
       await Future<void>.delayed(Duration.zero);
-      final ProfileEntity? profile =
-          container.read(profileControllerProvider).value;
+      final ProfileEntity? profile = container
+          .read(profileControllerProvider)
+          .value;
       expect(profile?.displayName, 'Demo');
     });
 
-    test('save persists trimmed values and the stream emits the update',
-        () async {
-      // Wait for the initial (null) emission first.
-      await container.read(profileControllerProvider.future);
+    test(
+      'save persists trimmed values and the stream emits the update',
+      () async {
+        // Wait for the initial (null) emission first.
+        await container.read(profileControllerProvider.future);
 
-      final result = await container
-          .read(profileControllerProvider.notifier)
-          .save(displayName: '  Alice  ', bio: '');
-      expect(result.isSuccess, isTrue);
+        final result = await container
+            .read(profileControllerProvider.notifier)
+            .save(displayName: '  Alice  ', bio: '');
+        expect(result.isSuccess, isTrue);
 
-      // The watched stream should now emit the saved profile.
-      await Future<void>.delayed(Duration.zero);
-      final AsyncValue<ProfileEntity?> state =
-          container.read(profileControllerProvider);
-      expect(state.value?.displayName, 'Alice');
-      // Blank bio is normalized to null rather than stored as ''.
-      expect(state.value?.bio, isNull);
-      expect(state.value?.uid, ProfileController.demoUid);
-    });
+        // The watched stream should now emit the saved profile.
+        await Future<void>.delayed(Duration.zero);
+        final AsyncValue<ProfileEntity?> state = container.read(
+          profileControllerProvider,
+        );
+        expect(state.value?.displayName, 'Alice');
+        // Blank bio is normalized to null rather than stored as ''.
+        expect(state.value?.bio, isNull);
+        expect(state.value?.uid, ProfileController.demoUid);
+      },
+    );
   });
 }

@@ -20,10 +20,7 @@ void main() {
 
     test('initializing twice throws StateError', () {
       AppFlavor.initialize(AppEnv.development);
-      expect(
-        () => AppFlavor.initialize(AppEnv.production),
-        throwsStateError,
-      );
+      expect(() => AppFlavor.initialize(AppEnv.production), throwsStateError);
     });
 
     test('reset allows re-initialization (test-only escape hatch)', () {

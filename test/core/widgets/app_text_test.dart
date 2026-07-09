@@ -39,19 +39,13 @@ void main() {
     testWidgets('headings are larger than captions', (tester) async {
       await tester.pumpApp(
         Column(
-          children: [
-            AppText.headingLarge('big'),
-            AppText.caption('small'),
-          ],
+          children: [AppText.headingLarge('big'), AppText.caption('small')],
         ),
       );
 
       final Text big = tester.widget<Text>(find.text('big'));
       final Text small = tester.widget<Text>(find.text('small'));
-      expect(
-        big.style!.fontSize!,
-        greaterThan(small.style!.fontSize!),
-      );
+      expect(big.style!.fontSize!, greaterThan(small.style!.fontSize!));
     });
   });
 }

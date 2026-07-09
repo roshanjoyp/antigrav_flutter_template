@@ -37,9 +37,7 @@ void main() {
 
     test('maps cancelled Google sign-in to auth/cancelled', () {
       final AppException e = mapAuthError(
-        const GoogleSignInException(
-          code: GoogleSignInExceptionCode.canceled,
-        ),
+        const GoogleSignInException(code: GoogleSignInExceptionCode.canceled),
         trace,
       );
       expect(e.code, 'auth/cancelled');
@@ -57,8 +55,10 @@ void main() {
     });
 
     test('passes an AppException through unchanged', () {
-      const AppException original =
-          AppException(message: 'custom', code: 'auth/custom');
+      const AppException original = AppException(
+        message: 'custom',
+        code: 'auth/custom',
+      );
       expect(mapAuthError(original, trace), same(original));
     });
 

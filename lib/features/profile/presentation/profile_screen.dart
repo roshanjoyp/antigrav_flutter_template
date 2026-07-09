@@ -18,8 +18,9 @@ class ProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue<ProfileEntity?> profile =
-        ref.watch(profileControllerProvider);
+    final AsyncValue<ProfileEntity?> profile = ref.watch(
+      profileControllerProvider,
+    );
 
     return AppScaffold(
       appBar: AppBar(title: const Text('Profile')),

@@ -20,10 +20,7 @@ class AppLoading extends StatelessWidget {
   /// Creates an [AppLoading] widget.
   ///
   /// [message] is an optional string displayed below the spinner.
-  const AppLoading({
-    super.key,
-    this.message,
-  });
+  const AppLoading({super.key, this.message});
 
   /// An optional message displayed below the loading indicator.
   ///
@@ -40,10 +37,7 @@ class AppLoading extends StatelessWidget {
           const CircularProgressIndicator(),
           if (message != null) ...[
             const SizedBox(height: AppConstants.spaceMd),
-            AppText.bodySmall(
-              message!,
-              textAlign: TextAlign.center,
-            ),
+            AppText.bodySmall(message!, textAlign: TextAlign.center),
           ],
         ],
       ),

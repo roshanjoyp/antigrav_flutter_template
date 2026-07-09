@@ -122,17 +122,20 @@ abstract final class AppThemeComponents {
   /// Bottom navigation bar theme for the dark theme.
   static const BottomNavigationBarThemeData darkBottomNav =
       BottomNavigationBarThemeData(
-    backgroundColor: AppColors.backgroundSecondary,
-    selectedItemColor: AppColors.accent,
-    unselectedItemColor: AppColors.textTertiary,
-    elevation: AppConstants.elevationLg,
-    type: BottomNavigationBarType.fixed,
-  );
+        backgroundColor: AppColors.backgroundSecondary,
+        selectedItemColor: AppColors.accent,
+        unselectedItemColor: AppColors.textTertiary,
+        elevation: AppConstants.elevationLg,
+        type: BottomNavigationBarType.fixed,
+      );
 
   /// Snack bar theme for the dark theme.
   static SnackBarThemeData darkSnackBar = SnackBarThemeData(
     backgroundColor: AppColors.surfaceElevated,
-    contentTextStyle: const TextStyle(inherit: false, color: AppColors.textPrimary),
+    contentTextStyle: const TextStyle(
+      inherit: false,
+      color: AppColors.textPrimary,
+    ),
     actionTextColor: AppColors.accent,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppConstants.radiusSm),

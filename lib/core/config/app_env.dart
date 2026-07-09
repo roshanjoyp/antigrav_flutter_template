@@ -57,8 +57,8 @@ enum AppEnv {
   ///
   /// Returns `'Development'`, `'Staging'`, or `'Production'`.
   String get displayName => switch (this) {
-        AppEnv.development => 'Development',
-        AppEnv.staging => 'Staging',
-        AppEnv.production => 'Production',
-      };
+    AppEnv.development => 'Development',
+    AppEnv.staging => 'Staging',
+    AppEnv.production => 'Production',
+  };
 }
