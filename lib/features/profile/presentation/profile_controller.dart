@@ -1,9 +1,9 @@
-import 'package:antigrav_flutter_template/core/utils/result.dart';
-import 'package:antigrav_flutter_template/features/auth/data/auth_repository_impl.dart';
-import 'package:antigrav_flutter_template/features/auth/domain/auth_repository.dart';
-import 'package:antigrav_flutter_template/features/profile/data/profile_repository_impl.dart';
-import 'package:antigrav_flutter_template/features/profile/domain/profile_entity.dart';
-import 'package:antigrav_flutter_template/features/profile/domain/profile_repository.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/features/auth/data/auth_repository_impl.dart';
+import 'package:craft_flutter_template/features/auth/domain/auth_repository.dart';
+import 'package:craft_flutter_template/features/profile/data/profile_repository_impl.dart';
+import 'package:craft_flutter_template/features/profile/domain/profile_entity.dart';
+import 'package:craft_flutter_template/features/profile/domain/profile_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_controller.g.dart';

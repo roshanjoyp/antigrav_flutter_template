@@ -1,4 +1,4 @@
-import 'package:antigrav_flutter_template/core/config/app_env.dart';
+import 'package:craft_flutter_template/core/config/app_env.dart';
 import 'package:flutter/foundation.dart';
 
 /// Holds the active environment for the entire application lifetime.

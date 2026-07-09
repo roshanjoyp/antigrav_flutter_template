@@ -1,9 +1,9 @@
-import 'package:antigrav_flutter_template/app/config/push_deep_link_listener.dart';
-import 'package:antigrav_flutter_template/app/router/app_router.dart';
-import 'package:antigrav_flutter_template/core/config/app_env.dart';
-import 'package:antigrav_flutter_template/core/config/app_flavor.dart';
-import 'package:antigrav_flutter_template/core/services/push_service/push_service.dart';
-import 'package:antigrav_flutter_template/core/services/push_service/push_service_impl.dart';
+import 'package:craft_flutter_template/app/config/push_deep_link_listener.dart';
+import 'package:craft_flutter_template/app/router/app_router.dart';
+import 'package:craft_flutter_template/core/config/app_env.dart';
+import 'package:craft_flutter_template/core/config/app_flavor.dart';
+import 'package:craft_flutter_template/core/services/push_service/push_service.dart';
+import 'package:craft_flutter_template/core/services/push_service/push_service_impl.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';

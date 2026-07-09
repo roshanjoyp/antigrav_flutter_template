@@ -3,7 +3,7 @@
 /// Provides a single import for constants, utilities, configuration,
 /// and foundational widgets used across every feature in the app:
 /// ```dart
-/// import 'package:antigrav_flutter_template/core/core.dart';
+/// import 'package:craft_flutter_template/core/core.dart';
 /// ```
 ///
 /// Note: service providers are not included here — import them directly
@@ -11,17 +11,17 @@
 library;
 
 // Constants
-export 'package:antigrav_flutter_template/core/constants/app_colors.dart';
-export 'package:antigrav_flutter_template/core/constants/app_constants.dart';
+export 'package:craft_flutter_template/core/constants/app_colors.dart';
+export 'package:craft_flutter_template/core/constants/app_constants.dart';
 
 // Utilities
-export 'package:antigrav_flutter_template/core/utils/result.dart';
+export 'package:craft_flutter_template/core/utils/result.dart';
 
 // Configuration
-export 'package:antigrav_flutter_template/core/config/app_env.dart';
-export 'package:antigrav_flutter_template/core/config/app_flavor.dart';
-export 'package:antigrav_flutter_template/core/config/firebase/firebase_config.dart';
-export 'package:antigrav_flutter_template/core/config/revenuecat/revenuecat_config.dart';
+export 'package:craft_flutter_template/core/config/app_env.dart';
+export 'package:craft_flutter_template/core/config/app_flavor.dart';
+export 'package:craft_flutter_template/core/config/firebase/firebase_config.dart';
+export 'package:craft_flutter_template/core/config/revenuecat/revenuecat_config.dart';
 
 // Widgets
-export 'package:antigrav_flutter_template/core/widgets/widgets.dart';
+export 'package:craft_flutter_template/core/widgets/widgets.dart';

@@ -1,6 +1,6 @@
-import 'package:antigrav_flutter_template/core/services/analytics_service/analytics_service_impl.dart';
-import 'package:antigrav_flutter_template/core/services/crash_service/crash_service_impl.dart';
-import 'package:antigrav_flutter_template/core/services/log_service/log_service.dart';
+import 'package:craft_flutter_template/core/services/analytics_service/analytics_service_impl.dart';
+import 'package:craft_flutter_template/core/services/crash_service/crash_service_impl.dart';
+import 'package:craft_flutter_template/core/services/log_service/log_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /// A [LogService] that records every call for assertions.

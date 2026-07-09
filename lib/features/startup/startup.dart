@@ -5,4 +5,4 @@
 /// implementation detail consumed only by [StartupView].
 library;
 
-export 'package:antigrav_flutter_template/features/startup/presentation/startup_view.dart';
+export 'package:craft_flutter_template/features/startup/presentation/startup_view.dart';

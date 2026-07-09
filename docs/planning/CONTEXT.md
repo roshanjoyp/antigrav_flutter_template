@@ -5,7 +5,7 @@
 This document is intended for AI Agents (and humans) to quickly understand the context, architecture, and rules of this project. **Read this before making significant changes.**
 
 ## 1. Project Identity
-*   **Name**: AntiGrav Flutter Template
+*   **Name**: Craft Flutter Template
 *   **Description**: A production-grade, backend-agnostic Flutter application template.
 *   **Goal**: To serve as a robust starting point for scalable apps with built-in core services.
 
@@ -44,7 +44,7 @@ lib/
 ## 4. Coding Standards
 *   **Linting**: Strict rules enabled via `analysis_options.yaml` (custom_lint, riverpod_lint).
 *   **Async**: usage of `runZonedGuarded` in `main.dart` is mandatory for global error catching.
-*   **Imports**: Absolute imports preferred for project files (`package:antigrav_flutter_template/...`).
+*   **Imports**: Absolute imports preferred for project files (`package:craft_flutter_template/...`).
 
 ## 5. Development Workflow
 *   **Code Gen**: Run `dart run build_runner build -d` after editing models/providers.

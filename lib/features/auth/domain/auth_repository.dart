@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/core/utils/result.dart';
-import 'package:antigrav_flutter_template/features/auth/domain/user_entity.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/features/auth/domain/user_entity.dart';
 
 /// Contract for authentication operations.
 ///

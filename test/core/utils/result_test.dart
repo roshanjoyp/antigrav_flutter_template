@@ -1,4 +1,4 @@
-import 'package:antigrav_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

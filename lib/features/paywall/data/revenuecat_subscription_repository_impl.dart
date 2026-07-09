@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:antigrav_flutter_template/core/utils/result.dart';
-import 'package:antigrav_flutter_template/features/paywall/data/revenuecat_error_mapper.dart';
-import 'package:antigrav_flutter_template/features/paywall/data/revenuecat_mappers.dart';
-import 'package:antigrav_flutter_template/features/paywall/domain/paywall_offering_entity.dart';
-import 'package:antigrav_flutter_template/features/paywall/domain/subscription_repository.dart';
-import 'package:antigrav_flutter_template/features/paywall/domain/subscription_status_entity.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/features/paywall/data/revenuecat_error_mapper.dart';
+import 'package:craft_flutter_template/features/paywall/data/revenuecat_mappers.dart';
+import 'package:craft_flutter_template/features/paywall/domain/paywall_offering_entity.dart';
+import 'package:craft_flutter_template/features/paywall/domain/subscription_repository.dart';
+import 'package:craft_flutter_template/features/paywall/domain/subscription_status_entity.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 /// RevenueCat-backed implementation of [SubscriptionRepository].

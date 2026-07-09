@@ -1,7 +1,7 @@
-import 'package:antigrav_flutter_template/core/utils/result.dart';
-import 'package:antigrav_flutter_template/features/auth/data/firebase_auth_repository_impl.dart';
-import 'package:antigrav_flutter_template/features/auth/data/firebase_federated_sign_in.dart';
-import 'package:antigrav_flutter_template/features/auth/domain/user_entity.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/features/auth/data/firebase_auth_repository_impl.dart';
+import 'package:craft_flutter_template/features/auth/data/firebase_federated_sign_in.dart';
+import 'package:craft_flutter_template/features/auth/domain/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in/google_sign_in.dart';

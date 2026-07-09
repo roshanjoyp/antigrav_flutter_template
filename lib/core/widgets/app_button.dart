@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
-import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
+import 'package:craft_flutter_template/core/constants/app_colors.dart';
+import 'package:craft_flutter_template/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 /// A primary action button that enforces app-wide styling via [AppColors]

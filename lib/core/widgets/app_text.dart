@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
-import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
+import 'package:craft_flutter_template/core/constants/app_colors.dart';
+import 'package:craft_flutter_template/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 /// Semantic color role used to resolve a theme-appropriate fallback when no

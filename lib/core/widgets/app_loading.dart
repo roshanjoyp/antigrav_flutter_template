@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
-import 'package:antigrav_flutter_template/core/widgets/app_text.dart';
+import 'package:craft_flutter_template/core/constants/app_constants.dart';
+import 'package:craft_flutter_template/core/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
 /// A centered loading indicator using the app accent color.

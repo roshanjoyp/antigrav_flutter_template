@@ -1,4 +1,4 @@
-import 'package:antigrav_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 

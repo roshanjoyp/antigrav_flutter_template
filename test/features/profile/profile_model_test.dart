@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/features/profile/data/profile_model.dart';
-import 'package:antigrav_flutter_template/features/profile/domain/profile_entity.dart';
+import 'package:craft_flutter_template/features/profile/data/profile_model.dart';
+import 'package:craft_flutter_template/features/profile/domain/profile_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 

@@ -1,6 +1,6 @@
-import 'package:antigrav_flutter_template/core/services/storage_service/storage_service_impl.dart';
-import 'package:antigrav_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
-import 'package:antigrav_flutter_template/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:craft_flutter_template/core/services/storage_service/storage_service_impl.dart';
+import 'package:craft_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
+import 'package:craft_flutter_template/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';

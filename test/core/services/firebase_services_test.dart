@@ -1,6 +1,6 @@
-import 'package:antigrav_flutter_template/core/services/analytics_service/firebase_analytics_service_impl.dart';
-import 'package:antigrav_flutter_template/core/services/crash_service/firebase_crash_service_impl.dart';
-import 'package:antigrav_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/core/services/analytics_service/firebase_analytics_service_impl.dart';
+import 'package:craft_flutter_template/core/services/crash_service/firebase_crash_service_impl.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_test/flutter_test.dart';

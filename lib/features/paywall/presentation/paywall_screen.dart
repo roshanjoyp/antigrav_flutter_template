@@ -1,8 +1,8 @@
-import 'package:antigrav_flutter_template/core/core.dart';
-import 'package:antigrav_flutter_template/features/paywall/domain/paywall_offering_entity.dart';
-import 'package:antigrav_flutter_template/features/paywall/domain/subscription_status_entity.dart';
-import 'package:antigrav_flutter_template/features/paywall/presentation/paywall_controller.dart';
-import 'package:antigrav_flutter_template/features/paywall/presentation/widgets/paywall_package_card_widget.dart';
+import 'package:craft_flutter_template/core/core.dart';
+import 'package:craft_flutter_template/features/paywall/domain/paywall_offering_entity.dart';
+import 'package:craft_flutter_template/features/paywall/domain/subscription_status_entity.dart';
+import 'package:craft_flutter_template/features/paywall/presentation/paywall_controller.dart';
+import 'package:craft_flutter_template/features/paywall/presentation/widgets/paywall_package_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

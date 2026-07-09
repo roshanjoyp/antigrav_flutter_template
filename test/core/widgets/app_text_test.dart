@@ -1,4 +1,4 @@
-import 'package:antigrav_flutter_template/core/widgets/app_text.dart';
+import 'package:craft_flutter_template/core/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

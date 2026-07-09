@@ -1,8 +1,8 @@
-import 'package:antigrav_flutter_template/core/utils/result.dart';
-import 'package:antigrav_flutter_template/features/auth/data/firebase_auth_error_mapper.dart';
-import 'package:antigrav_flutter_template/features/auth/data/firebase_federated_sign_in.dart';
-import 'package:antigrav_flutter_template/features/auth/domain/auth_repository.dart';
-import 'package:antigrav_flutter_template/features/auth/domain/user_entity.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/features/auth/data/firebase_auth_error_mapper.dart';
+import 'package:craft_flutter_template/features/auth/data/firebase_federated_sign_in.dart';
+import 'package:craft_flutter_template/features/auth/domain/auth_repository.dart';
+import 'package:craft_flutter_template/features/auth/domain/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 /// Firebase implementation of [AuthRepository].

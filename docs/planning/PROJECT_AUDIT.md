@@ -1,4 +1,4 @@
-# Project Audit — antigrav_flutter_template
+# Project Audit — craft_flutter_template
 _Generated: 2026-04-16 — last updated: 2026-04-16_
 
 ---
@@ -6,7 +6,7 @@ _Generated: 2026-04-16 — last updated: 2026-04-16_
 ## 1. Folder Structure
 
 ```
-antigrav_flutter_template/
+craft_flutter_template/
 ├── lib/
 │   ├── main.dart
 │   ├── app/

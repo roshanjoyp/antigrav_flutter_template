@@ -1,6 +1,6 @@
-import 'package:antigrav_flutter_template/features/paywall/data/subscription_repository_impl.dart';
-import 'package:antigrav_flutter_template/features/paywall/domain/paywall_offering_entity.dart';
-import 'package:antigrav_flutter_template/features/paywall/domain/subscription_status_entity.dart';
+import 'package:craft_flutter_template/features/paywall/data/subscription_repository_impl.dart';
+import 'package:craft_flutter_template/features/paywall/domain/paywall_offering_entity.dart';
+import 'package:craft_flutter_template/features/paywall/domain/subscription_status_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

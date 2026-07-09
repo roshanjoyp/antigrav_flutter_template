@@ -1,4 +1,4 @@
-import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
+import 'package:craft_flutter_template/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 /// A thin horizontal divider using [AppColors.border].

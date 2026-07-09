@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/features/paywall/domain/paywall_offering_entity.dart';
-import 'package:antigrav_flutter_template/features/paywall/domain/subscription_status_entity.dart';
+import 'package:craft_flutter_template/features/paywall/domain/paywall_offering_entity.dart';
+import 'package:craft_flutter_template/features/paywall/domain/subscription_status_entity.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 /// Pure mapping functions from RevenueCat SDK models to domain entities.

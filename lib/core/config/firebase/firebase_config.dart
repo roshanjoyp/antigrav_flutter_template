@@ -1,10 +1,10 @@
-import 'package:antigrav_flutter_template/core/config/app_env.dart';
-import 'package:antigrav_flutter_template/core/config/app_flavor.dart';
-import 'package:antigrav_flutter_template/core/config/firebase/firebase_options_dev.dart'
+import 'package:craft_flutter_template/core/config/app_env.dart';
+import 'package:craft_flutter_template/core/config/app_flavor.dart';
+import 'package:craft_flutter_template/core/config/firebase/firebase_options_dev.dart'
     as dev;
-import 'package:antigrav_flutter_template/core/config/firebase/firebase_options_prod.dart'
+import 'package:craft_flutter_template/core/config/firebase/firebase_options_prod.dart'
     as prod;
-import 'package:antigrav_flutter_template/core/config/firebase/firebase_options_staging.dart'
+import 'package:craft_flutter_template/core/config/firebase/firebase_options_staging.dart'
     as staging;
 import 'package:firebase_core/firebase_core.dart';
 

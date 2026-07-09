@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/features/auth/data/auth_repository_impl.dart';
-import 'package:antigrav_flutter_template/features/auth/domain/user_entity.dart';
+import 'package:craft_flutter_template/features/auth/data/auth_repository_impl.dart';
+import 'package:craft_flutter_template/features/auth/domain/user_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

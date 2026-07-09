@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/core/services/storage_service/storage_service_impl.dart';
-import 'package:antigrav_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
+import 'package:craft_flutter_template/core/services/storage_service/storage_service_impl.dart';
+import 'package:craft_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

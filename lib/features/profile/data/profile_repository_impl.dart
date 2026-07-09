@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
-import 'package:antigrav_flutter_template/core/utils/result.dart';
-import 'package:antigrav_flutter_template/features/profile/domain/profile_entity.dart';
-import 'package:antigrav_flutter_template/features/profile/domain/profile_repository.dart';
+import 'package:craft_flutter_template/core/constants/app_constants.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/features/profile/domain/profile_entity.dart';
+import 'package:craft_flutter_template/features/profile/domain/profile_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_repository_impl.g.dart';

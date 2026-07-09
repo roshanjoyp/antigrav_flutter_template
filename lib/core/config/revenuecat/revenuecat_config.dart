@@ -2,8 +2,8 @@
 // The marker above is read by tooling (future doctor CLI) to detect an
 // unconfigured RevenueCat setup. Remove it when you paste real API keys.
 
-import 'package:antigrav_flutter_template/core/config/app_env.dart';
-import 'package:antigrav_flutter_template/core/config/app_flavor.dart';
+import 'package:craft_flutter_template/core/config/app_env.dart';
+import 'package:craft_flutter_template/core/config/app_flavor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 

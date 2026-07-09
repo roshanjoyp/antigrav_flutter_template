@@ -1,6 +1,6 @@
-import 'package:antigrav_flutter_template/core/services/analytics_service/analytics_service.dart';
-import 'package:antigrav_flutter_template/core/services/log_service/log_service.dart';
-import 'package:antigrav_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/core/services/analytics_service/analytics_service.dart';
+import 'package:craft_flutter_template/core/services/log_service/log_service.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 /// Firebase Analytics implementation of [AnalyticsService].

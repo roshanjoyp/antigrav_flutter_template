@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// The title of the application
   ///
   /// In en, this message translates to:
-  /// **'AntiGrav Template'**
+  /// **'Craft Template'**
   String get appTitle;
 
   /// The title of the home page

@@ -1,6 +1,6 @@
-import 'package:antigrav_flutter_template/core/config/app_env.dart';
-import 'package:antigrav_flutter_template/core/config/app_flavor.dart';
-import 'package:antigrav_flutter_template/core/services/log_service/log_service.dart';
+import 'package:craft_flutter_template/core/config/app_env.dart';
+import 'package:craft_flutter_template/core/config/app_flavor.dart';
+import 'package:craft_flutter_template/core/services/log_service/log_service.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

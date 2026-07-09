@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'AntiGrav Template';
+  String get appTitle => 'Craft Template';
 
   @override
   String get homePageTitle => 'Home Page';

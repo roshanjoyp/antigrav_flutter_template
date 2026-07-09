@@ -1,8 +1,8 @@
-import 'package:antigrav_flutter_template/features/onboarding/onboarding.dart';
-import 'package:antigrav_flutter_template/features/paywall/paywall.dart';
-import 'package:antigrav_flutter_template/features/profile/profile.dart';
-import 'package:antigrav_flutter_template/features/startup/startup.dart';
-import 'package:antigrav_flutter_template/features/test_control_panel/test_control_panel.dart';
+import 'package:craft_flutter_template/features/onboarding/onboarding.dart';
+import 'package:craft_flutter_template/features/paywall/paywall.dart';
+import 'package:craft_flutter_template/features/profile/profile.dart';
+import 'package:craft_flutter_template/features/startup/startup.dart';
+import 'package:craft_flutter_template/features/test_control_panel/test_control_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

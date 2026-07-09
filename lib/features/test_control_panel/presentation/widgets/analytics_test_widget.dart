@@ -1,4 +1,4 @@
-import 'package:antigrav_flutter_template/app/config/app_config_controller.dart';
+import 'package:craft_flutter_template/app/config/app_config_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

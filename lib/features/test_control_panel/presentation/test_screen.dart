@@ -1,10 +1,10 @@
-import 'package:antigrav_flutter_template/core/core.dart';
-import 'package:antigrav_flutter_template/features/test_control_panel/presentation/widgets/analytics_test_widget.dart';
-import 'package:antigrav_flutter_template/features/test_control_panel/presentation/widgets/connectivity_test_widget.dart';
-import 'package:antigrav_flutter_template/features/test_control_panel/presentation/widgets/crash_test_widget.dart';
-import 'package:antigrav_flutter_template/features/test_control_panel/presentation/widgets/log_test_widget.dart';
-import 'package:antigrav_flutter_template/features/test_control_panel/presentation/widgets/permissions_test_widget.dart';
-import 'package:antigrav_flutter_template/features/test_control_panel/presentation/widgets/update_test_widget.dart';
+import 'package:craft_flutter_template/core/core.dart';
+import 'package:craft_flutter_template/features/test_control_panel/presentation/widgets/analytics_test_widget.dart';
+import 'package:craft_flutter_template/features/test_control_panel/presentation/widgets/connectivity_test_widget.dart';
+import 'package:craft_flutter_template/features/test_control_panel/presentation/widgets/crash_test_widget.dart';
+import 'package:craft_flutter_template/features/test_control_panel/presentation/widgets/log_test_widget.dart';
+import 'package:craft_flutter_template/features/test_control_panel/presentation/widgets/permissions_test_widget.dart';
+import 'package:craft_flutter_template/features/test_control_panel/presentation/widgets/update_test_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,7 +1,7 @@
-import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
-import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
-import 'package:antigrav_flutter_template/core/widgets/widgets.dart';
-import 'package:antigrav_flutter_template/features/paywall/domain/paywall_offering_entity.dart';
+import 'package:craft_flutter_template/core/constants/app_colors.dart';
+import 'package:craft_flutter_template/core/constants/app_constants.dart';
+import 'package:craft_flutter_template/core/widgets/widgets.dart';
+import 'package:craft_flutter_template/features/paywall/domain/paywall_offering_entity.dart';
 import 'package:flutter/material.dart';
 
 /// A selectable card presenting one [PaywallPackageEntity] on the

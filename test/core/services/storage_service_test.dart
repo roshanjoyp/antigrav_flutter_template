@@ -1,4 +1,4 @@
-import 'package:antigrav_flutter_template/core/services/storage_service/storage_service_impl.dart';
+import 'package:craft_flutter_template/core/services/storage_service/storage_service_impl.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

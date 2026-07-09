@@ -1,4 +1,4 @@
-# antigrav_flutter_template
+# craft_flutter_template
 
 A production-grade, backend-agnostic Flutter application template built for teams that care about structure from day one. It ships with clean architecture (presentation, domain, data layers), Riverpod state management with code generation, a full Material 3 dark theme, design tokens via `AppColors` and `AppConstants`, six core services with interface/implementation separation, a `Result` type for safe error handling, environment and flavor support, barrel exports, and a `CLAUDE.md` optimised for AI-assisted development. Clone it, run the setup script, and start building — no boilerplate wiring required.
 
@@ -30,7 +30,7 @@ dart setup/setup.dart
 Follow the prompts to enter:
 
 - App display name (e.g. Just Tap)
-- Package name (e.g. com.antigrav.justtap)
+- Package name (e.g. com.craft.justtap)
 
 Package name rules:
 

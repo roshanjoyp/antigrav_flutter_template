@@ -6,12 +6,12 @@
 library;
 
 // Domain
-export 'package:antigrav_flutter_template/features/auth/domain/auth_repository.dart';
-export 'package:antigrav_flutter_template/features/auth/domain/user_entity.dart';
+export 'package:craft_flutter_template/features/auth/domain/auth_repository.dart';
+export 'package:craft_flutter_template/features/auth/domain/user_entity.dart';
 
 // Data — exported for the Riverpod provider (authRepositoryProvider)
-export 'package:antigrav_flutter_template/features/auth/data/auth_repository_impl.dart';
+export 'package:craft_flutter_template/features/auth/data/auth_repository_impl.dart';
 
 // Data — Firebase implementation, used to override authRepositoryProvider
 // when Firebase is enabled (see docs/setup/FIREBASE_SETUP.md)
-export 'package:antigrav_flutter_template/features/auth/data/firebase_auth_repository_impl.dart';
+export 'package:craft_flutter_template/features/auth/data/firebase_auth_repository_impl.dart';

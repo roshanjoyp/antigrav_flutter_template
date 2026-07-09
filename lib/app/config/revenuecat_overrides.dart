@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/core/config/revenuecat/revenuecat_config.dart';
-import 'package:antigrav_flutter_template/features/paywall/paywall.dart';
+import 'package:craft_flutter_template/core/config/revenuecat/revenuecat_config.dart';
+import 'package:craft_flutter_template/features/paywall/paywall.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart' show Override;
 

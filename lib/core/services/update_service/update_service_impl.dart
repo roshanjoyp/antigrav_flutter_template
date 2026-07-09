@@ -1,7 +1,7 @@
-import 'package:antigrav_flutter_template/core/services/log_service/log_service.dart';
-import 'package:antigrav_flutter_template/core/services/log_service/log_service_impl.dart';
-import 'package:antigrav_flutter_template/core/services/update_service/update_service.dart';
-import 'package:antigrav_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/core/services/log_service/log_service.dart';
+import 'package:craft_flutter_template/core/services/log_service/log_service_impl.dart';
+import 'package:craft_flutter_template/core/services/update_service/update_service.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'update_service_impl.g.dart';

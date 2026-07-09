@@ -1,6 +1,6 @@
-import 'package:antigrav_flutter_template/app/theme/app_theme_components.dart';
-import 'package:antigrav_flutter_template/app/theme/app_theme_extensions.dart';
-import 'package:antigrav_flutter_template/core/core.dart';
+import 'package:craft_flutter_template/app/theme/app_theme_components.dart';
+import 'package:craft_flutter_template/app/theme/app_theme_extensions.dart';
+import 'package:craft_flutter_template/core/core.dart';
 import 'package:flutter/material.dart';
 
 /// Defines the application's [ThemeData] for dark and light modes.

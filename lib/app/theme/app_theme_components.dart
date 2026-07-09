@@ -1,4 +1,4 @@
-import 'package:antigrav_flutter_template/core/core.dart';
+import 'package:craft_flutter_template/core/core.dart';
 import 'package:flutter/material.dart';
 
 /// Provides static component theme configurations for [AppTheme.darkTheme].

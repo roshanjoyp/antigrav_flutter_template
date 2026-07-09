@@ -1,8 +1,8 @@
-import 'package:antigrav_flutter_template/app/config/app_config_controller.dart';
-import 'package:antigrav_flutter_template/app/config/push_deep_link_listener.dart';
-import 'package:antigrav_flutter_template/app/router/app_router.dart';
-import 'package:antigrav_flutter_template/app/theme/app_theme.dart';
-import 'package:antigrav_flutter_template/l10n/app_localizations.dart';
+import 'package:craft_flutter_template/app/config/app_config_controller.dart';
+import 'package:craft_flutter_template/app/config/push_deep_link_listener.dart';
+import 'package:craft_flutter_template/app/router/app_router.dart';
+import 'package:craft_flutter_template/app/theme/app_theme.dart';
+import 'package:craft_flutter_template/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,7 +29,7 @@ class App extends ConsumerWidget {
     ref.watch(pushDeepLinkListenerProvider);
 
     return MaterialApp.router(
-      title: 'AntiGrav Template',
+      title: 'Craft Template',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: appConfig.themeMode,

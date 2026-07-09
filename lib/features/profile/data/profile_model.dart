@@ -1,4 +1,4 @@
-import 'package:antigrav_flutter_template/features/profile/domain/profile_entity.dart';
+import 'package:craft_flutter_template/features/profile/domain/profile_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

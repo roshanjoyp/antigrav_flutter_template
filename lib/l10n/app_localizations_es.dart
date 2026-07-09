@@ -9,7 +9,7 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appTitle => 'Plantilla AntiGrav';
+  String get appTitle => 'Plantilla Craft';
 
   @override
   String get homePageTitle => 'Página de Inicio';

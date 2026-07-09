@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/core/widgets/app_error.dart';
-import 'package:antigrav_flutter_template/core/widgets/app_button.dart';
+import 'package:craft_flutter_template/core/widgets/app_error.dart';
+import 'package:craft_flutter_template/core/widgets/app_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/pump_app.dart';

@@ -6,11 +6,11 @@
 library;
 
 // Domain
-export 'package:antigrav_flutter_template/features/onboarding/domain/onboarding_repository.dart';
+export 'package:craft_flutter_template/features/onboarding/domain/onboarding_repository.dart';
 
 // Data — exported for the Riverpod provider (onboardingRepositoryProvider)
-export 'package:antigrav_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
+export 'package:craft_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
 
 // Presentation
-export 'package:antigrav_flutter_template/features/onboarding/presentation/onboarding_controller.dart';
-export 'package:antigrav_flutter_template/features/onboarding/presentation/onboarding_screen.dart';
+export 'package:craft_flutter_template/features/onboarding/presentation/onboarding_controller.dart';
+export 'package:craft_flutter_template/features/onboarding/presentation/onboarding_screen.dart';

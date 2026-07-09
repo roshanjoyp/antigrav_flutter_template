@@ -1,7 +1,7 @@
-import 'package:antigrav_flutter_template/core/services/permissions/permission_service.dart';
-import 'package:antigrav_flutter_template/core/services/push_service/firebase_push_service_impl.dart';
-import 'package:antigrav_flutter_template/core/services/push_service/push_service.dart';
-import 'package:antigrav_flutter_template/core/services/push_service/push_service_impl.dart';
+import 'package:craft_flutter_template/core/services/permissions/permission_service.dart';
+import 'package:craft_flutter_template/core/services/push_service/firebase_push_service_impl.dart';
+import 'package:craft_flutter_template/core/services/push_service/push_service.dart';
+import 'package:craft_flutter_template/core/services/push_service/push_service_impl.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

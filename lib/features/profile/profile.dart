@@ -7,15 +7,15 @@
 library;
 
 // Domain
-export 'package:antigrav_flutter_template/features/profile/domain/profile_entity.dart';
-export 'package:antigrav_flutter_template/features/profile/domain/profile_repository.dart';
+export 'package:craft_flutter_template/features/profile/domain/profile_entity.dart';
+export 'package:craft_flutter_template/features/profile/domain/profile_repository.dart';
 
 // Data — exported for the Riverpod provider (profileRepositoryProvider)
-export 'package:antigrav_flutter_template/features/profile/data/profile_repository_impl.dart';
+export 'package:craft_flutter_template/features/profile/data/profile_repository_impl.dart';
 
 // Data — Firestore implementation, bound when Firebase is enabled
-export 'package:antigrav_flutter_template/features/profile/data/firestore_profile_repository_impl.dart';
+export 'package:craft_flutter_template/features/profile/data/firestore_profile_repository_impl.dart';
 
 // Presentation
-export 'package:antigrav_flutter_template/features/profile/presentation/profile_controller.dart';
-export 'package:antigrav_flutter_template/features/profile/presentation/profile_screen.dart';
+export 'package:craft_flutter_template/features/profile/presentation/profile_controller.dart';
+export 'package:craft_flutter_template/features/profile/presentation/profile_screen.dart';

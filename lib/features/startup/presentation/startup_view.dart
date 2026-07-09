@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/core/core.dart';
-import 'package:antigrav_flutter_template/features/startup/presentation/startup_controller.dart';
+import 'package:craft_flutter_template/core/core.dart';
+import 'package:craft_flutter_template/features/startup/presentation/startup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -52,7 +52,7 @@ class _StartupViewState extends ConsumerState<StartupView> {
               const FlutterLogo(size: AppConstants.space5xl),
               const SizedBox(height: AppConstants.spaceXl),
               AppText.headingMedium(
-                'AntiGrav Template',
+                'Craft Template',
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: AppConstants.space4xl),

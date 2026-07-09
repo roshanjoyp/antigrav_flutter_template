@@ -1,4 +1,4 @@
-/// antigrav_flutter_template setup script
+/// craft_flutter_template setup script
 ///
 /// Renames the app name and package name
 /// throughout the entire project.
@@ -531,6 +531,7 @@ void main() {
   _updatePubspec(oldDartPkg, newDartPkg);
   _updateAppConstants(newDisplayName);
   _updateDartImports('lib', oldDartPkg, newDartPkg);
+  _updateDartImports('test', oldDartPkg, newDartPkg);
 
   // Docs
   _updateClaudeMd(oldDartPkg, newDartPkg);

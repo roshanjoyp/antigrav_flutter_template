@@ -1,8 +1,8 @@
-import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
-import 'package:antigrav_flutter_template/core/services/storage_service/storage_service.dart';
-import 'package:antigrav_flutter_template/core/services/storage_service/storage_service_impl.dart';
-import 'package:antigrav_flutter_template/core/utils/result.dart';
-import 'package:antigrav_flutter_template/features/onboarding/domain/onboarding_repository.dart';
+import 'package:craft_flutter_template/core/constants/app_constants.dart';
+import 'package:craft_flutter_template/core/services/storage_service/storage_service.dart';
+import 'package:craft_flutter_template/core/services/storage_service/storage_service_impl.dart';
+import 'package:craft_flutter_template/core/utils/result.dart';
+import 'package:craft_flutter_template/features/onboarding/domain/onboarding_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'onboarding_repository_impl.g.dart';

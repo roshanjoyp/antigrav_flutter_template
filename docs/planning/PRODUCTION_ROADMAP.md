@@ -1,4 +1,4 @@
-# Production Roadmap — antigrav_flutter_template
+# Production Roadmap — craft_flutter_template
 
 _Created: 2026-07-08 — updated: 2026-07-09 — status: planning_
 

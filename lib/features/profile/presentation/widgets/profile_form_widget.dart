@@ -1,6 +1,6 @@
-import 'package:antigrav_flutter_template/core/core.dart';
-import 'package:antigrav_flutter_template/features/profile/domain/profile_entity.dart';
-import 'package:antigrav_flutter_template/features/profile/presentation/profile_controller.dart';
+import 'package:craft_flutter_template/core/core.dart';
+import 'package:craft_flutter_template/features/profile/domain/profile_entity.dart';
+import 'package:craft_flutter_template/features/profile/presentation/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

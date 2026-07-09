@@ -1,6 +1,6 @@
-import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
-import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
-import 'package:antigrav_flutter_template/core/widgets/widgets.dart';
+import 'package:craft_flutter_template/core/constants/app_colors.dart';
+import 'package:craft_flutter_template/core/constants/app_constants.dart';
+import 'package:craft_flutter_template/core/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 /// The content of one onboarding page: icon, title, and description.

@@ -1,6 +1,6 @@
-import 'package:antigrav_flutter_template/core/core.dart';
-import 'package:antigrav_flutter_template/features/onboarding/presentation/onboarding_controller.dart';
-import 'package:antigrav_flutter_template/features/onboarding/presentation/widgets/onboarding_page_widget.dart';
+import 'package:craft_flutter_template/core/core.dart';
+import 'package:craft_flutter_template/features/onboarding/presentation/onboarding_controller.dart';
+import 'package:craft_flutter_template/features/onboarding/presentation/widgets/onboarding_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

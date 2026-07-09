@@ -33,7 +33,7 @@ These rules apply to every task in this project without exception.
 ## 4. Imports
 
 - Always use package-absolute imports. Never use relative imports.
-- Correct: `import 'package:antigrav_flutter_template/core/...'`
+- Correct: `import 'package:craft_flutter_template/core/...'`
 - Wrong: `import '../../core/...'`
 
 ---

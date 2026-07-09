@@ -1,4 +1,4 @@
-import 'package:antigrav_flutter_template/core/services/update_service/update_service_impl.dart';
+import 'package:craft_flutter_template/core/services/update_service/update_service_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

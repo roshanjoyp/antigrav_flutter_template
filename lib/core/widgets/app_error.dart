@@ -1,7 +1,7 @@
-import 'package:antigrav_flutter_template/core/constants/app_colors.dart';
-import 'package:antigrav_flutter_template/core/constants/app_constants.dart';
-import 'package:antigrav_flutter_template/core/widgets/app_button.dart';
-import 'package:antigrav_flutter_template/core/widgets/app_text.dart';
+import 'package:craft_flutter_template/core/constants/app_colors.dart';
+import 'package:craft_flutter_template/core/constants/app_constants.dart';
+import 'package:craft_flutter_template/core/widgets/app_button.dart';
+import 'package:craft_flutter_template/core/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
 /// A centered error display widget used when an operation fails.

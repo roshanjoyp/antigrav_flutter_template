@@ -1,8 +1,8 @@
-import 'package:antigrav_flutter_template/core/config/app_env.dart';
-import 'package:antigrav_flutter_template/core/config/app_flavor.dart';
-import 'package:antigrav_flutter_template/core/services/storage_service/storage_service_impl.dart';
-import 'package:antigrav_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
-import 'package:antigrav_flutter_template/features/startup/presentation/startup_controller.dart';
+import 'package:craft_flutter_template/core/config/app_env.dart';
+import 'package:craft_flutter_template/core/config/app_flavor.dart';
+import 'package:craft_flutter_template/core/services/storage_service/storage_service_impl.dart';
+import 'package:craft_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
+import 'package:craft_flutter_template/features/startup/presentation/startup_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 

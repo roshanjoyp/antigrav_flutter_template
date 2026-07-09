@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:antigrav_flutter_template/app/app.dart';
-import 'package:antigrav_flutter_template/app/config/firebase_overrides.dart';
-import 'package:antigrav_flutter_template/app/config/revenuecat_overrides.dart';
-import 'package:antigrav_flutter_template/core/core.dart';
-import 'package:antigrav_flutter_template/core/services/crash_service/crash_service_impl.dart';
-import 'package:antigrav_flutter_template/core/services/push_service/firebase_push_service_impl.dart';
+import 'package:craft_flutter_template/app/app.dart';
+import 'package:craft_flutter_template/app/config/firebase_overrides.dart';
+import 'package:craft_flutter_template/app/config/revenuecat_overrides.dart';
+import 'package:craft_flutter_template/core/core.dart';
+import 'package:craft_flutter_template/core/services/crash_service/crash_service_impl.dart';
+import 'package:craft_flutter_template/core/services/push_service/firebase_push_service_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

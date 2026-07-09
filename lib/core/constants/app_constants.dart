@@ -242,7 +242,7 @@ abstract final class AppConstants {
 
   /// The display name of the application.
   /// ⚠️ SETUP_MANAGED — updated automatically by setup.sh
-  static const String appName = 'AntiGrav';
+  static const String appName = 'Craft';
 
   /// Version placeholder. Replace with dynamic version retrieval in production.
   static const String appVersion = '1.0.0';

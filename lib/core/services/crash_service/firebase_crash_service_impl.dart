@@ -1,5 +1,5 @@
-import 'package:antigrav_flutter_template/core/services/crash_service/crash_service.dart';
-import 'package:antigrav_flutter_template/core/services/log_service/log_service.dart';
+import 'package:craft_flutter_template/core/services/crash_service/crash_service.dart';
+import 'package:craft_flutter_template/core/services/log_service/log_service.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
