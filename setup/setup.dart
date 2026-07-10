@@ -15,6 +15,7 @@ library;
 import 'dart:io';
 
 import 'src/branding.dart';
+import 'src/cli_options.dart';
 import 'src/dart_updates.dart';
 import 'src/desktop_web_updates.dart';
 import 'src/detect.dart';
@@ -22,7 +23,8 @@ import 'src/mobile_updates.dart';
 import 'src/prompts.dart';
 import 'src/setup_io.dart';
 
-void main() {
+void main(List<String> args) {
+  final SetupOptions options = SetupOptions.parse(args);
   // Verify we are running from the project root
   if (!File('pubspec.yaml').existsSync()) {
     stderr.writeln('✗ pubspec.yaml not found.');
@@ -65,9 +67,9 @@ void main() {
 
   // ── Collect new values ───────────────────────────────────────────────────
 
-  final newDisplayName = promptDisplayName();
-  final newDescription = promptDescription();
-  final newAndroidPkg = promptPackageName();
+  final newDisplayName = options.displayName ?? promptDisplayName();
+  final newDescription = options.description ?? promptDescription();
+  final newAndroidPkg = options.package ?? promptPackageName();
 
   // Dart package name is derived from the last segment of the Android package.
   // e.g. com.example.justtap → justtap
@@ -105,10 +107,12 @@ void main() {
   print('    README.md                              (if present)');
   print(sep);
 
-  final confirm = prompt('\nProceed? (y/n): ').toLowerCase();
-  if (confirm != 'y') {
-    print('\nAborted. No changes were made.');
-    exit(0);
+  if (!options.yes) {
+    final confirm = prompt('\nProceed? (y/n): ').toLowerCase();
+    if (confirm != 'y') {
+      print('\nAborted. No changes were made.');
+      exit(0);
+    }
   }
 
   print('\nApplying changes…\n');
@@ -152,5 +156,5 @@ void main() {
   printSummary();
 
   // ── Optional: regenerate icons + splash from assets/branding ────────────
-  offerBrandingRegeneration();
+  if (!options.noBranding) offerBrandingRegeneration();
 }

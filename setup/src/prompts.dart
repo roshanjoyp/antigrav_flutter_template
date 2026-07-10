@@ -11,6 +11,17 @@ import 'setup_io.dart';
 /// at least 3 dot-separated lowercase segments, each starting with a letter.
 final packageNameRegex = RegExp(r'^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*){2,}$');
 
+/// Whether [input] is a valid package name (see [packageNameRegex]).
+bool isValidPackageName(String input) => packageNameRegex.hasMatch(input);
+
+/// Whether [input] is a valid display name (2–50 characters).
+bool isValidDisplayName(String input) =>
+    input.length >= 2 && input.length <= 50;
+
+/// Whether [input] is a valid pubspec description (10–180 characters).
+bool isValidDescription(String input) =>
+    input.length >= 10 && input.length <= 180;
+
 /// Repeatedly prompts until a valid package name is entered.
 String promptPackageName() {
   while (true) {
