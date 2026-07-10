@@ -22,9 +22,9 @@ void main() {
       await pumpScreen(tester);
       // Core has only static steps, so it must not render a section.
       expect(find.text('Core'), findsNothing);
-      expect(find.text('Firebase'), findsOneWidget);
-      expect(find.text('RevenueCat'), findsOneWidget);
-      expect(find.text('Push notifications'), findsOneWidget);
+      expect(find.text('Firebase'), findsOneWidget); // MODULE(firebase)
+      expect(find.text('RevenueCat'), findsOneWidget); // MODULE(revenuecat)
+      expect(find.text('Push notifications'), findsOneWidget); // MODULE(push)
     });
 
     testWidgets('renders every runtime and manual step title', (

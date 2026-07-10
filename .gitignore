@@ -52,3 +52,6 @@ custom_lint.log
 
 # Third-party design reference images (see docs/design/README.md) — local only
 docs/design/screenshots/
+
+# Nested package build output
+generator/build/

@@ -98,6 +98,7 @@ void main() {
     });
   });
 
+  // MODULE(firebase): begin
   group('firebase options placeholders', () {
     const String path = 'lib/core/config/firebase/firebase_options_dev.dart';
 
@@ -117,7 +118,9 @@ void main() {
       expect(result.detail, contains('missing'));
     });
   });
+  // MODULE(firebase): end
 
+  // MODULE(revenuecat): begin
   group('revenuecat.keys', () {
     const String path = 'lib/core/config/revenuecat/revenuecat_config.dart';
 
@@ -131,6 +134,7 @@ void main() {
       expect(staticChecks['revenuecat.keys']!(root).passed, isTrue);
     });
   });
+  // MODULE(revenuecat): end
 
   group('core.build_runner_fresh', () {
     test('fails when a declared part file is missing', () {

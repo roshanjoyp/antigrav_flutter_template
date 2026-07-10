@@ -12,10 +12,7 @@ keep;
 gone;
 // MODULE(firebase): end
 also kept;''';
-      expect(
-        stripMarkers(source, excluded: {'firebase'}),
-        'keep;\nalso kept;',
-      );
+      expect(stripMarkers(source, excluded: {'firebase'}), 'keep;\nalso kept;');
     });
 
     test('strips marker text but keeps code for included modules', () {
@@ -24,10 +21,7 @@ also kept;''';
 kept code;
 // MODULE(firebase): end
 inline; // MODULE(push)''';
-      expect(
-        stripMarkers(source, excluded: const {}),
-        'kept code;\ninline;',
-      );
+      expect(stripMarkers(source, excluded: const {}), 'kept code;\ninline;');
     });
 
     test('removes an excluded suffix-marked line entirely', () {
@@ -59,7 +53,8 @@ p;
     });
 
     test('supports hash-style markers', () {
-      const source = 'a: 1\nb: 2 # MODULE(push)\n# MODULE(push): begin\nc: 3\n# MODULE(push): end';
+      const source =
+          'a: 1\nb: 2 # MODULE(push)\n# MODULE(push): begin\nc: 3\n# MODULE(push): end';
       expect(stripMarkers(source, excluded: {'push'}), 'a: 1');
     });
   });
@@ -76,18 +71,12 @@ x; // MODULE(push)
     });
 
     test('flags unknown ids', () {
-      final (_, errors) = scanMarkers(
-        'x; // MODULE(bogus)',
-        knownIds: _ids,
-      );
+      final (_, errors) = scanMarkers('x; // MODULE(bogus)', knownIds: _ids);
       expect(errors.single.message, contains('unknown module id'));
     });
 
     test('flags unbalanced and mismatched regions', () {
-      final (_, e1) = scanMarkers(
-        '// MODULE(firebase): begin',
-        knownIds: _ids,
-      );
+      final (_, e1) = scanMarkers('// MODULE(firebase): begin', knownIds: _ids);
       expect(e1.single.message, contains('begin without end'));
 
       final (_, e2) = scanMarkers('// MODULE(push): end', knownIds: _ids);

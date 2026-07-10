@@ -1,8 +1,20 @@
 import 'package:craft_flutter_template/app/theme/app_theme.dart';
 import 'package:craft_flutter_template/core/core.dart';
+// MODULE(firebase): begin
+// MODULE(revenuecat): begin
+// MODULE(push): begin
 import 'package:craft_flutter_template/features/setup_status/presentation/setup_status_screen.dart';
+// MODULE(push): end
+// MODULE(revenuecat): end
+// MODULE(firebase): end
 import 'package:flutter/material.dart';
+// MODULE(firebase): begin
+// MODULE(revenuecat): begin
+// MODULE(push): begin
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// MODULE(push): end
+// MODULE(revenuecat): end
+// MODULE(firebase): end
 import 'package:flutter_test/flutter_test.dart';
 
 /// Golden tests for the theme (light + dark) and the core widget set.
@@ -44,6 +56,12 @@ void main() {
       );
     });
 
+    // The setup-status golden captures the firebase/revenuecat/push
+    // sections, so it only holds when all three modules are present;
+    // nested regions remove it when any of them is excluded.
+    // MODULE(firebase): begin
+    // MODULE(revenuecat): begin
+    // MODULE(push): begin
     testWidgets('setup status screen (dark)', (WidgetTester tester) async {
       tester.view.physicalSize = const Size(800, 1500);
       tester.view.devicePixelRatio = 1.0;
@@ -62,6 +80,9 @@ void main() {
         matchesGoldenFile('goldens/setup_status_screen_dark.png'),
       );
     });
+    // MODULE(push): end
+    // MODULE(revenuecat): end
+    // MODULE(firebase): end
   });
 }
 
