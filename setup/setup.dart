@@ -8,6 +8,7 @@
 ///
 /// See README.md for full setup instructions
 /// before running this script.
+library;
 
 // ignore_for_file: avoid_print
 
@@ -131,7 +132,9 @@ void _updateFile(
   final file = File(path);
 
   if (!file.existsSync()) {
-    _results.add(_FileResult(displayPath, _Status.notFound, 'file not found — skipped'));
+    _results.add(
+      _FileResult(displayPath, _Status.notFound, 'file not found — skipped'),
+    );
     return;
   }
 
@@ -145,7 +148,9 @@ void _updateFile(
       _results.add(_FileResult(displayPath, _Status.modified));
     }
   } catch (e) {
-    _results.add(_FileResult(displayPath, _Status.notFound, 'error: $e — skipped'));
+    _results.add(
+      _FileResult(displayPath, _Status.notFound, 'error: $e — skipped'),
+    );
   }
 }
 
@@ -222,10 +227,7 @@ void _updateMainActivityKt(String oldPkg, String newPkg) {
 
   // Update the package declaration in the file content
   final original = oldFile.readAsStringSync();
-  final updated = original.replaceAll(
-    'package $oldPkg',
-    'package $newPkg',
-  );
+  final updated = original.replaceAll('package $oldPkg', 'package $newPkg');
 
   // Create the new directory structure and write the updated file
   newFile.parent.createSync(recursive: true);
@@ -236,11 +238,9 @@ void _updateMainActivityKt(String oldPkg, String newPkg) {
     oldFile.deleteSync();
     // Clean up any now-empty ancestor directories up to the kotlin root
     _deleteEmptyAncestors(oldFile.parent, kotlinDir);
-    _results.add(_FileResult(
-      oldFile.path,
-      _Status.modified,
-      'moved to $newFilePath',
-    ));
+    _results.add(
+      _FileResult(oldFile.path, _Status.modified, 'moved to $newFilePath'),
+    );
   } else {
     _results.add(_FileResult(oldFile.path, _Status.modified));
   }
@@ -324,7 +324,9 @@ void _updateAppConstants(String newDisplayName) {
 void _updateDartImports(String dirPath, String oldDartPkg, String newDartPkg) {
   final dir = Directory(dirPath);
   if (!dir.existsSync()) {
-    _results.add(_FileResult(dirPath, _Status.notFound, 'directory not found — skipped'));
+    _results.add(
+      _FileResult(dirPath, _Status.notFound, 'directory not found — skipped'),
+    );
     return;
   }
 
@@ -351,11 +353,13 @@ void _updateDartImports(String dirPath, String oldDartPkg, String newDartPkg) {
     }
   }
 
-  _results.add(_FileResult(
-    '$dirPath/**/*.dart',
-    modifiedCount > 0 ? _Status.modified : _Status.noChangeNeeded,
-    'scanned ${dartFiles.length} files, updated $modifiedCount',
-  ));
+  _results.add(
+    _FileResult(
+      '$dirPath/**/*.dart',
+      modifiedCount > 0 ? _Status.modified : _Status.noChangeNeeded,
+      'scanned ${dartFiles.length} files, updated $modifiedCount',
+    ),
+  );
 }
 
 // =============================================================================
@@ -364,7 +368,10 @@ void _updateDartImports(String dirPath, String oldDartPkg, String newDartPkg) {
 
 /// Replaces the old Dart package name in CLAUDE.md (e.g. import examples).
 void _updateClaudeMd(String oldDartPkg, String newDartPkg) {
-  _updateFile('CLAUDE.md', (content) => content.replaceAll(oldDartPkg, newDartPkg));
+  _updateFile(
+    'CLAUDE.md',
+    (content) => content.replaceAll(oldDartPkg, newDartPkg),
+  );
 }
 
 /// Replaces old package names in README.md if the file exists.
@@ -375,7 +382,9 @@ void _updateReadme(
   String newAndroidPkg,
 ) {
   if (!File('README.md').existsSync()) {
-    _results.add(const _FileResult('README.md', _Status.notFound, 'not present — skipped'));
+    _results.add(
+      const _FileResult('README.md', _Status.notFound, 'not present — skipped'),
+    );
     return;
   }
   _updateFile('README.md', (content) {
@@ -396,7 +405,9 @@ void _printSummary() {
   print(sep);
 
   final modified = _results.where((r) => r.status == _Status.modified).toList();
-  final noChange = _results.where((r) => r.status == _Status.noChangeNeeded).toList();
+  final noChange = _results
+      .where((r) => r.status == _Status.noChangeNeeded)
+      .toList();
   final notFound = _results.where((r) => r.status == _Status.notFound).toList();
 
   if (modified.isNotEmpty) {
@@ -450,19 +461,25 @@ void main() {
 
   final oldDartPkg = _detectOldDartPackage();
   if (oldDartPkg == null) {
-    stderr.writeln('✗ Could not read package name from pubspec.yaml. Aborting.');
+    stderr.writeln(
+      '✗ Could not read package name from pubspec.yaml. Aborting.',
+    );
     exit(1);
   }
 
   final oldAndroidPkg = _detectOldAndroidPackage();
   if (oldAndroidPkg == null) {
-    stderr.writeln('✗ Could not read applicationId from build.gradle. Aborting.');
+    stderr.writeln(
+      '✗ Could not read applicationId from build.gradle. Aborting.',
+    );
     exit(1);
   }
 
   final oldBundleId = _detectOldBundleId();
   if (oldBundleId == null) {
-    stderr.writeln('✗ Could not read PRODUCT_BUNDLE_IDENTIFIER from project.pbxproj. Aborting.');
+    stderr.writeln(
+      '✗ Could not read PRODUCT_BUNDLE_IDENTIFIER from project.pbxproj. Aborting.',
+    );
     exit(1);
   }
 
@@ -499,7 +516,9 @@ void main() {
   print('    android/app/build.gradle.kts          applicationId, namespace');
   print('    android/app/src/main/AndroidManifest.xml   android:label');
   print('    android/app/src/main/kotlin/**/MainActivity.kt  package + move');
-  print('    ios/Runner/Info.plist                  CFBundleDisplayName, CFBundleName');
+  print(
+    '    ios/Runner/Info.plist                  CFBundleDisplayName, CFBundleName',
+  );
   print('    ios/Runner.xcodeproj/project.pbxproj  PRODUCT_BUNDLE_IDENTIFIER');
   print('    pubspec.yaml                           name:');
   print('    lib/core/constants/app_constants.dart  appName');

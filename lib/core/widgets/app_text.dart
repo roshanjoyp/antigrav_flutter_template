@@ -34,7 +34,7 @@ enum _ColorRole {
 /// ```
 class AppText extends StatelessWidget {
   /// Internal constructor. Use named constructors for specific variants.
-  const AppText(
+  const AppText._(
     this.text, {
     super.key,
     required this.fontSize,
@@ -58,7 +58,7 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) => AppText(
+  }) => AppText._(
     text,
     key: key,
     fontSize: AppConstants.font3xl,
@@ -77,7 +77,7 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) => AppText(
+  }) => AppText._(
     text,
     key: key,
     fontSize: AppConstants.fontXxl,
@@ -96,7 +96,7 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) => AppText(
+  }) => AppText._(
     text,
     key: key,
     fontSize: AppConstants.fontXl,
@@ -115,7 +115,7 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) => AppText(
+  }) => AppText._(
     text,
     key: key,
     fontSize: AppConstants.fontLg,
@@ -134,7 +134,7 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) => AppText(
+  }) => AppText._(
     text,
     key: key,
     fontSize: AppConstants.fontMd,
@@ -153,7 +153,7 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) => AppText(
+  }) => AppText._(
     text,
     key: key,
     fontSize: AppConstants.fontSm,
@@ -173,7 +173,7 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) => AppText(
+  }) => AppText._(
     text,
     key: key,
     fontSize: AppConstants.fontXs,
@@ -193,7 +193,7 @@ class AppText extends StatelessWidget {
     TextAlign? textAlign,
     int? maxLines,
     TextOverflow? overflow,
-  }) => AppText(
+  }) => AppText._(
     text,
     key: key,
     fontSize: AppConstants.fontXs,
