@@ -4,7 +4,7 @@ import 'package:craft_flutter_template/core/services/analytics_service/firebase_
 import 'package:craft_flutter_template/core/services/crash_service/crash_service_impl.dart';
 import 'package:craft_flutter_template/core/services/crash_service/firebase_crash_service_impl.dart';
 import 'package:craft_flutter_template/core/services/log_service/log_service_impl.dart';
-import 'package:craft_flutter_template/core/services/permissions/permission_service_impl.dart';
+import 'package:craft_flutter_template/core/services/permissions/permission_service_impl.dart'; // MODULE(push)
 import 'package:craft_flutter_template/core/services/push_service/firebase_push_service_impl.dart'; // MODULE(push)
 import 'package:craft_flutter_template/core/services/push_service/push_service_impl.dart'; // MODULE(push)
 import 'package:craft_flutter_template/features/auth/auth.dart';

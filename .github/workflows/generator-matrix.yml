@@ -1,0 +1,37 @@
+# Generator verification matrix (manual-only, like ci.yml).
+#
+# Run before a template release or after touching module wiring:
+#   gh workflow run generator-matrix.yml --ref <branch>
+#
+# Executes the generator's unit + drift-guard tests, then generates and
+# verifies all 12 valid module combinations (full tier: analyze gates,
+# plus the complete test suite on the all-on and all-off outputs).
+
+name: Generator Matrix
+
+on:
+  workflow_dispatch:
+
+jobs:
+  matrix:
+    name: Drift guards + 12-combo generation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.41.9
+          cache: true
+
+      - name: Template pub get
+        run: flutter pub get
+
+      - name: Generator unit + drift-guard tests
+        working-directory: generator
+        run: dart pub get && dart test
+
+      - name: Full verification matrix
+        working-directory: generator
+        run: dart run craft_generator:verify_matrix --tier full

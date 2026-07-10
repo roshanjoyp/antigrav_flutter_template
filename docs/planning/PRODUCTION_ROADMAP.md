@@ -137,11 +137,11 @@ the modules must exist first.
 
 ## Phase 8 — Generator + modularization
 
-- [ ] Restructure repo into a monorepo: `template/` (or bricks), `generator/`, later `configurator/` + `backend/`
-- [ ] Mason bricks per module (backend impls, paywall, push, onboarding, i18n, guide chapters, doctor checks), template variables for name/package/branding — mason chosen over marker-stripping (markers get unmaintainable past ~5 toggles); this also yields the CLI generator as a free byproduct
-- [ ] Module manifest: files + pubspec entries + setup steps (from Phase 5) per brick
-- [ ] Generator pipeline: config JSON → compose bricks → rewrite pubspec → rename (reuse `setup.dart` logic) → `flutter analyze` sanity gate → zip
-- [ ] CI matrix: generate each module toggle (and key combinations), verify each output compiles and passes tests — without this, broken permutations *will* ship
+- [x] Restructure repo into a monorepo: `template/` (or bricks), `generator/`, later `configurator/` + `backend/` (2026-07-10: **owner-approved deviation** — app stays at repo root, `generator/` is a sibling pure-Dart package with `--template-root`; physical `template/` move deferred to Phase 9 when configurator/backend actually arrive)
+- [x] ~~Mason bricks~~ (2026-07-10: **owner-approved deviation** — manifest + `// MODULE(id)` markers over the live template instead; exploration showed only ~40 wiring lines in 12 shared files, and drift-guard tests + the compile matrix mechanically prevent the marker rot mason was chosen to avoid, without forking the tested source into bricks)
+- [x] Module manifest: files + pubspec entries + setup steps (from Phase 5) per brick (2026-07-10: `generator/lib/src/module_registry.dart` — ownedPaths globs, pubspec deps, checklist prefixes, requires-relations per module)
+- [x] Generator pipeline: config JSON → compose bricks → rewrite pubspec → rename (reuse `setup.dart` logic) → `flutter analyze` sanity gate → zip (2026-07-10: `dart run craft_generator:generate` — staging copy, owned-file deletion, marker pass, pubspec/checklist pruning, non-interactive setup.dart rename, gate levels none/analyze/test, zip; failing staging preserved for inspection)
+- [x] CI matrix: generate each module toggle (and key combinations), verify each output compiles and passes tests — without this, broken permutations *will* ship (2026-07-10: local-first per CI preference — `dart run craft_generator:verify_matrix` quick tier 6 combos ~1 min / full tier all 12 valid combos ~3 min with test gates on all-on+all-off, 12/12 green; plus manual-dispatch `generator-matrix.yml` workflow and 5 drift-guard tests incl. the import-boundary anti-rot guard)
 
 ## Phase 9 — Configurator app + payments + delivery
 

@@ -95,6 +95,19 @@ These rules apply to every task in this project without exception.
 
 ---
 
+## 10a. Module System (generator)
+
+- Optional modules (firebase, revenuecat, push, onboarding) are composed
+  by `generator/` using `// MODULE(<id>)` markers and the registry in
+  `generator/lib/src/module_registry.dart`.
+- When adding module wiring to a shared file, wrap it in that module's
+  markers (region `begin`/`end` lines, or a line suffix only where
+  `dart format` can never reflow the line). When adding module-owned
+  files, add them to the registry's `ownedPaths`.
+- The drift guards (`generator/test/template_integrity_test.dart`) and
+  `dart run craft_generator:verify_matrix --tier quick` enforce this —
+  run both after touching module wiring.
+
 ## 11. setup.sh Awareness
 
 - This project uses a `setup.sh` (Node.js based) configurator that scaffolds features based on developer choices.
