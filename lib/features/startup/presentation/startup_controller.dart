@@ -1,7 +1,6 @@
 import 'package:craft_flutter_template/core/constants/app_constants.dart';
 import 'package:craft_flutter_template/core/services/log_service/log_service_impl.dart';
-import 'package:craft_flutter_template/core/utils/result.dart';
-import 'package:craft_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
+import 'package:craft_flutter_template/features/startup/domain/first_run_redirect.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'startup_controller.g.dart';
@@ -32,17 +31,13 @@ class StartupController extends _$StartupController {
         await Future.delayed(AppConstants.durationSplash - elapsed);
       }
 
-      // Determine destination.
-      //
-      // First run goes to onboarding. A failed storage read counts as
-      // "seen" — a broken storage layer must not trap users in
-      // onboarding, and home works without it.
-      final Result<bool> seenOnboarding = await ref
-          .read(onboardingRepositoryProvider)
-          .hasSeenOnboarding();
-      if (!seenOnboarding.getOrElse(true)) {
-        logger.info('Startup Logic Complete. First run -> onboarding.');
-        return '/onboarding';
+      // Determine destination via the first-run hook. Features that
+      // want to intercept a fresh launch (onboarding, forced auth, …)
+      // override firstRunRedirectProvider — startup doesn't know them.
+      final String? redirect = await ref.read(firstRunRedirectProvider.future);
+      if (redirect != null) {
+        logger.info('Startup Logic Complete. First-run redirect: $redirect.');
+        return redirect;
       }
 
       // Ideally also check if the user is logged in and route to auth

@@ -35,9 +35,11 @@ class _StartupViewState extends ConsumerState<StartupView> {
 
     // Note: Auto-navigation to home removed for Test Control Panel
     // purpose — this screen stays up as the template's demo hub. The
-    // one exception is the first-run onboarding redirect.
+    // one exception: a first-run redirect resolved by the startup hook
+    // (any route other than home) is followed immediately.
     ref.listen(startupControllerProvider, (previous, next) {
-      if (next.value == '/onboarding') context.go('/onboarding');
+      final String? route = next.value;
+      if (route != null && route != '/') context.go(route);
     });
 
     return AppScaffold(

@@ -1,7 +1,6 @@
 import 'package:craft_flutter_template/core/config/app_env.dart';
 import 'package:craft_flutter_template/core/config/app_flavor.dart';
-import 'package:craft_flutter_template/core/services/storage_service/storage_service_impl.dart';
-import 'package:craft_flutter_template/features/onboarding/data/onboarding_repository_impl.dart';
+import 'package:craft_flutter_template/features/startup/domain/first_run_redirect.dart';
 import 'package:craft_flutter_template/features/startup/presentation/startup_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,12 +19,9 @@ void main() {
       expect(container.read(startupControllerProvider).value, isNull);
     });
 
-    /// Runs the startup logic against [storage] and returns the
-    /// resolved destination.
-    Future<String?> destinationWith(InMemoryStorageService storage) async {
-      final ProviderContainer container = ProviderContainer(
-        overrides: [storageServiceProvider.overrideWith((ref) => storage)],
-      );
+    /// Runs the startup logic in [container] and returns the resolved
+    /// destination.
+    Future<String?> destinationIn(ProviderContainer container) async {
       addTearDown(container.dispose);
 
       // Riverpod 3 pauses providers nobody listens to — keep the
@@ -43,33 +39,26 @@ void main() {
       return state.value;
     }
 
-    test('runStartupLogic redirects a first run to onboarding', () async {
-      expect(await destinationWith(InMemoryStorageService()), '/onboarding');
+    test('resolves to home when no first-run hook is installed', () async {
+      expect(await destinationIn(ProviderContainer()), '/');
     });
 
-    test('runStartupLogic resolves to home once onboarding is seen', () async {
-      final InMemoryStorageService storage = InMemoryStorageService();
-      await OnboardingRepositoryImpl(storage).markOnboardingSeen();
-
-      expect(await destinationWith(storage), '/');
+    test('follows the first-run hook when one resolves a route', () async {
+      final ProviderContainer container = ProviderContainer(
+        overrides: [
+          firstRunRedirectProvider.overrideWith((Ref ref) async => '/welcome'),
+        ],
+      );
+      expect(await destinationIn(container), '/welcome');
     });
 
-    test(
-      'runStartupLogic falls back to home when storage is unavailable',
-      () async {
-        // No storage override: the default secure-storage plugin is
-        // missing in tests, so the seen check fails — startup must treat
-        // that as "seen" rather than trap the user in onboarding.
-        final ProviderContainer container = ProviderContainer();
-        addTearDown(container.dispose);
-        container.listen(startupControllerProvider, (_, _) {});
-
-        await container
-            .read(startupControllerProvider.notifier)
-            .runStartupLogic();
-
-        expect(container.read(startupControllerProvider).value, '/');
-      },
-    );
+    test('proceeds to home when the hook resolves null', () async {
+      final ProviderContainer container = ProviderContainer(
+        overrides: [
+          firstRunRedirectProvider.overrideWith((Ref ref) async => null),
+        ],
+      );
+      expect(await destinationIn(container), '/');
+    });
   });
 }

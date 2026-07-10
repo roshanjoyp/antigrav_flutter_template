@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:craft_flutter_template/app/app.dart';
 import 'package:craft_flutter_template/app/config/firebase_overrides.dart';
+import 'package:craft_flutter_template/app/config/onboarding_overrides.dart';
 import 'package:craft_flutter_template/app/config/revenuecat_overrides.dart';
 import 'package:craft_flutter_template/core/core.dart';
 import 'package:craft_flutter_template/core/services/crash_service/crash_service_impl.dart';
@@ -43,6 +44,7 @@ void main() async {
       if (FirebaseConfig.enabled) ...firebaseServiceOverrides(),
       if (RevenueCatConfig.enabled && RevenueCatConfig.isPlatformSupported)
         ...revenueCatServiceOverrides(),
+      ...onboardingOverrides(),
     ],
   );
 
