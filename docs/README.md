@@ -3,6 +3,11 @@
 All project documentation, organised by purpose. `README.md` and
 `CLAUDE.md` intentionally stay at the repository root.
 
+> New to the template? Start with the walkthroughs in
+> [`guide/`](../guide/README.md) — anatomy of a feature, adding your
+> own, models vs. entities, controller/view binding — then come back
+> here for the full reference.
+
 ## [`architecture/`](architecture/) — how the template is built
 
 | Document | Purpose |
