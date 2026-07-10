@@ -16,7 +16,9 @@ library;
 
 import 'dart:io';
 
+import 'package:craft_flutter_template/core/setup/checklist/checklist_document.dart';
 import 'package:craft_flutter_template/core/setup/checks/project_inspector.dart';
+import 'package:craft_flutter_template/core/setup/checks/readiness_checks.dart';
 import 'package:craft_flutter_template/core/setup/checks/static_setup_checks.dart';
 import 'package:craft_flutter_template/core/setup/setup_manifest.dart';
 
@@ -103,4 +105,82 @@ void main() {
   print('  ~ runtime checks: run a debug build → Setup Status screen.');
   print('  ! manual steps: confirm the items marked above yourself.');
   if (passed != total) exitCode = 1;
+
+  _reportReadiness(root, enabled);
+}
+
+/// Prints the production-readiness section: manifest items for enabled
+/// modules plus custom tasks, with state from `checklist.yaml`.
+///
+/// Auto-checked items are verified here regardless of recorded status;
+/// skipped items are excluded from the completion count. Informational
+/// only — readiness never affects the doctor's exit code, because a
+/// half-finished checklist is the normal state of a project in
+/// development.
+void _reportReadiness(Directory root, Map<SetupModule, bool> enabled) {
+  final File file = File('${root.path}/checklist.yaml');
+  final ChecklistDocument doc = file.existsSync()
+      ? ChecklistDocument.parse(file.readAsStringSync())
+      : ChecklistDocument.empty;
+  print('\nproduction readiness (checklist.yaml):');
+  if (!file.existsSync()) {
+    print('  ! checklist.yaml not found — treating every item as pending.');
+  }
+
+  int done = 0;
+  int total = 0;
+  int skipped = 0;
+  for (final ReadinessItem item in SetupManifest.allReadinessItems) {
+    if (!enabled[item.module]!) continue;
+    final ChecklistEntry entry = doc.entryFor(item.id);
+    if (entry.status == ChecklistStatus.skipped) {
+      skipped += 1;
+      print(
+        '  - ${item.title} — skipped'
+        '${entry.reason == null ? '' : ' (${entry.reason})'}',
+      );
+      continue;
+    }
+    total += 1;
+    final DoctorCheck? autoCheck = readinessAutoChecks[item.id];
+    final bool complete;
+    String? note;
+    if (autoCheck != null) {
+      final CheckResult result = autoCheck(root);
+      complete = result.passed;
+      note = result.detail;
+      if (!complete && entry.status == ChecklistStatus.done) {
+        note =
+            '${note ?? ''} (marked done in checklist.yaml, but the '
+            'auto-check disagrees)';
+      }
+    } else {
+      complete = entry.status == ChecklistStatus.done;
+    }
+    if (complete) done += 1;
+    print(
+      '  ${complete ? '✓' : '✗'} ${item.title}'
+      '${entry.owner == null ? '' : ' [${entry.owner}]'}',
+    );
+    if (!complete && note != null) print('      $note');
+    if (!complete && item.link != null) print('      → ${item.link}');
+    if (!complete && item.docPath != null) print('      → See ${item.docPath}');
+  }
+  for (final CustomChecklistTask task in doc.custom) {
+    if (task.status == ChecklistStatus.skipped) {
+      skipped += 1;
+      continue;
+    }
+    total += 1;
+    final bool complete = task.status == ChecklistStatus.done;
+    if (complete) done += 1;
+    print(
+      '  ${complete ? '✓' : '✗'} ${task.title}'
+      '${task.owner == null ? '' : ' [${task.owner}]'}',
+    );
+  }
+  print(
+    '  $done/$total readiness items complete'
+    '${skipped == 0 ? '' : ' ($skipped skipped)'}.',
+  );
 }

@@ -5,6 +5,8 @@
 /// debug builds.
 library;
 
+export 'package:craft_flutter_template/features/setup_status/domain/module_enablement.dart';
 export 'package:craft_flutter_template/features/setup_status/domain/runtime_check_entity.dart';
+export 'package:craft_flutter_template/features/setup_status/presentation/readiness_controller.dart';
 export 'package:craft_flutter_template/features/setup_status/presentation/setup_status_controller.dart';
 export 'package:craft_flutter_template/features/setup_status/presentation/setup_status_screen.dart';

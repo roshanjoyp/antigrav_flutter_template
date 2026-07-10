@@ -1,0 +1,46 @@
+# Production Readiness checklist state.
+#
+# Item definitions live in lib/core/setup/manifests/ (one per module);
+# this file records only their state, so progress is diffable,
+# PR-reviewable, and shared through git — never per-device.
+#
+# Read by `dart run tool/doctor.dart` and the dev-only Setup Status
+# screen (Readiness tab). Edit by hand:
+#   status: pending | done | skipped
+#   reason: optional — why an item was skipped
+#   owner:  optional — who is on it (free text, no accounts)
+#
+# Items with an auto-check (icon, pubspec description, release signing)
+# are verified by the doctor regardless of the status recorded here.
+
+version: 1
+
+items:
+  core.icon_replaced:
+    status: pending
+  core.splash_branded:
+    status: pending
+  core.pubspec_description:
+    status: pending
+  core.release_signing:
+    status: pending
+  core.flavors_reviewed:
+    status: pending
+  core.store_metadata:
+    status: pending
+  core.privacy_policy:
+    status: pending
+  push.apns_key_uploaded:
+    status: pending
+  push.notification_icon:
+    status: pending
+  revenuecat.products_live:
+    status: pending
+  revenuecat.sandbox_tested:
+    status: pending
+
+# Add your own project-specific tasks below:
+# custom:
+#   - title: Rotate the API staging keys
+#     status: pending
+#     owner: yourname

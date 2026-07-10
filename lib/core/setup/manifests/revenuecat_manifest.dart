@@ -1,3 +1,4 @@
+import 'package:craft_flutter_template/core/setup/readiness_item.dart';
 import 'package:craft_flutter_template/core/setup/setup_step.dart';
 
 /// Setup steps for the RevenueCat paywall module
@@ -38,6 +39,25 @@ const List<SetupStep> revenuecatSetupSteps = [
     remediation:
         'Complete a purchase with a sandbox tester account and confirm the '
         'entitlement unlocks in-app.',
+    docPath: 'docs/setup/REVENUECAT_SETUP.md',
+  ),
+];
+
+/// Production-readiness items specific to shipping with the paywall.
+const List<ReadinessItem> revenuecatReadinessItems = [
+  ReadinessItem(
+    id: 'revenuecat.products_live',
+    module: SetupModule.revenuecat,
+    title: 'Store products approved and attached to the entitlement',
+    why: 'The paywall renders empty if products are missing or unapproved.',
+    docPath: 'docs/setup/REVENUECAT_SETUP.md',
+    link: 'https://app.revenuecat.com/',
+  ),
+  ReadinessItem(
+    id: 'revenuecat.sandbox_tested',
+    module: SetupModule.revenuecat,
+    title: 'Sandbox purchase + restore verified',
+    why: 'Store review tests purchasing; a broken flow is a rejection.',
     docPath: 'docs/setup/REVENUECAT_SETUP.md',
   ),
 ];

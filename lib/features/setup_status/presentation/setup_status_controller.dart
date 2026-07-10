@@ -1,9 +1,9 @@
-import 'package:craft_flutter_template/core/config/firebase/firebase_config.dart';
 import 'package:craft_flutter_template/core/services/push_service/push_service.dart';
 import 'package:craft_flutter_template/core/services/push_service/push_service_impl.dart';
 import 'package:craft_flutter_template/core/setup/setup_manifest.dart';
 import 'package:craft_flutter_template/core/utils/result.dart';
 import 'package:craft_flutter_template/features/auth/data/auth_repository_impl.dart';
+import 'package:craft_flutter_template/features/setup_status/domain/module_enablement.dart';
 import 'package:craft_flutter_template/features/setup_status/domain/runtime_check_entity.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -35,10 +35,10 @@ class SetupStatusController extends _$SetupStatusController {
       ))
         step.id: RuntimeCheckEntity(
           stepId: step.id,
-          status: _moduleEnabled(step.module)
+          status: isModuleEnabled(step.module)
               ? RuntimeCheckStatus.notRun
               : RuntimeCheckStatus.skipped,
-          detail: _moduleEnabled(step.module) ? null : 'Module disabled.',
+          detail: isModuleEnabled(step.module) ? null : 'Module disabled.',
         ),
     };
   }
@@ -68,13 +68,6 @@ class SetupStatusController extends _$SetupStatusController {
     };
     _update(outcome);
   }
-
-  /// Whether [module]'s runtime checks apply in this build.
-  bool _moduleEnabled(SetupModule module) => switch (module) {
-    SetupModule.core => true,
-    SetupModule.firebase || SetupModule.push => FirebaseConfig.enabled,
-    SetupModule.revenuecat => false, // No runtime checks declared yet.
-  };
 
   RuntimeCheckEntity _checkFirebaseInitialized(RuntimeCheckEntity check) {
     return Firebase.apps.isEmpty

@@ -87,6 +87,11 @@ flutter:
   uses-material-design: true
   generate: true
 
+  assets:
+    # Readiness-checklist state, rendered read-only by the dev-only
+    # Setup Status screen (edit the file itself to change state).
+    - checklist.yaml
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

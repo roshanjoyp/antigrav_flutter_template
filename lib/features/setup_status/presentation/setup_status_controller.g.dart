@@ -69,7 +69,7 @@ final class SetupStatusControllerProvider
 }
 
 String _$setupStatusControllerHash() =>
-    r'4e61984d9e2bd1527b5bb5fe1430eaf42129fe5e';
+    r'6b89c4def8d5e51d5ef61478f0428f1277daa40c';
 
 /// Runs the manifest's runtime setup checks and exposes their states.
 ///

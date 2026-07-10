@@ -2,8 +2,10 @@ import 'package:craft_flutter_template/core/setup/manifests/core_manifest.dart';
 import 'package:craft_flutter_template/core/setup/manifests/firebase_manifest.dart';
 import 'package:craft_flutter_template/core/setup/manifests/push_manifest.dart';
 import 'package:craft_flutter_template/core/setup/manifests/revenuecat_manifest.dart';
+import 'package:craft_flutter_template/core/setup/readiness_item.dart';
 import 'package:craft_flutter_template/core/setup/setup_step.dart';
 
+export 'package:craft_flutter_template/core/setup/readiness_item.dart';
 export 'package:craft_flutter_template/core/setup/setup_step.dart';
 
 /// Aggregated view over every module's setup-step manifest.
@@ -40,4 +42,17 @@ class SetupManifest {
     }
     return null;
   }
+
+  /// Every declared production-readiness item across all modules.
+  static const List<ReadinessItem> allReadinessItems = [
+    ...coreReadinessItems,
+    ...revenuecatReadinessItems,
+    ...pushReadinessItems,
+  ];
+
+  /// The readiness items declared for [module].
+  static List<ReadinessItem> readinessForModule(SetupModule module) =>
+      allReadinessItems
+          .where((ReadinessItem item) => item.module == module)
+          .toList();
 }
