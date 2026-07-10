@@ -14,6 +14,7 @@ library;
 
 import 'dart:io';
 
+import 'src/branding.dart';
 import 'src/dart_updates.dart';
 import 'src/desktop_web_updates.dart';
 import 'src/detect.dart';
@@ -149,4 +150,7 @@ void main() {
 
   // ── Print summary ────────────────────────────────────────────────────────
   printSummary();
+
+  // ── Optional: regenerate icons + splash from assets/branding ────────────
+  offerBrandingRegeneration();
 }

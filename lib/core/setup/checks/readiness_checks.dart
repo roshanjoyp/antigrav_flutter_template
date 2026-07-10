@@ -13,31 +13,39 @@ import 'package:craft_flutter_template/core/setup/checks/project_inspector.dart'
 import 'package:craft_flutter_template/core/setup/checks/static_setup_checks.dart';
 import 'package:craft_flutter_template/core/setup/setup_manifest.dart';
 
-/// Byte sizes of the stock Flutter launcher icon per Android density.
+/// Byte sizes of known not-your-brand launcher icons per Android
+/// density: the stock Flutter icon and the CRAFT placeholder generated
+/// from assets/branding/icon.png.
 ///
 /// A hash would need a crypto dependency; byte size is enough to tell
-/// "still the default icon" from "replaced" — a real icon matching the
-/// default's exact byte count per density is vanishingly unlikely.
-const Map<String, int> _defaultIconSizes = <String, int>{
-  'mipmap-mdpi': 442,
-  'mipmap-hdpi': 544,
-  'mipmap-xhdpi': 721,
-  'mipmap-xxhdpi': 1031,
-  'mipmap-xxxhdpi': 1443,
+/// "still a placeholder" from "replaced" — a real icon matching these
+/// exact byte counts per density is vanishingly unlikely.
+const Map<String, Set<int>> _placeholderIconSizes = <String, Set<int>>{
+  'mipmap-mdpi': {442, 1886},
+  'mipmap-hdpi': {544, 3085},
+  'mipmap-xhdpi': {721, 3674},
+  'mipmap-xxhdpi': {1031, 5787},
+  'mipmap-xxxhdpi': {1443, 6845},
 };
 
 CheckResult _iconReplacedCheck(Directory root) {
   bool anyFound = false;
-  for (final MapEntry<String, int> entry in _defaultIconSizes.entries) {
+  for (final MapEntry<String, Set<int>> entry
+      in _placeholderIconSizes.entries) {
     final File icon = File(
       '${root.path}/android/app/src/main/res/${entry.key}/ic_launcher.png',
     );
     if (!icon.existsSync()) continue;
     anyFound = true;
-    if (icon.lengthSync() != entry.value) return CheckResult.ok;
+    if (!entry.value.contains(icon.lengthSync())) return CheckResult.ok;
   }
   return anyFound
-      ? const CheckResult(false, 'Launcher icons are the Flutter defaults.')
+      ? const CheckResult(
+          false,
+          'Launcher icons are still a placeholder (Flutter default or '
+          'CRAFT brand mark). Replace assets/branding/icon.png and run: '
+          'dart run flutter_launcher_icons',
+        )
       : const CheckResult(false, 'No Android launcher icons found.');
 }
 

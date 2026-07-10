@@ -1,0 +1,13 @@
+# Native splash screen generation (dev tool: flutter_native_splash).
+#
+# Rebrand in one command: replace assets/branding/splash.png with your
+# transparent-background logo, then run
+#   dart run flutter_native_splash:create --path=flutter_native_splash.yaml
+# (setup/setup.dart offers to run this for you after a rename.)
+flutter_native_splash:
+  color: "#0A0A0A"
+  image: assets/branding/splash.png
+
+  android_12:
+    color: "#0A0A0A"
+    image: assets/branding/splash.png

@@ -1,0 +1,21 @@
+# Launcher icon generation (dev tool: flutter_launcher_icons).
+#
+# Rebrand in one command: replace assets/branding/icon.png with your
+# 1024x1024 app icon, then run
+#   dart run flutter_launcher_icons
+# (setup/setup.dart offers to run this for you after a rename.)
+flutter_launcher_icons:
+  image_path: assets/branding/icon.png
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: assets/branding/icon.png
+    background_color: "#0A0A0A"
+    theme_color: "#6C63FF"
+  windows:
+    generate: true
+    icon_size: 256
+  macos:
+    generate: true

@@ -116,7 +116,7 @@ produces are exactly what the v2 generator consumes later.
 
 - [x] `pubspec.yaml`: replace default `description: "A new Flutter project."` and strip the boilerplate Flutter comments (2026-07-10; setup.dart now prompts for the buyer's description, readiness auto-check flags the template's own)
 - [x] Sweep remaining default-project artifacts (launcher icons, default bundle display names on desktop targets) (2026-07-10: web title/manifest, Linux/Windows window titles + version info rebranded; rename script now covers web + all desktop targets + tool/ imports; setup.dart split into setup/src/ modules per the 200-line rule; icons themselves await the launcher_icons decision below)
-- [ ] Add `flutter_launcher_icons` + `flutter_native_splash` configs so buyers rebrand assets in one command (extend `setup/setup.dart` to prompt for them) — awaiting owner approval for the two dev packages
+- [x] Add `flutter_launcher_icons` + `flutter_native_splash` configs so buyers rebrand assets in one command (extend `setup/setup.dart` to prompt for them) (2026-07-10: packages approved and added; assets/branding/ placeholder mark generated + stamped across all platforms; setup.dart offers regeneration post-rename; icon readiness auto-check now flags the CRAFT placeholder sizes too)
 - [x] README rewrite for the *buyer* audience: feature matrix, screenshots/GIFs, quick-start, FAQ (2026-07-10: text complete; screenshot/GIF slots marked TODO(listing) pending marketing captures)
 - [x] CHANGELOG.md + semantic versioning — marketplaces reward maintained products (2026-07-10: Keep-a-Changelog format, 1.0.0 entry)
 - [ ] Decide license/pricing model: single-app vs. multi-app license text (current LICENSE is for the open repo; a sold template needs its own terms)

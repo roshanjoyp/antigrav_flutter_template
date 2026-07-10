@@ -50,6 +50,12 @@ void main() {
       expect(readinessAutoChecks['core.icon_replaced']!(root).passed, isFalse);
     });
 
+    test('fails while the icon is the CRAFT placeholder', () {
+      // The generated placeholder mdpi icon is exactly 1886 bytes.
+      _write(root, iconPath, 'x' * 1886);
+      expect(readinessAutoChecks['core.icon_replaced']!(root).passed, isFalse);
+    });
+
     test('passes once any density diverges from the default size', () {
       _write(root, iconPath, 'a real replaced icon, different size');
       expect(readinessAutoChecks['core.icon_replaced']!(root).passed, isTrue);
