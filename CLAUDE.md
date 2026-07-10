@@ -106,7 +106,7 @@ These rules apply to every task in this project without exception.
 ## 12. Dart & Flutter Specifics
 
 - Always run `build_runner` after modifying any file that uses `@riverpod`, `@freezed`, or `@JsonSerializable` annotations.
-- Never commit generated files (`*.g.dart`, `*.freezed.dart`) — these are in `.gitignore`.
+- Generated files (`*.g.dart`, `*.freezed.dart`) **are committed** to git. After running `build_runner`, commit the regenerated output together with the source change — the CI workflow's staleness gate (regenerate + `git diff --exit-code`) fails otherwise.
 - Always use `const` constructors wherever possible.
 - Always specify explicit types. Never rely on `dynamic` or `var` unless absolutely necessary.
 

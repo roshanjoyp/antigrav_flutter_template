@@ -9,8 +9,9 @@ Live copy (same file, hosted): https://claude.ai/code/artifact/ec5c772c-3378-419
 
 ## Design direction
 
-Monochrome studio-portfolio aesthetic (references live in `screenshots/`,
-untracked — third-party images, do not commit). Sharp corners everywhere, no
+Monochrome studio-portfolio aesthetic (references live in
+`docs/design/screenshots/`, gitignored — third-party images, do not
+commit). Sharp corners everywhere, no
 border-radius. Dark-first, single-theme by design, with one light band section
 as the counterpoint. Hierarchy comes from typography, not color or chrome.
 
