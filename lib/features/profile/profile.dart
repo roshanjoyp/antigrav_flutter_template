@@ -14,7 +14,7 @@ export 'package:craft_flutter_template/features/profile/domain/profile_repositor
 export 'package:craft_flutter_template/features/profile/data/profile_repository_impl.dart';
 
 // Data — Firestore implementation, bound when Firebase is enabled
-export 'package:craft_flutter_template/features/profile/data/firestore_profile_repository_impl.dart';
+export 'package:craft_flutter_template/features/profile/data/firestore_profile_repository_impl.dart'; // MODULE(firebase)
 
 // Presentation
 export 'package:craft_flutter_template/features/profile/presentation/profile_controller.dart';

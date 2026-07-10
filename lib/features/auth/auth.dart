@@ -14,4 +14,4 @@ export 'package:craft_flutter_template/features/auth/data/auth_repository_impl.d
 
 // Data — Firebase implementation, used to override authRepositoryProvider
 // when Firebase is enabled (see docs/setup/FIREBASE_SETUP.md)
-export 'package:craft_flutter_template/features/auth/data/firebase_auth_repository_impl.dart';
+export 'package:craft_flutter_template/features/auth/data/firebase_auth_repository_impl.dart'; // MODULE(firebase)
