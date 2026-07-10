@@ -1,4 +1,4 @@
-# CI for craft_flutter_template.
+# CI workflow (manual-only).
 #
 # Manual-only by design: nothing runs on push or PR. Fire it on demand
 # (before a release, after risky changes) from the GitHub Actions tab

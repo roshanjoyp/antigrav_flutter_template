@@ -1,4 +1,4 @@
-/// craft_flutter_template setup doctor
+/// Flutter template setup doctor
 ///
 /// Verifies post-download setup by running every static check declared
 /// in the setup manifest (lib/core/setup/) and reporting
