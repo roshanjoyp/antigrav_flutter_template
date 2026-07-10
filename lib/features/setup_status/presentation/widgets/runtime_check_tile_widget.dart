@@ -1,11 +1,12 @@
 import 'package:craft_flutter_template/core/constants/app_colors.dart';
 import 'package:craft_flutter_template/core/constants/app_constants.dart';
 import 'package:craft_flutter_template/core/setup/setup_manifest.dart';
+import 'package:craft_flutter_template/core/widgets/app_icon_badge.dart';
 import 'package:craft_flutter_template/features/setup_status/domain/runtime_check_entity.dart';
 import 'package:flutter/material.dart';
 
-/// One runtime check row on the Setup Status screen: status icon, step
-/// title, outcome detail, and a run button.
+/// One runtime check row on the Setup Status screen: status badge, step
+/// title, outcome detail, and a run action.
 class RuntimeCheckTileWidget extends StatelessWidget {
   /// Creates a tile for [step] in state [check].
   const RuntimeCheckTileWidget({
@@ -26,51 +27,57 @@ class RuntimeCheckTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool runnable =
-        check.status != RuntimeCheckStatus.skipped &&
-        check.status != RuntimeCheckStatus.running;
     return ListTile(
-      leading: _StatusIcon(status: check.status),
+      leading: _badge(),
       title: Text(step.title),
       subtitle: check.detail == null ? null : Text(check.detail!),
-      trailing: IconButton(
-        icon: const Icon(Icons.play_arrow),
-        tooltip: 'Run check',
-        onPressed: runnable ? onRun : null,
-      ),
+      trailing: switch (check.status) {
+        RuntimeCheckStatus.skipped => null,
+        RuntimeCheckStatus.running => null,
+        _ => TextButton(onPressed: onRun, child: const Text('Run')),
+      },
     );
   }
-}
 
-/// Maps a [RuntimeCheckStatus] to its icon and color.
-class _StatusIcon extends StatelessWidget {
-  const _StatusIcon({required this.status});
-
-  /// The status to render.
-  final RuntimeCheckStatus status;
-
-  @override
-  Widget build(BuildContext context) {
-    if (status == RuntimeCheckStatus.running) {
-      return const SizedBox(
-        width: AppConstants.iconSm,
-        height: AppConstants.iconSm,
-        child: CircularProgressIndicator(strokeWidth: 2),
+  AppIconBadge _badge() {
+    if (check.status == RuntimeCheckStatus.running) {
+      return const AppIconBadge(
+        icon: Icons.sync,
+        color: AppColors.info,
+        background: AppColors.infoLight,
+        child: SizedBox(
+          width: AppConstants.iconXs,
+          height: AppConstants.iconXs,
+          child: CircularProgressIndicator(strokeWidth: 2),
+        ),
       );
     }
-    final (IconData icon, Color color) = switch (status) {
+    final (
+      IconData icon,
+      Color color,
+      Color background,
+    ) = switch (check.status) {
       RuntimeCheckStatus.notRun => (
-        Icons.radio_button_unchecked,
-        AppColors.textTertiary,
+        Icons.play_arrow_rounded,
+        AppColors.textSecondary,
+        AppColors.backgroundTertiary,
       ),
-      RuntimeCheckStatus.passed => (Icons.check_circle, AppColors.success),
-      RuntimeCheckStatus.failed => (Icons.error, AppColors.error),
-      RuntimeCheckStatus.skipped => (
-        Icons.remove_circle_outline,
+      RuntimeCheckStatus.passed => (
+        Icons.check_rounded,
+        AppColors.success,
+        AppColors.successLight,
+      ),
+      RuntimeCheckStatus.failed => (
+        Icons.priority_high_rounded,
+        AppColors.error,
+        AppColors.errorLight,
+      ),
+      _ => (
+        Icons.remove_rounded,
         AppColors.textDisabled,
+        AppColors.backgroundSecondary,
       ),
-      RuntimeCheckStatus.running => (Icons.sync, AppColors.info),
     };
-    return Icon(icon, color: color, size: AppConstants.iconSm);
+    return AppIconBadge(icon: icon, color: color, background: background);
   }
 }

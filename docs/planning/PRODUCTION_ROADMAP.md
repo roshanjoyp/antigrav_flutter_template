@@ -88,7 +88,7 @@ the same abstractions.
 - [x] Unit tests: `Result` type, `AppFlavor`, controllers, stub + Firebase repository impls (mocktail), error mappers, debug/Firebase services (2026-07-09)
 - [x] Widget tests: all six core widgets, startup view, profile screen incl. error/retry states (2026-07-09; no auth screens exist yet — add tests with the feature)
 - [x] Riverpod tests: provider overrides pattern documented as the example for buyers to follow (2026-07-09: test/features/profile/profile_controller_test.dart; also documents the Riverpod 3 pause-when-unlistened gotcha)
-- [ ] Golden tests for the theme (light + dark) — optional but a strong differentiator
+- [x] Golden tests for the theme (light + dark) — optional but a strong differentiator (2026-07-10: test/goldens/ — core-widget gallery in both themes + Setup Status screen; regenerate with `flutter test --update-goldens test/goldens`)
 - [x] Target: enough coverage that "tested" is an honest listing bullet (2026-07-09: 81% of instrumented lines, excluding generated; uncovered: Firestore impl (needs fake_cloud_firestore or emulator), theme/router wiring, test_control_panel)
 
 ## Phase 4 — CI/CD

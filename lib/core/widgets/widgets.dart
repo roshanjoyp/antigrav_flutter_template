@@ -8,6 +8,8 @@ library;
 
 export 'package:craft_flutter_template/core/widgets/app_button.dart';
 export 'package:craft_flutter_template/core/widgets/app_divider.dart';
+export 'package:craft_flutter_template/core/widgets/app_icon_badge.dart';
+export 'package:craft_flutter_template/core/widgets/app_info_banner.dart';
 export 'package:craft_flutter_template/core/widgets/app_error.dart';
 export 'package:craft_flutter_template/core/widgets/app_loading.dart';
 export 'package:craft_flutter_template/core/widgets/app_scaffold.dart';

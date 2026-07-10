@@ -3,6 +3,7 @@ import 'package:craft_flutter_template/core/setup/checklist/checklist_document.d
 import 'package:craft_flutter_template/core/setup/setup_manifest.dart';
 import 'package:craft_flutter_template/features/setup_status/domain/module_enablement.dart';
 import 'package:craft_flutter_template/features/setup_status/presentation/readiness_controller.dart';
+import 'package:craft_flutter_template/features/setup_status/presentation/widgets/module_section_widget.dart';
 import 'package:craft_flutter_template/features/setup_status/presentation/widgets/readiness_item_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,54 +35,84 @@ class ReadinessTabWidget extends ConsumerWidget {
   }
 
   Widget _list(WidgetRef ref, ChecklistDocument doc, bool showSkipped) {
-    final List<ReadinessItem> items = SetupManifest.allReadinessItems
-        .where((ReadinessItem item) => isModuleEnabled(item.module))
+    return ListView(
+      padding: const EdgeInsets.all(AppConstants.spaceMd),
+      children: [
+        const AppInfoBanner(
+          message:
+              'State lives in checklist.yaml (git-tracked). Edit the file '
+              'to mark items done or skipped, then hot restart.',
+          icon: Icons.edit_note,
+        ),
+        SwitchListTile(
+          title: const Text('Show skipped items'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spaceXs,
+          ),
+          value: showSkipped,
+          onChanged: (_) =>
+              ref.read(showSkippedReadinessProvider.notifier).toggle(),
+        ),
+        for (final SetupModule module in SetupModule.values)
+          ?_moduleSection(module, doc, showSkipped),
+        ?_customSection(doc, showSkipped),
+      ],
+    );
+  }
+
+  /// The readiness panel for one module, or `null` when the module is
+  /// disabled, declares no items, or everything is filtered out.
+  Widget? _moduleSection(
+    SetupModule module,
+    ChecklistDocument doc,
+    bool showSkipped,
+  ) {
+    if (!isModuleEnabled(module)) return null;
+    final List<ReadinessItem> items = SetupManifest.readinessForModule(module)
         .where(
           (ReadinessItem item) =>
               showSkipped ||
               doc.entryFor(item.id).status != ChecklistStatus.skipped,
         )
         .toList();
-    return ListView(
-      padding: const EdgeInsets.all(AppConstants.spaceMd),
+    if (items.isEmpty) return null;
+    return ModuleSectionWidget(
+      title: module.displayName,
       children: [
-        AppText.bodySmall(
-          'State lives in checklist.yaml (git-tracked). Edit the file to '
-          'mark items done or skipped, then hot restart.',
-          color: AppColors.textSecondary,
-        ),
-        SwitchListTile(
-          title: const Text('Show skipped items'),
-          value: showSkipped,
-          onChanged: (_) =>
-              ref.read(showSkippedReadinessProvider.notifier).toggle(),
-        ),
         for (final ReadinessItem item in items)
           ReadinessItemTileWidget(item: item, entry: doc.entryFor(item.id)),
-        if (doc.custom.isNotEmpty) ...[
-          const AppDivider(),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: AppConstants.spaceXs),
-            child: AppText.headingSmall('Custom tasks'),
+      ],
+    );
+  }
+
+  /// The custom-tasks panel, or `null` when there is nothing to show.
+  Widget? _customSection(ChecklistDocument doc, bool showSkipped) {
+    final List<CustomChecklistTask> tasks = doc.custom
+        .where(
+          (CustomChecklistTask task) =>
+              showSkipped || task.status != ChecklistStatus.skipped,
+        )
+        .toList();
+    if (tasks.isEmpty) return null;
+    return ModuleSectionWidget(
+      title: 'Custom tasks',
+      children: [
+        for (final CustomChecklistTask task in tasks)
+          ListTile(
+            leading: AppIconBadge(
+              icon: task.status == ChecklistStatus.done
+                  ? Icons.check_rounded
+                  : Icons.circle_outlined,
+              color: task.status == ChecklistStatus.done
+                  ? AppColors.success
+                  : AppColors.textSecondary,
+              background: task.status == ChecklistStatus.done
+                  ? AppColors.successLight
+                  : AppColors.backgroundTertiary,
+            ),
+            title: Text(task.title),
+            subtitle: task.owner == null ? null : Text('Owner: ${task.owner}'),
           ),
-          for (final CustomChecklistTask task in doc.custom)
-            if (showSkipped || task.status != ChecklistStatus.skipped)
-              ListTile(
-                leading: Icon(
-                  task.status == ChecklistStatus.done
-                      ? Icons.check_circle
-                      : Icons.radio_button_unchecked,
-                  color: task.status == ChecklistStatus.done
-                      ? AppColors.success
-                      : AppColors.textTertiary,
-                  size: AppConstants.iconSm,
-                ),
-                title: Text(task.title),
-                subtitle: task.owner == null
-                    ? null
-                    : Text('Owner: ${task.owner}'),
-              ),
-        ],
       ],
     );
   }

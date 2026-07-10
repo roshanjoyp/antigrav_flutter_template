@@ -34,6 +34,19 @@ enum SetupModule {
   push,
 }
 
+/// Human-readable names for [SetupModule] values, for section headers
+/// and check output.
+extension SetupModuleDisplay on SetupModule {
+  /// The module's display name (e.g. `SetupModule.revenuecat` →
+  /// "RevenueCat").
+  String get displayName => switch (this) {
+    SetupModule.core => 'Core',
+    SetupModule.firebase => 'Firebase',
+    SetupModule.revenuecat => 'RevenueCat',
+    SetupModule.push => 'Push notifications',
+  };
+}
+
 /// One declared post-download setup step.
 ///
 /// The manifests in `lib/core/setup/manifests/` are the single source of

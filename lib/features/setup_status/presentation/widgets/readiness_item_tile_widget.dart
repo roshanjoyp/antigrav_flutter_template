@@ -2,13 +2,16 @@ import 'package:craft_flutter_template/core/constants/app_colors.dart';
 import 'package:craft_flutter_template/core/constants/app_constants.dart';
 import 'package:craft_flutter_template/core/setup/checklist/checklist_document.dart';
 import 'package:craft_flutter_template/core/setup/setup_manifest.dart';
+import 'package:craft_flutter_template/core/widgets/app_icon_badge.dart';
+import 'package:craft_flutter_template/core/widgets/app_text.dart';
+import 'package:craft_flutter_template/features/setup_status/presentation/widgets/reference_chip_widget.dart';
 import 'package:flutter/material.dart';
 
 /// One production-readiness row: recorded status, what/why, references.
 ///
 /// Renders the state recorded in `checklist.yaml`; auto-checked items
-/// carry a badge reminding that `dart run tool/doctor.dart` verifies
-/// them regardless of the recorded status.
+/// carry an AUTO tag reminding that `dart run tool/doctor.dart`
+/// verifies them regardless of the recorded status.
 class ReadinessItemTileWidget extends StatelessWidget {
   /// Creates a tile for [item] with its recorded [entry].
   const ReadinessItemTileWidget({
@@ -25,37 +28,62 @@ class ReadinessItemTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final (IconData icon, Color color) = switch (entry.status) {
-      ChecklistStatus.done => (Icons.check_circle, AppColors.success),
+    final (
+      IconData icon,
+      Color color,
+      Color background,
+    ) = switch (entry.status) {
+      ChecklistStatus.done => (
+        Icons.check_rounded,
+        AppColors.success,
+        AppColors.successLight,
+      ),
       ChecklistStatus.pending => (
-        Icons.radio_button_unchecked,
-        AppColors.textTertiary,
+        Icons.circle_outlined,
+        AppColors.textSecondary,
+        AppColors.backgroundTertiary,
       ),
       ChecklistStatus.skipped => (
-        Icons.remove_circle_outline,
+        Icons.remove_rounded,
         AppColors.textDisabled,
+        AppColors.backgroundSecondary,
       ),
     };
-    final List<String> lines = [
-      item.why,
-      if (entry.reason != null) 'Skipped: ${entry.reason}',
-      if (entry.owner != null) 'Owner: ${entry.owner}',
-      if (item.link != null) item.link!,
-      if (item.docPath != null) 'See ${item.docPath}',
-    ];
     return ListTile(
-      leading: Icon(icon, color: color, size: AppConstants.iconSm),
+      leading: AppIconBadge(icon: icon, color: color, background: background),
       title: Text(item.title),
-      subtitle: Text(lines.join('\n')),
-      isThreeLine: lines.length > 1,
-      trailing: item.hasAutoCheck
-          ? const Tooltip(
-              message: 'Verified by dart run tool/doctor.dart',
-              child: Icon(
-                Icons.verified_outlined,
-                size: AppConstants.iconSm,
-                color: AppColors.info,
+      subtitle: Padding(
+        padding: const EdgeInsets.only(top: AppConstants.spaceXxs),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(item.why),
+            if (entry.reason != null) Text('Skipped: ${entry.reason}'),
+            if (entry.owner != null) Text('Owner: ${entry.owner}'),
+            if (item.link != null || item.docPath != null)
+              Padding(
+                padding: const EdgeInsets.only(top: AppConstants.spaceXs),
+                child: Wrap(
+                  spacing: AppConstants.spaceXs,
+                  runSpacing: AppConstants.spaceXxs,
+                  children: [
+                    if (item.link != null)
+                      ReferenceChipWidget(icon: Icons.link, label: item.link!),
+                    if (item.docPath != null)
+                      ReferenceChipWidget(
+                        icon: Icons.description_outlined,
+                        label: item.docPath!,
+                      ),
+                  ],
+                ),
               ),
+          ],
+        ),
+      ),
+      trailing: item.hasAutoCheck
+          ? Tooltip(
+              message: 'Verified by dart run tool/doctor.dart',
+              child: AppText.caption('AUTO', color: AppColors.info),
             )
           : null,
     );

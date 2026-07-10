@@ -20,11 +20,11 @@ void main() {
       WidgetTester tester,
     ) async {
       await pumpScreen(tester);
-      // core has only static steps, so it must not render a section.
-      expect(find.text('core'), findsNothing);
-      expect(find.text('firebase'), findsOneWidget);
-      expect(find.text('revenuecat'), findsOneWidget);
-      expect(find.text('push'), findsOneWidget);
+      // Core has only static steps, so it must not render a section.
+      expect(find.text('Core'), findsNothing);
+      expect(find.text('Firebase'), findsOneWidget);
+      expect(find.text('RevenueCat'), findsOneWidget);
+      expect(find.text('Push notifications'), findsOneWidget);
     });
 
     testWidgets('renders every runtime and manual step title', (
