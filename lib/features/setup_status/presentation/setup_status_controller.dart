@@ -1,11 +1,11 @@
-import 'package:craft_flutter_template/core/services/push_service/push_service.dart';
-import 'package:craft_flutter_template/core/services/push_service/push_service_impl.dart';
+import 'package:craft_flutter_template/core/services/push_service/push_service.dart'; // MODULE(push)
+import 'package:craft_flutter_template/core/services/push_service/push_service_impl.dart'; // MODULE(push)
 import 'package:craft_flutter_template/core/setup/setup_manifest.dart';
-import 'package:craft_flutter_template/core/utils/result.dart';
-import 'package:craft_flutter_template/features/auth/data/auth_repository_impl.dart';
+import 'package:craft_flutter_template/core/utils/result.dart'; // MODULE(firebase)
+import 'package:craft_flutter_template/features/auth/data/auth_repository_impl.dart'; // MODULE(firebase)
 import 'package:craft_flutter_template/features/setup_status/domain/module_enablement.dart';
 import 'package:craft_flutter_template/features/setup_status/domain/runtime_check_entity.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart'; // MODULE(firebase)
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'setup_status_controller.g.dart';
@@ -22,9 +22,9 @@ class SetupStatusController extends _$SetupStatusController {
   /// The runtime step ids this controller implements. Kept in sync with
   /// the manifest by a drift-guard unit test.
   static const Set<String> handledStepIds = {
-    'firebase.initializes',
-    'firebase.anon_auth',
-    'push.fcm_token',
+    'firebase.initializes', // MODULE(firebase)
+    'firebase.anon_auth', // MODULE(firebase)
+    'push.fcm_token', // MODULE(push)
   };
 
   @override
@@ -58,9 +58,11 @@ class SetupStatusController extends _$SetupStatusController {
     if (current.status == RuntimeCheckStatus.skipped) return;
     _update(current.copyWith(status: RuntimeCheckStatus.running));
     final RuntimeCheckEntity outcome = switch (stepId) {
+      // MODULE(firebase): begin
       'firebase.initializes' => _checkFirebaseInitialized(current),
       'firebase.anon_auth' => await _checkAnonymousAuth(current),
-      'push.fcm_token' => await _checkFcmToken(current),
+      // MODULE(firebase): end
+      'push.fcm_token' => await _checkFcmToken(current), // MODULE(push)
       _ => current.copyWith(
         status: RuntimeCheckStatus.failed,
         detail: 'No implementation bound for $stepId.',
@@ -69,6 +71,7 @@ class SetupStatusController extends _$SetupStatusController {
     _update(outcome);
   }
 
+  // MODULE(firebase): begin
   RuntimeCheckEntity _checkFirebaseInitialized(RuntimeCheckEntity check) {
     return Firebase.apps.isEmpty
         ? check.copyWith(
@@ -98,7 +101,9 @@ class SetupStatusController extends _$SetupStatusController {
       ),
     );
   }
+  // MODULE(firebase): end
 
+  // MODULE(push): begin
   Future<RuntimeCheckEntity> _checkFcmToken(RuntimeCheckEntity check) async {
     final PushService push = ref.read(pushServiceProvider);
     final Result<String?> result = await push.getToken();
@@ -118,6 +123,7 @@ class SetupStatusController extends _$SetupStatusController {
       ),
     );
   }
+  // MODULE(push): end
 
   void _update(RuntimeCheckEntity entity) {
     state = {...state, entity.stepId: entity};

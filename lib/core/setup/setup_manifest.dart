@@ -1,7 +1,7 @@
 import 'package:craft_flutter_template/core/setup/manifests/core_manifest.dart';
-import 'package:craft_flutter_template/core/setup/manifests/firebase_manifest.dart';
-import 'package:craft_flutter_template/core/setup/manifests/push_manifest.dart';
-import 'package:craft_flutter_template/core/setup/manifests/revenuecat_manifest.dart';
+import 'package:craft_flutter_template/core/setup/manifests/firebase_manifest.dart'; // MODULE(firebase)
+import 'package:craft_flutter_template/core/setup/manifests/push_manifest.dart'; // MODULE(push)
+import 'package:craft_flutter_template/core/setup/manifests/revenuecat_manifest.dart'; // MODULE(revenuecat)
 import 'package:craft_flutter_template/core/setup/readiness_item.dart';
 import 'package:craft_flutter_template/core/setup/setup_step.dart';
 
@@ -21,9 +21,9 @@ class SetupManifest {
   /// Every declared setup step across all modules, in module order.
   static const List<SetupStep> allSteps = [
     ...coreSetupSteps,
-    ...firebaseSetupSteps,
-    ...revenuecatSetupSteps,
-    ...pushSetupSteps,
+    ...firebaseSetupSteps, // MODULE(firebase)
+    ...revenuecatSetupSteps, // MODULE(revenuecat)
+    ...pushSetupSteps, // MODULE(push)
   ];
 
   /// The steps declared for [module].
@@ -46,8 +46,8 @@ class SetupManifest {
   /// Every declared production-readiness item across all modules.
   static const List<ReadinessItem> allReadinessItems = [
     ...coreReadinessItems,
-    ...revenuecatReadinessItems,
-    ...pushReadinessItems,
+    ...revenuecatReadinessItems, // MODULE(revenuecat)
+    ...pushReadinessItems, // MODULE(push)
   ];
 
   /// The readiness items declared for [module].

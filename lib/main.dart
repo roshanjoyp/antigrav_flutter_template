@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:craft_flutter_template/app/app.dart';
-import 'package:craft_flutter_template/app/config/firebase_overrides.dart';
-import 'package:craft_flutter_template/app/config/onboarding_overrides.dart';
-import 'package:craft_flutter_template/app/config/revenuecat_overrides.dart';
+import 'package:craft_flutter_template/app/config/firebase_overrides.dart'; // MODULE(firebase)
+import 'package:craft_flutter_template/app/config/onboarding_overrides.dart'; // MODULE(onboarding)
+import 'package:craft_flutter_template/app/config/revenuecat_overrides.dart'; // MODULE(revenuecat)
 import 'package:craft_flutter_template/core/core.dart';
 import 'package:craft_flutter_template/core/services/crash_service/crash_service_impl.dart';
-import 'package:craft_flutter_template/core/services/push_service/firebase_push_service_impl.dart';
+import 'package:craft_flutter_template/core/services/push_service/firebase_push_service_impl.dart'; // MODULE(push)
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -41,10 +41,14 @@ void main() async {
   // lib/app/config/revenuecat_overrides.dart).
   final container = ProviderContainer(
     overrides: [
+      // MODULE(firebase): begin
       if (FirebaseConfig.enabled) ...firebaseServiceOverrides(),
+      // MODULE(firebase): end
+      // MODULE(revenuecat): begin
       if (RevenueCatConfig.enabled && RevenueCatConfig.isPlatformSupported)
         ...revenueCatServiceOverrides(),
-      ...onboardingOverrides(),
+      // MODULE(revenuecat): end
+      ...onboardingOverrides(), // MODULE(onboarding)
     ],
   );
 
@@ -58,21 +62,27 @@ void main() async {
       // Initialize DotEnv if needed
       // await dotenv.load(fileName: ".env");
 
+      // MODULE(firebase): begin
       // Initializes Firebase for the active flavor. No-op while
       // FirebaseConfig.enabled is false (the template's stub-only default);
       // see docs/setup/FIREBASE_SETUP.md to enable it.
       await FirebaseConfig.initialize();
+      // MODULE(firebase): end
 
+      // MODULE(push): begin
       // Background/terminated-state push messages need their handler
       // registered before any message can arrive.
       if (FirebaseConfig.enabled) {
         FirebasePushServiceImpl.registerBackgroundHandler();
       }
+      // MODULE(push): end
 
+      // MODULE(revenuecat): begin
       // Configures the RevenueCat SDK. No-op while RevenueCatConfig.enabled
       // is false or the platform has no store; see
       // docs/setup/REVENUECAT_SETUP.md to enable it.
       await RevenueCatConfig.initialize();
+      // MODULE(revenuecat): end
 
       // Flutter Error Handling
       FlutterError.onError = (details) {

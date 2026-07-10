@@ -49,6 +49,7 @@ void main() {
       }
     });
 
+    // MODULE(firebase): begin
     test('run() leaves a skipped check untouched', () async {
       final SetupStatusController controller = container.read(
         setupStatusControllerProvider.notifier,
@@ -61,6 +62,7 @@ void main() {
         RuntimeCheckStatus.skipped,
       );
     });
+    // MODULE(firebase): end
 
     test('runAll() completes without touching skipped checks', () async {
       final SetupStatusController controller = container.read(

@@ -1,5 +1,5 @@
-import 'package:craft_flutter_template/features/onboarding/onboarding.dart';
-import 'package:craft_flutter_template/features/paywall/paywall.dart';
+import 'package:craft_flutter_template/features/onboarding/onboarding.dart'; // MODULE(onboarding)
+import 'package:craft_flutter_template/features/paywall/paywall.dart'; // MODULE(revenuecat)
 import 'package:craft_flutter_template/features/profile/profile.dart';
 import 'package:craft_flutter_template/features/setup_status/setup_status.dart';
 import 'package:craft_flutter_template/features/startup/startup.dart';
@@ -33,14 +33,18 @@ GoRouter goRouter(Ref ref) {
         path: '/profile',
         builder: (context, state) => const ProfileScreen(),
       ),
+      // MODULE(revenuecat): begin
       GoRoute(
         path: '/paywall',
         builder: (context, state) => const PaywallScreen(),
       ),
+      // MODULE(revenuecat): end
+      // MODULE(onboarding): begin
       GoRoute(
         path: '/onboarding',
         builder: (context, state) => const OnboardingScreen(),
       ),
+      // MODULE(onboarding): end
       GoRoute(
         path: '/',
         builder: (context, state) =>
