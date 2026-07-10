@@ -73,6 +73,20 @@ void main() {
       );
     });
 
+    test('fails on the template\'s own shipped description', () {
+      _write(
+        root,
+        'pubspec.yaml',
+        'description: >-\n'
+            '  CRAFT — production-ready Flutter starter. Run setup/setup.dart,\n'
+            '  then replace this description with your app\'s.\n',
+      );
+      expect(
+        readinessAutoChecks['core.pubspec_description']!(root).passed,
+        isFalse,
+      );
+    });
+
     test('passes on a real description', () {
       _write(root, 'pubspec.yaml', 'description: Habit tracker for teams.\n');
       expect(

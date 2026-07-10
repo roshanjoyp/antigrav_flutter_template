@@ -72,6 +72,19 @@ String _promptDisplayName() {
   }
 }
 
+/// Repeatedly prompts until a pubspec description of 10–180 characters
+/// is entered. Replaces the template's own description so stores,
+/// tooling, and the readiness checklist see the buyer's app, not CRAFT.
+String _promptDescription() {
+  while (true) {
+    final input = _prompt('One-line app description (for pubspec.yaml): ');
+    if (input.length >= 10 && input.length <= 180) return input;
+    stderr.writeln(
+      '  ✗ Description must be 10–180 characters. Got ${input.length}.',
+    );
+  }
+}
+
 // =============================================================================
 // Detection helpers — read current values from existing project files
 // =============================================================================
@@ -305,6 +318,17 @@ void _updatePubspec(String oldDartPkg, String newDartPkg) {
   });
 }
 
+/// Replaces the pubspec `description` (the template ships a folded
+/// multi-line one) with the buyer's single-line [newDescription].
+void _updatePubspecDescription(String newDescription) {
+  _updateFile('pubspec.yaml', (content) {
+    return content.replaceFirst(
+      RegExp(r'^description:[\s\S]*?(?=^\S)', multiLine: true),
+      'description: $newDescription\n',
+    );
+  });
+}
+
 /// Updates the appName string constant in app_constants.dart.
 void _updateAppConstants(String newDisplayName) {
   _updateFile('lib/core/constants/app_constants.dart', (content) {
@@ -492,6 +516,7 @@ void main() {
   // ── Collect new values ───────────────────────────────────────────────────
 
   final newDisplayName = _promptDisplayName();
+  final newDescription = _promptDescription();
   final newAndroidPkg = _promptPackageName();
 
   // Dart package name is derived from the last segment of the Android package.
@@ -508,6 +533,7 @@ void main() {
   print('Changes to be applied:');
   print(sep);
   print('  App display name : $newDisplayName');
+  print('  App description  : $newDescription');
   print('  Android package  : $oldAndroidPkg  →  $newAndroidPkg');
   print('  iOS bundle ID    : $oldBundleId  →  $newBundleId');
   print('  Dart package     : $oldDartPkg  →  $newDartPkg');
@@ -520,7 +546,7 @@ void main() {
     '    ios/Runner/Info.plist                  CFBundleDisplayName, CFBundleName',
   );
   print('    ios/Runner.xcodeproj/project.pbxproj  PRODUCT_BUNDLE_IDENTIFIER');
-  print('    pubspec.yaml                           name:');
+  print('    pubspec.yaml                           name:, description:');
   print('    lib/core/constants/app_constants.dart  appName');
   print('    lib/**/*.dart                          package imports');
   print('    CLAUDE.md                              import examples');
@@ -548,6 +574,7 @@ void main() {
 
   // Flutter / Dart
   _updatePubspec(oldDartPkg, newDartPkg);
+  _updatePubspecDescription(newDescription);
   _updateAppConstants(newDisplayName);
   _updateDartImports('lib', oldDartPkg, newDartPkg);
   _updateDartImports('test', oldDartPkg, newDartPkg);

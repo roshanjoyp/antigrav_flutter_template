@@ -44,12 +44,20 @@ CheckResult _iconReplacedCheck(Directory root) {
 CheckResult _pubspecDescriptionCheck(Directory root) {
   final String? pubspec = readProjectFile(root, 'pubspec.yaml');
   if (pubspec == null) return const CheckResult(false, 'No pubspec.yaml.');
-  final String? description = RegExp(
-    r'''^description:\s*["']?(.+?)["']?\s*$''',
-    multiLine: true,
-  ).firstMatch(pubspec)?.group(1);
-  return (description == null || description == 'A new Flutter project.')
-      ? const CheckResult(false, 'Still the default project description.')
+  // Both the Flutter default and the template's own shipped description
+  // count as "not yours yet" — setup/setup.dart prompts for a real one.
+  // Whitespace is collapsed first: the folded (`>-`) description wraps
+  // marker phrases across lines.
+  final String flattened = pubspec.replaceAll(RegExp(r'\s+'), ' ');
+  if (flattened.contains('A new Flutter project.') ||
+      flattened.contains('replace this description with your app')) {
+    return const CheckResult(
+      false,
+      'pubspec description is still the template\'s, not your app\'s.',
+    );
+  }
+  return !pubspec.contains(RegExp(r'^description:', multiLine: true))
+      ? const CheckResult(false, 'pubspec.yaml has no description field.')
       : CheckResult.ok;
 }
 
