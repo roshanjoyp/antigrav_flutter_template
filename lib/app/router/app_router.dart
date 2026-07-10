@@ -1,8 +1,10 @@
 import 'package:craft_flutter_template/features/onboarding/onboarding.dart';
 import 'package:craft_flutter_template/features/paywall/paywall.dart';
 import 'package:craft_flutter_template/features/profile/profile.dart';
+import 'package:craft_flutter_template/features/setup_status/setup_status.dart';
 import 'package:craft_flutter_template/features/startup/startup.dart';
 import 'package:craft_flutter_template/features/test_control_panel/test_control_panel.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -19,7 +21,14 @@ GoRouter goRouter(Ref ref) {
         path: '/startup',
         builder: (context, state) => const StartupView(),
       ),
-      GoRoute(path: '/test', builder: (context, state) => const TestScreen()),
+      // Dev-only routes: compiled out of release builds entirely.
+      if (kDebugMode) ...[
+        GoRoute(path: '/test', builder: (context, state) => const TestScreen()),
+        GoRoute(
+          path: '/setup-status',
+          builder: (context, state) => const SetupStatusScreen(),
+        ),
+      ],
       GoRoute(
         path: '/profile',
         builder: (context, state) => const ProfileScreen(),
