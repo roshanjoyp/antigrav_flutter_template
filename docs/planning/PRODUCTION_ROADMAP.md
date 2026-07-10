@@ -93,7 +93,7 @@ the same abstractions.
 
 ## Phase 4 — CI/CD
 
-- [x] GitHub Actions workflow: `flutter analyze` + `dart format --set-exit-if-changed` + `flutter test` on PR/push (2026-07-10: `.github/workflows/ci.yml`, also runs `custom_lint` since `flutter analyze` doesn't cover riverpod_lint; uploads lcov coverage artifact; fixed the two pre-existing analyzer infos to get green)
+- [x] GitHub Actions workflow: `flutter analyze` + `dart format --set-exit-if-changed` + `flutter test` on PR/push (2026-07-10: `.github/workflows/ci.yml`, also runs `custom_lint` since `flutter analyze` doesn't cover riverpod_lint; uploads lcov coverage artifact; fixed the two pre-existing analyzer infos to get green. 2026-07-10 later: switched to **manual-only trigger** (`workflow_dispatch`) by owner preference — run from the Actions tab or `gh workflow run ci.yml` before releases; the iOS job is the only iOS compile-proof, so fire it at least per release)
 - [x] Build jobs: Android APK/AAB and iOS (no signing) to prove the template compiles on CI (2026-07-10: `build-android` + `build-ios` jobs, gated on the checks job)
 - [x] `build_runner` check to catch stale generated files (2026-07-10: regenerate + `git diff --exit-code` — required, not optional, because generated files are committed)
 

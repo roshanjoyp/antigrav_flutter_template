@@ -1,10 +1,16 @@
 # CI for craft_flutter_template.
 #
+# Manual-only by design: nothing runs on push or PR. Fire it on demand
+# (before a release, after risky changes) from the GitHub Actions tab
+# ("Run workflow") or with:
+#   gh workflow run ci.yml --ref <branch>
+#
 # Three jobs:
 #   checks        — codegen freshness, format, analyze, custom_lint, tests
 #   build-android — release APK + AAB (debug-key signed) to prove the
 #                   template compiles on CI
-#   build-ios     — unsigned iOS release build
+#   build-ios     — unsigned iOS release build (the only iOS
+#                   compile-proof; run it at least before each release)
 #
 # Generated files (*.g.dart) are committed, so `checks` regenerates them
 # and fails if the committed output is stale.
@@ -12,9 +18,7 @@
 name: CI
 
 on:
-  push:
-    branches: [main, dev]
-  pull_request:
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
