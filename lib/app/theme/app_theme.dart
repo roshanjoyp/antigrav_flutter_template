@@ -109,7 +109,6 @@ abstract final class AppTheme {
             borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           ),
           textStyle: const TextStyle(
-            inherit: false,
             fontSize: AppConstants.fontMd,
             fontWeight: FontWeight.w600,
           ),
@@ -125,7 +124,6 @@ abstract final class AppTheme {
             borderRadius: BorderRadius.circular(AppConstants.radiusMd),
           ),
           textStyle: const TextStyle(
-            inherit: false,
             fontSize: AppConstants.fontMd,
             fontWeight: FontWeight.w500,
           ),

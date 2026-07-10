@@ -85,6 +85,13 @@ class _ThemeGallery extends StatelessWidget {
           AppText.bodySmall('Body small — the quick brown fox.'),
           AppText.caption('Caption — the quick brown fox.'),
           const AppDivider(),
+          const TextField(
+            decoration: InputDecoration(
+              labelText: 'Display name',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          const SizedBox(height: AppConstants.spaceMd),
           AppButton(label: 'Primary action', onPressed: () {}),
           const SizedBox(height: AppConstants.spaceXs),
           Row(
