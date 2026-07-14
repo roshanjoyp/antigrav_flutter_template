@@ -122,11 +122,13 @@ void main(List<String> args) {
   // Android
   updateAndroidBuildGradle(oldAndroidPkg, newAndroidPkg);
   updateAndroidManifest(newDisplayName);
+  updateAndroidLabelBase(newDisplayName);
   updateMainActivityKt(oldAndroidPkg, newAndroidPkg);
 
   // iOS
   updateInfoPlist(newDisplayName);
   updatePbxproj(oldBundleId, newBundleId);
+  updatePbxprojDisplayName(newDisplayName);
 
   // Web + desktop
   updateWeb(newDisplayName, newDescription);

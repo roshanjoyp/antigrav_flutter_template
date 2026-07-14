@@ -68,8 +68,12 @@ const List<ReadinessItem> coreReadinessItems = [
   ReadinessItem(
     id: 'core.flavors_reviewed',
     module: SetupModule.core,
-    title: 'Flavor setup reviewed (per-env app names and IDs)',
-    why: 'Shipping with dev/staging config pointed at prod is a classic.',
+    title: 'Flavor setup reviewed (id suffixes, labels, entry points)',
+    why:
+        'The template ships dev/staging/prod flavors (.dev/.stg id '
+        'suffixes, per-flavor launcher labels, main_<env>.dart entry '
+        'points). Shipping with dev/staging config pointed at prod is '
+        'a classic — review before release.',
     docPath: 'docs/architecture/SERVICES.md',
   ),
   ReadinessItem(

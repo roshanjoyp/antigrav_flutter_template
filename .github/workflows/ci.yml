@@ -90,11 +90,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build release APK
-        run: flutter build apk --release
+      - name: Build release APK (prod flavor)
+        run: flutter build apk --release --flavor prod -t lib/main_prod.dart
 
-      - name: Build release AAB
-        run: flutter build appbundle --release
+      - name: Build release AAB (prod flavor)
+        run: flutter build appbundle --release --flavor prod -t lib/main_prod.dart
 
   build-ios:
     name: Build iOS (no codesign)
@@ -112,5 +112,5 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build iOS (unsigned)
-        run: flutter build ios --release --no-codesign
+      - name: Build iOS (unsigned, prod flavor)
+        run: flutter build ios --release --no-codesign --flavor prod -t lib/main_prod.dart

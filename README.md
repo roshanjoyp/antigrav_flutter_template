@@ -45,9 +45,14 @@ dart setup/setup.dart
 flutter pub get
 dart run build_runner build --delete-conflicting-outputs
 
-# 4. Run
-flutter run
+# 4. Run — pick an environment (dev / staging / prod)
+flutter run --flavor dev -t lib/main_dev.dart
 ```
+
+Each flavor gets its own application id (`.dev` / `.stg` suffix) and
+launcher label, so all three environments install side by side. Desktop
+and web have no flavor concept — plain `flutter run` uses the
+development default in `lib/main.dart`.
 
 Then check where you stand:
 

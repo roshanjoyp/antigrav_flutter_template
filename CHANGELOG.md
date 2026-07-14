@@ -6,6 +6,32 @@ and the project uses [semantic versioning](https://semver.org/): breaking
 template-structure changes bump the major, new modules/features the minor,
 fixes the patch. `pubspec.yaml`'s `version:` tracks the template release.
 
+## [Unreleased]
+
+### Added
+
+- **Platform flavors (dev / staging / prod).** Per-environment entry
+  points (`lib/main_dev.dart`, `main_staging.dart`, `main_prod.dart` over
+  a shared `lib/app/bootstrap.dart`), Android `productFlavors` with
+  `.dev`/`.stg` application-id suffixes and per-flavor launcher labels,
+  and iOS flavor schemes (`dev`/`staging`/`prod`) with per-flavor bundle
+  ids and display names. All three environments install side by side:
+  `flutter run --flavor dev -t lib/main_dev.dart`. The rename script
+  covers all the new value locations.
+- Generator now excludes `configurator/` (the Phase 9 web configurator
+  package) from generated projects.
+
+### Fixed
+
+- Generated zips were written empty (`archive` 4.x made
+  `ZipFileEncoder.addFile` async; the unawaited adds closed an empty
+  archive). Zipping is now synchronous and regression-tested.
+
+### Changed
+
+- **iOS minimum deployment target raised to 15.0** (was 13.0) —
+  required by `cloud_firestore` / Firebase iOS SDK 11+.
+
 ## [1.0.0] — 2026-07-10
 
 First production-ready release.

@@ -20,12 +20,30 @@ void updateAndroidBuildGradle(String oldPkg, String newPkg) {
 /// Updates android:label in AndroidManifest.xml.
 /// Note: modern Flutter projects use `namespace` in build.gradle instead of
 /// a `package` attribute here, so only the label is changed.
+///
+/// When the label is the `${appLabel}` flavor placeholder (the template's
+/// default), it is left alone — the real value lives in build.gradle.kts
+/// and is updated by [updateAndroidLabelBase].
 void updateAndroidManifest(String newDisplayName) {
   updateFile('android/app/src/main/AndroidManifest.xml', (content) {
-    // Replace any quoted value for android:label
+    return content.replaceAllMapped(RegExp(r'android:label="([^"]*)"'), (m) {
+      if (m.group(1)!.startsWith(r'${')) return m.group(0)!;
+      return 'android:label="$newDisplayName"';
+    });
+  });
+}
+
+/// Updates the `appLabelBase` value in build.gradle.kts — the base
+/// launcher label that the dev/staging flavors suffix.
+void updateAndroidLabelBase(String newDisplayName) {
+  final ktsPath = 'android/app/build.gradle.kts';
+  final groovyPath = 'android/app/build.gradle';
+  final path = File(ktsPath).existsSync() ? ktsPath : groovyPath;
+
+  updateFile(path, (content) {
     return content.replaceAllMapped(
-      RegExp(r'android:label="[^"]*"'),
-      (_) => 'android:label="$newDisplayName"',
+      RegExp(r'val appLabelBase = "[^"]*"'),
+      (_) => 'val appLabelBase = "$newDisplayName"',
     );
   });
 }
@@ -94,13 +112,20 @@ void updateMainActivityKt(String oldPkg, String newPkg) {
 }
 
 /// Updates CFBundleDisplayName and CFBundleName in Info.plist.
+///
+/// A CFBundleDisplayName of `$(APP_DISPLAY_NAME)` (the template's flavor
+/// setup) is left alone — the per-flavor values live in project.pbxproj
+/// and are updated by [updatePbxprojDisplayName].
 void updateInfoPlist(String newDisplayName) {
   updateFile('ios/Runner/Info.plist', (content) {
     var updated = content;
-    // Replace CFBundleDisplayName value (handles literal strings or variables)
+    // Replace CFBundleDisplayName value unless it is a build-setting
+    // variable reference.
     updated = updated.replaceAllMapped(
-      RegExp(r'(<key>CFBundleDisplayName</key>\s*<string>)[^<]*(</string>)'),
-      (m) => '${m.group(1)}$newDisplayName${m.group(2)}',
+      RegExp(r'(<key>CFBundleDisplayName</key>\s*<string>)([^<]*)(</string>)'),
+      (m) => m.group(2)!.startsWith(r'$(')
+          ? m.group(0)!
+          : '${m.group(1)}$newDisplayName${m.group(3)}',
     );
     // Replace CFBundleName value
     updated = updated.replaceAllMapped(
@@ -114,9 +139,31 @@ void updateInfoPlist(String newDisplayName) {
 /// Updates PRODUCT_BUNDLE_IDENTIFIER in project.pbxproj.
 /// Replaces all occurrences (Debug, Release, test targets) so sub-targets
 /// like `com.old.app.RunnerTests` become `com.new.app.RunnerTests` correctly.
+/// Flavor-suffixed ids (`com.old.app.dev`) rename the same way.
 void updatePbxproj(String oldBundleId, String newBundleId) {
   updateFile('ios/Runner.xcodeproj/project.pbxproj', (content) {
     // Simple string replacement covers all configurations and targets
     return content.replaceAll(oldBundleId, newBundleId);
+  });
+}
+
+/// Updates every `APP_DISPLAY_NAME` build setting in project.pbxproj,
+/// preserving the flavor suffix (` Dev` / ` Staging`) each configuration
+/// appends to the base name.
+void updatePbxprojDisplayName(String newDisplayName) {
+  const flavorSuffixes = [' Dev', ' Staging'];
+  updateFile('ios/Runner.xcodeproj/project.pbxproj', (content) {
+    return content.replaceAllMapped(RegExp(r'APP_DISPLAY_NAME = "([^"]*)";'), (
+      m,
+    ) {
+      var suffix = '';
+      for (final candidate in flavorSuffixes) {
+        if (m.group(1)!.endsWith(candidate)) {
+          suffix = candidate;
+          break;
+        }
+      }
+      return 'APP_DISPLAY_NAME = "$newDisplayName$suffix";';
+    });
   });
 }

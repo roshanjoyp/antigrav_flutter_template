@@ -5,6 +5,10 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// Base launcher label; the dev/staging flavors append their own suffix.
+// The rename script (setup/setup.dart) rewrites this value.
+val appLabelBase = "craft_flutter_template"
+
 android {
     namespace = "com.craft.craft_flutter_template"
     compileSdk = flutter.compileSdkVersion
@@ -28,6 +32,28 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+    }
+
+    // One flavor per AppEnv (lib/core/config/app_env.dart). Suffixed ids
+    // let dev/staging/prod installs coexist on one device. Pair each with
+    // its Dart entry point:
+    //   flutter run --flavor dev --target lib/main_dev.dart
+    flavorDimensions += "env"
+    productFlavors {
+        create("dev") {
+            dimension = "env"
+            applicationIdSuffix = ".dev"
+            manifestPlaceholders["appLabel"] = "$appLabelBase Dev"
+        }
+        create("staging") {
+            dimension = "env"
+            applicationIdSuffix = ".stg"
+            manifestPlaceholders["appLabel"] = "$appLabelBase Staging"
+        }
+        create("prod") {
+            dimension = "env"
+            manifestPlaceholders["appLabel"] = appLabelBase
+        }
     }
 
     buildTypes {

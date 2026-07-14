@@ -191,8 +191,16 @@ Setup notes:
 
 `FirebaseConfig` resolves the options file from the active `AppEnv` at
 startup — no extra wiring needed. To build against staging or production,
-initialize the corresponding flavor (see the entry-point notes in
-`lib/main.dart`).
+run the matching flavor + entry point:
+
+```sh
+flutter run --flavor staging --target lib/main_staging.dart
+flutter build apk --flavor prod --target lib/main_prod.dart
+```
+
+Each flavor has its own application/bundle id suffix (`.dev` / `.stg`),
+so register those ids in the matching Firebase project when running
+`flutterfire configure` per environment.
 
 ## Committing credentials
 
