@@ -47,7 +47,12 @@ Three voices (mockup uses system stacks; pick bundled fonts for Flutter):
 
 ## Layout & components
 
-- Max content width 1120px; section padding clamp(90–150px).
+- Max content width 1120px; section padding clamp(110–190px). Breathable
+  pass (2026-07-14, v0.4): whitespace is part of the identity — generous
+  vertical rhythm everywhere, hierarchy through space before size. Key
+  values: config grid gap clamp(48–88px), module rows 28px vertical
+  padding, preview card 30px inner padding, body line-height 1.7
+  (secondary copy 1.75–1.8), nav height 80px.
 - Section heads centered: mono number (`.01`) → spaced-caps title → muted lede.
 - Metrics: 4-cell hairline-divided row, tabular numerals, tiny caps labels.
 - Module list: hairline rows, whole row tappable. **Unchecked rows sit at 38%
@@ -69,3 +74,13 @@ file tree (+ marked additions), deduped pubspec dependency list, and setup
 steps tagged `doctor` (machine-verified) vs `guided` (console work + confirm).
 App name + org derive the package name and zip name as you type. This preview
 is the product's core demo moment — keep it first-class.
+
+The identity block also carries a full-width **description** field (added
+2026-07-14): the generator's config schema requires a 10–180 char pubspec
+description, so the form must collect it. Module ids in the built app come
+from `generator/lib/src/module_registry.dart` (firebase, revenuecat, push,
+onboarding), not the aspirational seven in this mockup; the mockup's theme
+preset row is likewise not in the app until the generator supports presets.
+
+The Flutter implementation lives at `configurator/` (Phase 9); a drift-guard
+test there keeps its catalogue in lock-step with the generator registry.

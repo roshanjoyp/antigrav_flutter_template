@@ -4,7 +4,6 @@ library;
 
 import 'dart:io';
 
-import 'package:archive/archive_io.dart';
 import 'package:glob/glob.dart';
 import 'package:path/path.dart' as p;
 
@@ -162,14 +161,7 @@ GenerateResult generate(
     }
 
     // 7. Zip (denylist re-applied: gates create .dart_tool etc.).
-    final encoder = ZipFileEncoder()..create(outPath);
-    for (final entity in staging.listSync(recursive: true)) {
-      if (entity is! File) continue;
-      final rel = p.relative(entity.path, from: staging.path);
-      if (isDenied(rel)) continue;
-      encoder.addFile(entity, rel);
-    }
-    encoder.closeSync();
+    writeProjectZip(staging, outPath);
     log.add('✓ wrote $outPath');
 
     return GenerateResult(

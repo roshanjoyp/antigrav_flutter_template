@@ -24,7 +24,7 @@
     color: var(--fg);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    line-height: 1.65;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
   .disp { font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif; }
@@ -36,7 +36,7 @@
     html { scroll-behavior: auto; }
   }
 
-  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 28px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 32px; }
 
   /* Micro-label — tiny spaced caps, the refs' quietest voice */
   .micro {
@@ -48,12 +48,12 @@
   }
 
   /* Section shell — centered head with .0n number, TURA-style */
-  section { padding: clamp(90px, 12vw, 150px) 0 0; }
-  .sec-head { text-align: center; margin-bottom: clamp(48px, 7vw, 80px); }
+  section { padding: clamp(110px, 14vw, 190px) 0 0; }
+  .sec-head { text-align: center; margin-bottom: clamp(64px, 8vw, 104px); }
   .sec-head .num {
     font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
     font-size: 0.6875rem; color: var(--muted); letter-spacing: 0.2em;
-    display: block; margin-bottom: 18px;
+    display: block; margin-bottom: 22px;
   }
   .sec-head h2 {
     font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
@@ -64,8 +64,8 @@
     text-wrap: balance;
   }
   .sec-head .lede {
-    color: var(--muted); max-width: 52ch; margin: 18px auto 0;
-    font-size: 0.9375rem;
+    color: var(--muted); max-width: 52ch; margin: 24px auto 0;
+    font-size: 0.9375rem; line-height: 1.8;
   }
 
   /* Buttons — small rectangle, spaced caps, sharp */
@@ -91,7 +91,7 @@
     backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--line);
   }
-  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 80px; }
   .logo {
     font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
     font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em;
@@ -111,20 +111,20 @@
 
   /* ============ Hero — the TURA stack ============ */
   header.hero {
-    min-height: calc(100svh - 72px);
+    min-height: calc(100svh - 80px);
     display: grid; place-items: center;
     position: relative;
     text-align: center;
     padding: 60px 0;
   }
-  .hero-stack .kicker { margin-bottom: 34px; display: block; }
+  .hero-stack .kicker { margin-bottom: 42px; display: block; }
   .hero-stack h1 {
     font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
     font-weight: 700;
     font-size: clamp(3.2rem, 12vw, 8.5rem);
     letter-spacing: 0.28em; padding-left: 0.28em;
     line-height: 1;
-    margin: 0 0 34px;
+    margin: 0 0 42px;
     text-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
   }
   .hero-stack .acro {
@@ -136,7 +136,8 @@
   .hero-stack .acro b { color: var(--fg); font-weight: 700; }
   .hero-stack .line {
     color: var(--muted); font-size: 0.9375rem; max-width: 46ch;
-    margin: 26px auto 44px;
+    line-height: 1.8;
+    margin: 32px auto 56px;
   }
   .scrolltag {
     position: absolute; right: 34px; bottom: 48px;
@@ -152,7 +153,7 @@
     border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
   }
   .metrics > div {
-    text-align: center; padding: 34px 18px 30px;
+    text-align: center; padding: 46px 20px 42px;
     border-left: 1px solid var(--line);
   }
   .metrics > div:first-child { border-left: none; }
@@ -176,25 +177,25 @@
   /* ============ Configurator ============ */
   .config-grid {
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
-    gap: clamp(32px, 5vw, 64px);
+    gap: clamp(48px, 6vw, 88px);
     align-items: start;
   }
   @media (max-width: 960px) { .config-grid { grid-template-columns: 1fr; } }
 
   /* Identity — underline inputs, like the reference contact form */
-  .identity { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 16px; }
+  .identity { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-bottom: 32px; }
   @media (max-width: 560px) { .identity { grid-template-columns: 1fr; } }
   .field label {
     display: block;
     font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
     font-size: 0.5625rem; letter-spacing: 0.32em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 4px;
+    color: var(--muted); margin-bottom: 8px;
   }
   .field input {
     width: 100%;
     background: transparent; color: var(--fg);
     border: none; border-bottom: 1px solid var(--line);
-    padding: 8px 0 10px; font-size: 0.9375rem;
+    padding: 10px 0 12px; font-size: 0.9375rem;
     font-family: inherit;
   }
   .field input:focus { border-bottom-color: var(--fg); outline: none; }
@@ -210,11 +211,11 @@
     font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
     font-size: 0.5625rem; letter-spacing: 0.34em; text-transform: uppercase;
     color: var(--muted);
-    margin: 44px 0 0; padding-bottom: 12px;
+    margin: 60px 0 0; padding-bottom: 16px;
   }
   .mod {
-    display: grid; grid-template-columns: 18px 1fr; gap: 16px;
-    padding: 20px 0;
+    display: grid; grid-template-columns: 18px 1fr; gap: 20px;
+    padding: 28px 0;
     border-top: 1px solid var(--line);
     cursor: pointer;
     transition: opacity 0.18s ease;
@@ -238,16 +239,16 @@
     font-weight: 500; font-size: 0.8125rem;
     letter-spacing: 0.18em; text-transform: uppercase;
   }
-  .mod .desc { color: var(--muted); font-size: 0.875rem; margin-top: 4px; display: block; }
+  .mod .desc { color: var(--muted); font-size: 0.875rem; line-height: 1.7; margin-top: 7px; display: block; }
   .mod .deps {
     font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
-    font-size: 0.625rem; color: var(--muted); margin-top: 10px; display: block;
+    font-size: 0.625rem; color: var(--muted); margin-top: 14px; display: block;
     letter-spacing: 0.02em;
   }
-  .mod .deps span { border: 1px solid var(--line); padding: 2px 7px; margin-right: 6px; display: inline-block; margin-bottom: 4px; }
+  .mod .deps span { border: 1px solid var(--line); padding: 3px 9px; margin-right: 8px; display: inline-block; margin-bottom: 6px; }
 
   /* Theme preset — square radios */
-  .presets { display: flex; gap: 32px; padding: 22px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .presets { display: flex; gap: 40px; padding: 30px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
   .presets label {
     display: flex; gap: 10px; align-items: center; cursor: pointer;
     font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
@@ -268,39 +269,39 @@
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
   }
   @media (max-width: 960px) { .preview { position: static; } }
-  .preview-head { padding: 20px 24px 0; }
+  .preview-head { padding: 28px 30px 0; }
   .preview-head .file {
     font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
     font-size: 0.8125rem; font-weight: 700;
   }
-  .preview-head .sum { font-size: 0.6875rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 3px; }
-  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-top: 18px; }
+  .preview-head .sum { font-size: 0.6875rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 5px; }
+  .tabs { display: flex; gap: 8px; border-bottom: 1px solid var(--line); margin-top: 24px; }
   .tabs button {
     background: none; border: none; cursor: pointer;
     font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
     font-size: 0.5625rem; letter-spacing: 0.26em; text-transform: uppercase;
     color: var(--muted);
-    padding: 10px 12px;
+    padding: 12px 14px;
     border-bottom: 1px solid transparent;
     margin-bottom: -1px;
   }
   .tabs button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--fg); }
   .pane {
-    padding: 20px 24px 24px;
+    padding: 26px 30px 30px;
     min-height: 360px; max-height: 420px; overflow-y: auto;
     background: var(--panel-deep);
   }
   .pane pre {
     margin: 0; font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
-    font-size: 0.71875rem; line-height: 1.8;
+    font-size: 0.71875rem; line-height: 1.95;
     overflow-x: auto;
   }
   .pane .add { color: var(--fg); font-weight: 700; }
   .pane .dim { color: var(--muted); }
   .steps { list-style: none; margin: 0; padding: 0; }
   .steps li {
-    display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: baseline;
-    padding: 11px 0; border-bottom: 1px solid var(--line);
+    display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: baseline;
+    padding: 14px 0; border-bottom: 1px solid var(--line);
     font-size: 0.8125rem;
   }
   .steps li:last-child { border-bottom: none; }
@@ -314,8 +315,8 @@
   .steps .who { color: var(--muted); display: block; font-size: 0.65rem; margin-top: 2px; }
   .preview-foot {
     border-top: 1px solid var(--line);
-    padding: 20px 24px;
-    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    padding: 24px 30px;
+    display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
   }
   .preview-foot .note {
     font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -331,34 +332,34 @@
   /* ============ Process — the light band ============ */
   .band {
     background: var(--band-bg); color: var(--band-fg);
-    margin-top: clamp(90px, 12vw, 150px);
-    padding: clamp(80px, 10vw, 120px) 0;
+    margin-top: clamp(110px, 14vw, 190px);
+    padding: clamp(100px, 12vw, 150px) 0;
   }
   .band .sec-head .num, .band .sec-head .lede { color: var(--band-muted); }
   .band .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
   .band .how > div {
-    text-align: center; padding: 10px 34px;
+    text-align: center; padding: 10px 44px;
     border-left: 1px solid var(--band-line);
   }
   .band .how > div:first-child { border-left: none; }
   .band .how .n {
     font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
     font-size: 0.6875rem; color: var(--band-muted); letter-spacing: 0.2em;
-    display: block; margin-bottom: 20px;
+    display: block; margin-bottom: 24px;
   }
   .band .how h3 {
     font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
     font-weight: 500; font-size: 0.8125rem;
     letter-spacing: 0.3em; text-transform: uppercase;
-    margin: 0 0 14px; padding-left: 0.3em;
+    margin: 0 0 18px; padding-left: 0.3em;
   }
-  .band .how p { color: var(--band-muted); font-size: 0.875rem; margin: 0; }
+  .band .how p { color: var(--band-muted); font-size: 0.875rem; line-height: 1.75; margin: 0; }
   .band .how code {
     font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
     font-size: 0.85em; border: 1px solid var(--band-line); padding: 1px 5px;
   }
   @media (max-width: 800px) {
-    .band .how { grid-template-columns: 1fr; gap: 44px; }
+    .band .how { grid-template-columns: 1fr; gap: 56px; }
     .band .how > div { border-left: none; }
   }
 
@@ -369,7 +370,7 @@
   }
   .inside > div {
     border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    padding: 34px 30px 40px;
+    padding: 46px 38px 52px;
     transition: opacity 0.18s ease;
   }
   @media (hover: hover) { .inside:hover > div:not(:hover) { opacity: 0.4; } }
@@ -377,17 +378,17 @@
     font-family: Futura, "Century Gothic", "Trebuchet MS", sans-serif;
     font-weight: 500; font-size: 0.75rem;
     letter-spacing: 0.26em; text-transform: uppercase;
-    margin: 0 0 12px;
+    margin: 0 0 16px;
   }
-  .inside p { color: var(--muted); font-size: 0.875rem; margin: 0; }
+  .inside p { color: var(--muted); font-size: 0.875rem; line-height: 1.75; margin: 0; }
   .inside code { font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.85em; }
   @media (max-width: 800px) { .inside { grid-template-columns: 1fr; } }
 
   /* ============ Bottom CTA + footer ============ */
-  .bottom-cta { text-align: center; padding-bottom: clamp(90px, 12vw, 150px); }
+  .bottom-cta { text-align: center; padding-bottom: clamp(110px, 14vw, 190px); }
   footer {
     border-top: 1px solid var(--line);
-    padding: 44px 0 52px;
+    padding: 56px 0 64px;
     text-align: center;
   }
   footer .micro { display: block; }
@@ -448,6 +449,10 @@
             <label for="orgName">Organization</label>
             <input id="orgName" type="text" value="com.example" autocomplete="off" spellcheck="false">
           </div>
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="descText">Description — one line for pubspec.yaml</label>
+            <input id="descText" type="text" value="A production-grade Flutter app built on CRAFT." autocomplete="off" spellcheck="false">
+          </div>
           <div class="pkg-preview mono">package: <b id="pkgOut">com.example.my_app</b></div>
         </div>
 
@@ -477,7 +482,7 @@
         <div class="preview-foot">
           <button class="btn" id="downloadBtn">Download</button>
           <span class="note">config.json — the generator's exact input</span>
-          <span class="toast" id="toast">// mockup — generator lands in Phase 8</span>
+          <span class="toast" id="toast">// config.json saved — dart run craft_generator:generate</span>
         </div>
       </aside>
     </div>
@@ -546,7 +551,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="micro">Craft — design study v0.3</span>
+    <span class="micro">Craft — design study v0.4</span>
     <span class="micro">Crafted by hand · generated by machine</span>
   </div>
 </footer>
