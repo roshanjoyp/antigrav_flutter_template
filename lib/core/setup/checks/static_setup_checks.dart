@@ -14,6 +14,7 @@ import 'dart:io';
 
 import 'package:craft_flutter_template/core/setup/checks/check_result.dart';
 import 'package:craft_flutter_template/core/setup/checks/firebase_static_checks.dart'; // MODULE(firebase)
+import 'package:craft_flutter_template/core/setup/checks/network_static_checks.dart';
 import 'package:craft_flutter_template/core/setup/checks/project_inspector.dart';
 import 'package:craft_flutter_template/core/setup/checks/revenuecat_static_checks.dart'; // MODULE(revenuecat)
 import 'package:craft_flutter_template/core/setup/setup_manifest.dart';
@@ -79,6 +80,7 @@ final Map<String, DoctorCheck> staticChecks = <String, DoctorCheck>{
   'core.rename': _renameCheck,
   'core.pub_get': _pubGetCheck,
   'core.build_runner_fresh': _buildRunnerFreshCheck,
+  ...networkStaticChecks,
   ...firebaseStaticChecks, // MODULE(firebase)
   ...revenuecatStaticChecks, // MODULE(revenuecat)
 };

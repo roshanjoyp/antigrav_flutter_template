@@ -40,11 +40,15 @@ Map<SetupModule, bool> _detectEnabledModules(Directory root) {
         'lib/core/config/revenuecat/revenuecat_config.dart',
       ) ??
       true;
+  final bool network =
+      configEnabledFlag(root, 'lib/core/config/network/network_config.dart') ??
+      true;
   return <SetupModule, bool>{
     SetupModule.core: true,
     SetupModule.firebase: firebase,
     SetupModule.push: firebase,
     SetupModule.revenuecat: revenuecat,
+    SetupModule.network: network,
   };
 }
 

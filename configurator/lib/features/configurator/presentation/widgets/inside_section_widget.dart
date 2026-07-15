@@ -37,8 +37,8 @@ class _InsideSectionWidgetState extends State<InsideSectionWidget> {
     (
       'Service layer',
       'Logging, analytics, crash reporting, storage, permissions, '
-          'connectivity — behind interfaces with stub and Firebase '
-          'implementations.',
+          'connectivity, HTTP networking — behind interfaces with stub '
+          'and real implementations, swappable per backend.',
     ),
     (
       'Tests that exist',

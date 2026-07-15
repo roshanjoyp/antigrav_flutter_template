@@ -32,6 +32,11 @@ enum SetupModule {
   /// FCM push notifications. Requires the Firebase module; enabled
   /// together with `FirebaseConfig.enabled`.
   push,
+
+  /// REST/HTTP network layer for the app's own backend. Part of core
+  /// (always shipped), but gated by `NetworkConfig.enabled` like the
+  /// optional modules, so its steps are skipped while the stub is bound.
+  network,
 }
 
 /// Human-readable names for [SetupModule] values, for section headers
@@ -44,6 +49,7 @@ extension SetupModuleDisplay on SetupModule {
     SetupModule.firebase => 'Firebase',
     SetupModule.revenuecat => 'RevenueCat',
     SetupModule.push => 'Push notifications',
+    SetupModule.network => 'Network / API',
   };
 }
 

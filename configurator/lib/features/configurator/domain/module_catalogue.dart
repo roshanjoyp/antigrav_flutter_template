@@ -128,6 +128,7 @@ const List<String> kBaseDeps = [
   'freezed_annotation',
   'json_annotation',
   'flutter_secure_storage',
+  'dio',
 ];
 
 /// File-tree lines every generated project contains (shown dimmed in the

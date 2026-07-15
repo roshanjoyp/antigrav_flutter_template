@@ -1,5 +1,6 @@
 import 'package:craft_flutter_template/core/setup/manifests/core_manifest.dart';
 import 'package:craft_flutter_template/core/setup/manifests/firebase_manifest.dart'; // MODULE(firebase)
+import 'package:craft_flutter_template/core/setup/manifests/network_manifest.dart';
 import 'package:craft_flutter_template/core/setup/manifests/push_manifest.dart'; // MODULE(push)
 import 'package:craft_flutter_template/core/setup/manifests/revenuecat_manifest.dart'; // MODULE(revenuecat)
 import 'package:craft_flutter_template/core/setup/readiness_item.dart';
@@ -21,6 +22,7 @@ class SetupManifest {
   /// Every declared setup step across all modules, in module order.
   static const List<SetupStep> allSteps = [
     ...coreSetupSteps,
+    ...networkSetupSteps,
     ...firebaseSetupSteps, // MODULE(firebase)
     ...revenuecatSetupSteps, // MODULE(revenuecat)
     ...pushSetupSteps, // MODULE(push)

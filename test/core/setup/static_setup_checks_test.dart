@@ -120,6 +120,25 @@ void main() {
   });
   // MODULE(firebase): end
 
+  group('network.base_url', () {
+    const String path = 'lib/core/config/network/network_config.dart';
+
+    test('fails while the placeholder marker is in place', () {
+      _write(root, path, '// NETWORK_BASE_URL_PLACEHOLDER\n');
+      expect(staticChecks['network.base_url']!(root).passed, isFalse);
+    });
+
+    test('fails while example.com base URLs remain', () {
+      _write(root, path, "const u = 'https://api-dev.example.com';\n");
+      expect(staticChecks['network.base_url']!(root).passed, isFalse);
+    });
+
+    test('passes with real base URLs and no marker', () {
+      _write(root, path, "const u = 'https://api.myapp.io';\n");
+      expect(staticChecks['network.base_url']!(root).passed, isTrue);
+    });
+  });
+
   // MODULE(revenuecat): begin
   group('revenuecat.keys', () {
     const String path = 'lib/core/config/revenuecat/revenuecat_config.dart';

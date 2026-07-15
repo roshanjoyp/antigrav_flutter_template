@@ -25,7 +25,7 @@ setup** — then you flip on Firebase, payments, or push when you're ready.
 | Push module | FCM tokens, foreground/background handlers, notification-tap deep links |
 | Verification | `tool/doctor.dart` static checks, debug-only Setup Status screen (runtime checks), git-tracked production-readiness checklist |
 | Docs | `guide/` walkthroughs + full architecture/setup reference in `docs/` |
-| Tests | 178 unit/widget/golden tests with reusable override patterns |
+| Tests | 181 unit/widget/golden tests with reusable override patterns |
 
 Every module ships **disabled** behind a single config switch
 (`FirebaseConfig.enabled`, `RevenueCatConfig.enabled`) with stub
@@ -75,6 +75,7 @@ Each integration is a documented, verifiable flip:
 | Firebase (auth, Firestore, Crashlytics, Analytics) | `FirebaseConfig.enabled` | [docs/setup/FIREBASE_SETUP.md](docs/setup/FIREBASE_SETUP.md) |
 | RevenueCat paywall | `RevenueCatConfig.enabled` | [docs/setup/REVENUECAT_SETUP.md](docs/setup/REVENUECAT_SETUP.md) |
 | Push notifications (FCM) | rides on the Firebase switch | [docs/setup/PUSH_NOTIFICATIONS_SETUP.md](docs/setup/PUSH_NOTIFICATIONS_SETUP.md) |
+| REST/HTTP network layer (core, ships with every config) | `NetworkConfig.enabled` | [lib/core/services/network_service/README.md](lib/core/services/network_service/README.md) |
 
 The doctor and Setup Status screen know about every step in these guides
 — nothing depends on you remembering console clicks.

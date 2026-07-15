@@ -8,7 +8,7 @@
        everywhere in this head block (canonical, og:url, og:image, JSON-LD),
        and drop a real 1200x630 og-image.png next to this file. -->
   <title>CRAFT — Clean Riverpod Architecture Flutter Template</title>
-  <meta name="description" content="Production-grade Flutter starter template: clean architecture, Riverpod codegen, Firebase auth, RevenueCat paywall, push notifications, 178 tests at 81% coverage, and a doctor CLI that verifies your setup. Configure your modules and download only what you chose.">
+  <meta name="description" content="Production-grade Flutter starter template: clean architecture, Riverpod codegen, Firebase auth, RevenueCat paywall, push notifications, 181 tests at 81% coverage, and a doctor CLI that verifies your setup. Configure your modules and download only what you chose.">
   <link rel="canonical" href="https://craft.example.com/">
   <meta name="theme-color" content="#17181c">
 
@@ -32,7 +32,7 @@
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "iOS, Android, Web, macOS, Windows, Linux",
     "url": "https://craft.example.com/",
-    "description": "A configurable production-grade Flutter starter template. Clean architecture per feature, Riverpod code generation, Firebase auth, RevenueCat subscriptions, FCM push, onboarding — composed per order, with 178 committed tests and a setup-verifying doctor CLI.",
+    "description": "A configurable production-grade Flutter starter template. Clean architecture per feature, Riverpod code generation, Firebase auth, RevenueCat subscriptions, FCM push, onboarding — composed per order, with 181 committed tests and a setup-verifying doctor CLI.",
     "softwareHelp": {
       "@type": "CreativeWork",
       "name": "CRAFT guide and setup documentation"
@@ -411,7 +411,7 @@
 <div class="wrap">
   <div class="metrics" role="list" aria-label="Template numbers">
     <div role="listitem"><span class="num">04</span><span class="lbl">Optional modules</span></div>
-    <div role="listitem"><span class="num">178</span><span class="lbl">Committed tests · 81% coverage</span></div>
+    <div role="listitem"><span class="num">181</span><span class="lbl">Committed tests · 81% coverage</span></div>
     <div role="listitem"><span class="num">12</span><span class="lbl">Module combos compile-verified</span></div>
     <div role="listitem"><span class="num">01</span><span class="lbl">Command to running app</span></div>
   </div>
@@ -448,7 +448,7 @@
       <p class="them"><span class="cmp-mobile-lbl">The usual template</span>"Well
       tested" as a listing bullet; no <code class="mono">test/</code> directory
       in the zip. You inherit refactoring risk on day one.</p>
-      <p class="us"><span class="cmp-mobile-lbl">Craft</span><b>178 unit, widget,
+      <p class="us"><span class="cmp-mobile-lbl">Craft</span><b>181 unit, widget,
       and golden tests at 81% line coverage</b>, committed and written as the
       pattern to copy for your own features — provider overrides included.</p>
     </div>
@@ -513,9 +513,11 @@
         <span class="desc">Clean architecture app shell: Riverpod codegen, go_router
         with startup redirect, Material 3 dark + light themes with golden tests,
         service layer (logging, connectivity, permissions, secure storage),
+        stub-first HTTP client with flavor-based base URLs — swap or re-point
+        your backend by rebinding one provider —
         <span class="mono">Result</span>-typed error contract, doctor CLI,
         readiness checklist, and dev/staging/prod build flavors.</span>
-        <span class="deps"><span>flutter_riverpod</span><span>go_router</span><span>freezed</span><span>flutter_secure_storage</span></span>
+        <span class="deps"><span>flutter_riverpod</span><span>go_router</span><span>freezed</span><span>flutter_secure_storage</span><span>dio</span></span>
       </span>
     </div>
 
@@ -676,8 +678,8 @@
       <div><h3>Clean architecture</h3><p>Presentation, domain, and data layers in every feature. One fully worked Firestore example traces the whole flow, layer by layer.</p></div>
       <div><h3>Riverpod + go_router</h3><p>Code-generated providers and typed routing. No flavor menu of state managers — one good way, documented.</p></div>
       <div><h3>Result-typed errors</h3><p>Every repository returns <code>Result&lt;T&gt;</code>. Failures are values, not surprises three layers up.</p></div>
-      <div><h3>Service layer</h3><p>Logging, analytics, crash reporting, storage, permissions, connectivity — behind interfaces with stub and real implementations.</p></div>
-      <div><h3>Tests that exist</h3><p>178 tests, 81% line coverage: unit, widget, provider, and golden tests, written as the pattern for your own features.</p></div>
+      <div><h3>Service layer</h3><p>Logging, analytics, crash reporting, storage, permissions, connectivity, HTTP networking — behind interfaces with stub and real implementations, swappable per backend.</p></div>
+      <div><h3>Tests that exist</h3><p>181 tests, 81% line coverage: unit, widget, provider, and golden tests, written as the pattern for your own features.</p></div>
       <div><h3>Guide + doctor</h3><p>Buyer-facing walkthroughs with no chapters for modules you didn't take, plus a setup doctor and a production-readiness checklist.</p></div>
     </div>
   </div>
