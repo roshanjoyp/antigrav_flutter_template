@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:craft_flutter_template/app/app.dart';
 import 'package:craft_flutter_template/app/config/firebase_overrides.dart'; // MODULE(firebase)
+import 'package:craft_flutter_template/app/config/network_overrides.dart';
 import 'package:craft_flutter_template/app/config/onboarding_overrides.dart'; // MODULE(onboarding)
 import 'package:craft_flutter_template/app/config/revenuecat_overrides.dart'; // MODULE(revenuecat)
 import 'package:craft_flutter_template/core/core.dart';
@@ -29,6 +30,7 @@ Future<void> bootstrap(AppEnv env) async {
   // lib/app/config/revenuecat_overrides.dart).
   final container = ProviderContainer(
     overrides: [
+      if (NetworkConfig.enabled) ...networkServiceOverrides(),
       // MODULE(firebase): begin
       if (FirebaseConfig.enabled) ...firebaseServiceOverrides(),
       // MODULE(firebase): end

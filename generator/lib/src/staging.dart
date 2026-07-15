@@ -18,6 +18,7 @@ const Set<String> kDenyDirNames = {
   '.claude',
   'generator',
   'configurator',
+  'landing',
   'Pods',
   '.gradle',
   'ephemeral',

@@ -96,6 +96,18 @@ abstract final class AppConstants {
   /// implementations, so loading states are visible during development.
   static const Duration durationStubNetwork = Duration(milliseconds: 1000);
 
+  /// 10s — maximum time to establish a connection to the API host.
+  /// Used by [NetworkService] HTTP client configuration.
+  static const Duration durationNetworkConnectTimeout = Duration(seconds: 10);
+
+  /// 30s — maximum time to wait for a response once connected.
+  /// Used by [NetworkService] HTTP client configuration.
+  static const Duration durationNetworkReceiveTimeout = Duration(seconds: 30);
+
+  /// 30s — maximum time to send a request body once connected.
+  /// Used by [NetworkService] HTTP client configuration.
+  static const Duration durationNetworkSendTimeout = Duration(seconds: 30);
+
   // ---------------------------------------------------------------------------
   // 4. Font Sizes
   // ---------------------------------------------------------------------------

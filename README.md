@@ -19,13 +19,13 @@ setup** — then you flip on Firebase, payments, or push when you're ready.
 | State | Riverpod 3 with code generation, provider-override pattern for swapping stub ↔ real implementations |
 | Navigation | go_router with startup redirect + onboarding flow wired in |
 | Theming | Design tokens (`AppColors`, `AppConstants`), Material 3 dark + light themes, themed core widget set, golden tests |
-| Services | Logging, crash reporting, analytics, connectivity, permissions, secure storage, push — interface + stub + real impl each |
+| Services | Logging, crash reporting, analytics, connectivity, permissions, secure storage, push, HTTP network client — interface + stub + real impl each |
 | Firebase module | Auth (email / Google / Apple / anonymous), Firestore example feature, Crashlytics, Analytics; flavor-aware dev/staging/prod options |
 | Paywall module | RevenueCat subscriptions behind an entitlement, stub-first so the paywall screen works offline |
 | Push module | FCM tokens, foreground/background handlers, notification-tap deep links |
 | Verification | `tool/doctor.dart` static checks, debug-only Setup Status screen (runtime checks), git-tracked production-readiness checklist |
 | Docs | `guide/` walkthroughs + full architecture/setup reference in `docs/` |
-| Tests | 168 unit/widget/golden tests with reusable override patterns |
+| Tests | 178 unit/widget/golden tests with reusable override patterns |
 
 Every module ships **disabled** behind a single config switch
 (`FirebaseConfig.enabled`, `RevenueCatConfig.enabled`) with stub

@@ -90,6 +90,21 @@ final value = await ref.read(storageServiceProvider).read(AppConstants.storageKe
 await ref.read(storageServiceProvider).write(AppConstants.storageKeyTheme, 'dark');
 ```
 
+## 9. NetworkService
+**Location**: `lib/core/services/network_service`
+**Usage**: HTTP calls to the app's own REST backend — the single seam between repositories and the wire, so the backend can be swapped or re-pointed without touching call sites. Paths are relative to the flavor-resolved base URL in `NetworkConfig` (`lib/core/config/network/network_config.dart`).
+**Implementations**: `DebugNetworkService` (default — logs the request, returns an empty 200) · `DioNetworkService` (real, applied by `bootstrap.dart` via `networkServiceOverrides()` when `NetworkConfig.enabled`; optional `tokenProvider` attaches `Authorization: Bearer` headers).
+
+All methods return `Result<NetworkResponse>` and never throw; failures carry `network/...` codes (`network/timeout`, `network/no-connection`, `network/http-<status>`, ...) mapped in `dio_network_error_mapper.dart`.
+
+```dart
+final result = await ref.read(networkServiceProvider).get('/v1/profile'); // Result<NetworkResponse>
+result.fold(
+  onSuccess: (response) => ProfileModel.fromJson(response.data! as Map<String, dynamic>),
+  onFailure: (e) => e.code == 'network/timeout' ? retry() : showError(e),
+);
+```
+
 ## Feature Repositories (Data Layer)
 **Location**: `lib/features/*`
 

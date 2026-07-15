@@ -134,6 +134,8 @@ would require renaming all public identifiers, breaking all consumers:
 - `lib/core/widgets/app_text.dart` — typography variant definitions
 - `docs/design/configurator_mockup.html` — self-contained design reference
   (single-file HTML mockup by design; not shipped code)
+- `landing/index.html` — deployed static landing page (single-file by design:
+  zero external requests for SEO/Core Web Vitals; not part of the Flutter app)
 
 No other files may exceed 200 lines without explicit developer approval and
 documentation here.

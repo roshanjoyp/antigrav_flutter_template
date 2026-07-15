@@ -21,6 +21,7 @@ export 'package:craft_flutter_template/core/utils/result.dart';
 export 'package:craft_flutter_template/core/config/app_env.dart';
 export 'package:craft_flutter_template/core/config/app_flavor.dart';
 export 'package:craft_flutter_template/core/config/firebase/firebase_config.dart'; // MODULE(firebase)
+export 'package:craft_flutter_template/core/config/network/network_config.dart';
 export 'package:craft_flutter_template/core/config/revenuecat/revenuecat_config.dart'; // MODULE(revenuecat)
 
 // Widgets

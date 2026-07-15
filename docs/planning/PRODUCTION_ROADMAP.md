@@ -147,7 +147,7 @@ the modules must exist first.
 ## Phase 9 — Configurator app + payments + delivery
 
 - [x] Flutter web configurator (dogfooding: "this site was built with the template" is marketing) — a form producing config JSON. UI design approved 2026-07-10: interactive mockup + token/type/component spec in `docs/design/` (monochrome studio-portfolio direction, sharp corners, live preview panel as the core demo moment) (2026-07-14: `configurator/` Flutter web package — v0.4 "breathable" design pass applied to mockup first, bundled OFL fonts (Jost/Inter/JetBrains Mono), Riverpod codegen, module catalogue drift-guard-tested against the generator registry, live preview (files/pubspec/steps), config.json download verified end-to-end in headless Chrome and fed through the real generator to a valid zip. Found+fixed en route: generator zips were empty — archive 4.x async `addFile` unawaited — and staging now denies `configurator/`. Theme presets deferred until the generator supports them)
-- [ ] **SEO split (decided 2026-07-14):** Flutter web renders to canvas, so
+- [x] **SEO split (decided 2026-07-14):** Flutter web renders to canvas, so
   crawlers see no text and CanvasKit hurts Core Web Vitals — the marketing
   content must not live only in the Flutter app. At deployment: serve a
   **static HTML landing page at `/`** (derive it from
@@ -157,7 +157,13 @@ the modules must exist first.
   landing CTA. Tools don't need SEO; landing pages do. Dogfood line becomes
   "the configurator was built with the template." Most discovery still
   comes from marketplace listings + launch posts, so this is a
-  deployment-step task, not a blocker.
+  deployment-step task, not a blocker. (2026-07-15: `landing/index.html` —
+  single-file static page derived from the mockup, zero external requests,
+  full meta/OG/Twitter/JSON-LD tags, all CTAs → `/configure`; adds a
+  "Why this one" template-comparison section and a "Production essentials"
+  section arguing why each feature is required for a shipping app;
+  `landing/` denied in generator staging; deploy notes in
+  `landing/README.md` — domain placeholders marked TODO(deploy))
 - [ ] Generator service on Cloud Run: private template baked into the image; receives config + payment proof, generates, uploads zip, returns short-lived signed URL
 - [ ] Payments — v1: Gumroad license key verified via Gumroad API (zero payment code); v2: Stripe Checkout + webhook minting download tokens (own margin, license enforcement)
 - [ ] Regeneration/re-download policy for paid configs (license key → stored config)
