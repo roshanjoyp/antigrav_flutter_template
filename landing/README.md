@@ -16,9 +16,16 @@ uses the same tokens documented in `docs/design/README.md`.
 | :--- | :--- |
 | `/` | this `index.html` (plus `og-image.png`, favicon) |
 | `/configure` | the Flutter web build of `configurator/` (`flutter build web` output) |
+| `/demo` | the Flutter web build of the template app itself — the listing's live demo |
 
 Every CTA on the page links to `/configure`; the configurator's own base href
 must be set accordingly (`flutter build web --base-href /configure/`).
+
+The demo is built from the repo root with
+`flutter build web --base-href /demo/` — the plain `lib/main.dart` entry, so
+it runs the dev flavor on stub services and needs no Firebase or RevenueCat
+configuration. The nav "Demo", hero and bottom-CTA "Live demo" buttons link
+to it. Rebuild and redeploy it whenever the template's UI changes.
 
 ## Before going live
 

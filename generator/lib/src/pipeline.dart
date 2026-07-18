@@ -69,7 +69,19 @@ GenerateResult generate(
     copyTemplate(templateRoot, staging);
     log.add('✓ copied template → ${staging.path}');
 
-    // 2. Delete excluded modules' owned files.
+    // 2. Ship the commercial terms as LICENSE — the repo's MIT text must
+    // never reach a buyer (it would grant redistribution rights).
+    final commercial = File(p.join(staging.path, 'LICENSE_COMMERCIAL.md'));
+    if (!commercial.existsSync()) {
+      return fail('LICENSE_COMMERCIAL.md missing from template root');
+    }
+    File(
+      p.join(staging.path, 'LICENSE'),
+    ).writeAsStringSync(commercial.readAsStringSync());
+    commercial.deleteSync();
+    log.add('✓ swapped in commercial license');
+
+    // 3. Delete excluded modules' owned files.
     for (final id in excluded) {
       final module = kModules[id]!;
       var deleted = 0;
@@ -98,7 +110,7 @@ GenerateResult generate(
       log.add('✓ removed $id ($deleted files)');
     }
 
-    // 3. Marker pass over remaining text files.
+    // 4. Marker pass over remaining text files.
     var stripped = 0;
     for (final entity in staging.listSync(recursive: true)) {
       if (entity is! File) continue;
@@ -118,7 +130,7 @@ GenerateResult generate(
     }
     log.add('✓ marker pass ($stripped files)');
 
-    // 4. Prune pubspec deps and checklist items.
+    // 5. Prune pubspec deps and checklist items.
     final pubspec = File(p.join(staging.path, 'pubspec.yaml'));
     var pubspecSource = pubspec.readAsStringSync();
     final checklist = File(p.join(staging.path, 'checklist.yaml'));
@@ -137,7 +149,7 @@ GenerateResult generate(
     checklist.writeAsStringSync(checklistSource);
     log.add('✓ pruned pubspec + checklist');
 
-    // 5. Rename to the buyer identity.
+    // 6. Rename to the buyer identity.
     final rename = Process.runSync('dart', [
       'setup/setup.dart',
       '--display-name',
@@ -154,13 +166,13 @@ GenerateResult generate(
     }
     log.add('✓ renamed to ${config.packageId}');
 
-    // 6. Gates.
+    // 7. Gates.
     for (final step in runGates(staging, gate)) {
       if (!step.ok) return fail('${step.label} failed:\n${step.output}');
       log.add('✓ ${step.label}');
     }
 
-    // 7. Zip (denylist re-applied: gates create .dart_tool etc.).
+    // 8. Zip (denylist re-applied: gates create .dart_tool etc.).
     writeProjectZip(staging, outPath);
     log.add('✓ wrote $outPath');
 

@@ -1,3 +1,4 @@
+import 'package:craft_flutter_template/core/core.dart';
 import 'package:craft_flutter_template/features/onboarding/onboarding.dart'; // MODULE(onboarding)
 import 'package:craft_flutter_template/features/paywall/paywall.dart'; // MODULE(revenuecat)
 import 'package:craft_flutter_template/features/profile/profile.dart';
@@ -47,8 +48,22 @@ GoRouter goRouter(Ref ref) {
       // MODULE(onboarding): end
       GoRoute(
         path: '/',
-        builder: (context, state) =>
-            const Scaffold(body: Center(child: Text('Home Page Placeholder'))),
+        builder: (context, state) => Scaffold(
+          body: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AppText.bodyMedium('Home Page Placeholder'),
+                const SizedBox(height: AppConstants.spaceMd),
+                AppButton(
+                  label: 'Back to start',
+                  onPressed: () => context.go('/startup'),
+                  isFullWidth: false,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     ],
   );

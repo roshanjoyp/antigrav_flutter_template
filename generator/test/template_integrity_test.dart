@@ -148,6 +148,13 @@ void main() {
     expect(violations, isEmpty, reason: violations.join('\n'));
   });
 
+  test('commercial license exists with both tiers (the pipeline ships '
+      'it as the buyer\'s LICENSE)', () {
+    final text = _read('LICENSE_COMMERCIAL.md');
+    expect(text, contains('### Personal'));
+    expect(text, contains('### Team'));
+  });
+
   test('pubspec has every registry dep; checklist ids all covered', () {
     final pubspec = _read('pubspec.yaml');
     for (final module in kModules.values) {

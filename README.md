@@ -137,6 +137,8 @@ the exact folder layout, codegen, routing, and test pattern.
 
 ## License
 
-See [LICENSE](LICENSE).
-<!-- TODO(listing): replace with the commercial license terms decided for
-     marketplace distribution (single-app vs. multi-app). -->
+See [LICENSE](LICENSE). Purchased and generated copies ship the CRAFT
+Commercial License in that file — two tiers: **Personal** (one
+developer, unlimited apps) and **Team** (one organization, unlimited
+developers and apps). Copies bought on CodeCanyon are governed by the
+Envato Market License instead.

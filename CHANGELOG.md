@@ -10,6 +10,16 @@ fixes the patch. `pubspec.yaml`'s `version:` tracks the template release.
 
 ### Added
 
+- **Commercial license (Personal / Team tiers).**
+  `LICENSE_COMMERCIAL.md` holds the terms for Gumroad/direct sales; the
+  generator now ships it as the `LICENSE` of every generated project so
+  buyers never receive the repo's MIT text. Drift-guarded in
+  `generator/test/template_integrity_test.dart`.
+- **Live demo deployment.** The template app's web build mounts at
+  `/demo` next to the landing page (`flutter build web --base-href
+  /demo/`, dev flavor on stub services); the landing page nav, hero,
+  and bottom CTA link to it. Deploy notes in `landing/README.md`.
+
 - **Platform flavors (dev / staging / prod).** Per-environment entry
   points (`lib/main_dev.dart`, `main_staging.dart`, `main_prod.dart` over
   a shared `lib/app/bootstrap.dart`), Android `productFlavors` with

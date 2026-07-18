@@ -1,5 +1,6 @@
 import 'package:craft_flutter_template/core/core.dart';
 import 'package:craft_flutter_template/features/startup/presentation/startup_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -65,12 +66,16 @@ class _StartupViewState extends ConsumerState<StartupView> {
                 onPressed: () => context.go('/'),
                 isFullWidth: false,
               ),
-              const SizedBox(height: AppConstants.spaceMd),
-              OutlinedButton.icon(
-                onPressed: () => context.push('/test'),
-                icon: const Icon(Icons.build),
-                label: const Text('Test Services'),
-              ),
+              // Dev-only: the /test route is compiled out of release
+              // builds, so the button must be too.
+              if (kDebugMode) ...[
+                const SizedBox(height: AppConstants.spaceMd),
+                OutlinedButton.icon(
+                  onPressed: () => context.push('/test'),
+                  icon: const Icon(Icons.build),
+                  label: const Text('Test Services'),
+                ),
+              ],
               const SizedBox(height: AppConstants.spaceMd),
               OutlinedButton.icon(
                 onPressed: () => context.push('/profile'),
