@@ -125,6 +125,10 @@ void main() {
         find.text('Restore purchases'),
         AppConstants.space5xl,
       );
+      // Real-font metrics can leave the row only partially on screen
+      // after the scroll — bring it fully into view before tapping.
+      await tester.ensureVisible(find.text('Restore purchases'));
+      await tester.pump();
       await tester.tap(find.text('Restore purchases'));
       await tester.pump();
       expect(find.text('Restoring...'), findsOneWidget);

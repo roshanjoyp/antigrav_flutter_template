@@ -39,6 +39,16 @@ fixes the patch. `pubspec.yaml`'s `version:` tracks the template release.
 
 ### Changed
 
+- **Widget/golden tests render real fonts.** `test/flutter_test_config.dart`
+  loads Roboto + MaterialIcons from the Flutter SDK cache, so goldens show
+  actual glyphs instead of the block test font. Goldens are generated on
+  macOS; regenerate with `flutter test --update-goldens test/goldens`.
+- **Startup screen redesigned as a calm demo hub.** Uniform
+  `AppNavTile` rows (new core widget, golden-tested) grouped into
+  Explore / Development sections replace the mixed-size buttons; the
+  permanent spinner is now a one-line status indicator that resolves
+  to "Services ready". Dev-only destinations are compiled out of
+  release builds together with their routes.
 - **iOS minimum deployment target raised to 15.0** (was 13.0) —
   required by `cloud_firestore` / Firebase iOS SDK 11+.
 

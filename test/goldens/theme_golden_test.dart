@@ -4,6 +4,9 @@ import 'package:craft_flutter_template/core/core.dart';
 // MODULE(revenuecat): begin
 // MODULE(push): begin
 import 'package:craft_flutter_template/features/setup_status/presentation/setup_status_screen.dart';
+// MODULE(onboarding): begin
+import 'package:craft_flutter_template/features/startup/presentation/startup_view.dart';
+// MODULE(onboarding): end
 // MODULE(push): end
 // MODULE(revenuecat): end
 // MODULE(firebase): end
@@ -23,8 +26,8 @@ import 'package:flutter_test/flutter_test.dart';
 /// ```
 /// flutter test --update-goldens test/goldens
 /// ```
-/// Rendering uses the deterministic FlutterTest font, so the goldens
-/// are stable across platforms (including CI).
+/// Rendering uses the real Roboto/MaterialIcons fonts loaded by
+/// `test/flutter_test_config.dart`; regenerate goldens on macOS.
 void main() {
   Future<void> pumpGallery(WidgetTester tester, ThemeData theme) async {
     tester.view.physicalSize = const Size(800, 1300);
@@ -80,6 +83,33 @@ void main() {
         matchesGoldenFile('goldens/setup_status_screen_dark.png'),
       );
     });
+    // Hub golden shows every module's tile — only holds when all are on.
+    // MODULE(onboarding): begin
+    testWidgets('startup hub (dark)', (WidgetTester tester) async {
+      AppFlavor.initialize(AppEnv.development);
+      addTearDown(AppFlavor.reset);
+      tester.view.physicalSize = const Size(430, 1100);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+      await tester.pumpWidget(
+        ProviderScope(
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.darkTheme,
+            home: const StartupView(),
+          ),
+        ),
+      );
+      // Let startup logic run to completion so the hub state is pinned.
+      await tester.pump();
+      await tester.pump(AppConstants.durationSplash);
+      await tester.pump();
+      await expectLater(
+        find.byType(MaterialApp),
+        matchesGoldenFile('goldens/startup_hub_dark.png'),
+      );
+    });
+    // MODULE(onboarding): end
     // MODULE(push): end
     // MODULE(revenuecat): end
     // MODULE(firebase): end
@@ -149,6 +179,13 @@ class _ThemeGallery extends StatelessWidget {
                 background: AppColors.backgroundTertiary,
               ),
             ],
+          ),
+          const SizedBox(height: AppConstants.spaceMd),
+          AppNavTile(
+            icon: Icons.explore_outlined,
+            label: 'Navigation tile',
+            sublabel: 'Fixed-geometry hub row',
+            onTap: () {},
           ),
           const SizedBox(height: AppConstants.spaceMd),
           const AppInfoBanner(

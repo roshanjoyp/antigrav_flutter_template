@@ -12,5 +12,6 @@ export 'package:craft_flutter_template/core/widgets/app_icon_badge.dart';
 export 'package:craft_flutter_template/core/widgets/app_info_banner.dart';
 export 'package:craft_flutter_template/core/widgets/app_error.dart';
 export 'package:craft_flutter_template/core/widgets/app_loading.dart';
+export 'package:craft_flutter_template/core/widgets/app_nav_tile.dart';
 export 'package:craft_flutter_template/core/widgets/app_scaffold.dart';
 export 'package:craft_flutter_template/core/widgets/app_text.dart';
