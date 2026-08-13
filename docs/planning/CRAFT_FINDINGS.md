@@ -146,6 +146,46 @@ correct and current. Worth a line in `guide/` all the same, since buyers
 arriving with Riverpod 2 habits (or AI assistants trained on them) will
 hit it on their first derived provider.
 
+### 5. The generator ships CRAFT's own README to the buyer
+
+**Severity: medium — it is the first file anyone opens.**
+
+The pipeline swaps `LICENSE` for `LICENSE_COMMERCIAL.md` (there is even a
+drift guard for it) but copies `README.md` through untouched. The generated
+project therefore opens with:
+
+```
+# CRAFT — Flutter Starter Template
+A production-ready Flutter template for shipping real apps…
+```
+
+…including the feature matrix, the buy-side pitch, the `TODO(listing)`
+screenshot placeholder, and rows for modules the buyer excluded. It reads
+as someone else's marketing copy sitting in the buyer's repo, and every
+buyer has to delete it before their project looks like their project.
+
+**Recommendation:** generate a project README from the config — app name,
+description, the selected modules' setup steps, and a link to `guide/` —
+the same way `LICENSE` is already handled. Move the CRAFT pitch into
+`guide/` where it belongs. Not applied upstream; it is a generator feature,
+not a quick fix.
+
+### 6. `firestore.rules` had to be written from scratch — confirms prediction #2
+
+Predicted below and now confirmed in practice. The template ships Firestore
+repositories, a Firestore feature, and setup docs, but no deployable
+`firestore.rules` or `firebase.json`. A new project starts against
+Firestore's default deny-all with a rules snippet buried in a markdown
+file, so the first run fails with `permission-denied` and the fix is not
+where the developer is looking.
+
+Also worth noting: the template had no notion of *establishing a session*.
+Rules of any kind need `request.auth`, and nothing in `bootstrap()` signs
+anyone in, so the moment real rules are deployed every read fails. This
+project added `lib/app/config/session_bootstrap.dart` for it. That is a
+strong candidate to port back — any buyer enabling Firebase with
+non-trivial rules hits exactly this.
+
 ---
 
 ## Predicted — expected before writing any code
