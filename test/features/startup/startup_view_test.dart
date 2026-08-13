@@ -32,8 +32,12 @@ void main() {
       expect(find.text('Services ready'), findsOneWidget);
       expect(find.text('Home'), findsOneWidget);
       expect(find.text('Profile'), findsOneWidget);
+      // MODULE(revenuecat): begin
       expect(find.text('Paywall'), findsOneWidget);
+      // MODULE(revenuecat): end
+      // MODULE(onboarding): begin
       expect(find.text('Onboarding'), findsOneWidget);
+      // MODULE(onboarding): end
       // Dev-only section — tests always run in debug mode.
       expect(find.text('Test services'), findsOneWidget);
       expect(find.text('Setup status'), findsOneWidget);

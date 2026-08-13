@@ -10,6 +10,13 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  # Build output is not source. Flutter's SwiftPM integration materialises
+  # third-party plugin sources under build/{ios,macos}/SourcePackages during
+  # `flutter pub get`, and without this the analyzer walks them — hundreds of
+  # lint issues from other people's code, and a failing `flutter analyze` on
+  # any macOS checkout.
+  exclude:
+    - build/**
   plugins:
     - custom_lint
 
